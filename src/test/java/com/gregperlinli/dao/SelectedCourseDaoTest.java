@@ -1,7 +1,7 @@
 package com.gregperlinli.dao;
 
-import com.gregperlinli.dao.impl.StudentDaoImpl;
-import com.gregperlinli.pojo.Student;
+import com.gregperlinli.dao.impl.SelectedCourseDaoImpl;
+import com.gregperlinli.pojo.SelectedCourse;
 import com.gregperlinli.utils.JDBCUtils;
 import org.junit.jupiter.api.Test;
 
@@ -9,11 +9,12 @@ import java.sql.Connection;
 import java.util.List;
 
 /**
- * 用于对<code>StudentDao</code>进行单元测试
+ * 用于对<code>SelectedCourseDao</code>进行单元测试
  *
  * @author gregperlinli
  */
-public class StudentDaoTest {
+public class SelectedCourseDaoTest {
+
     /**
      * 测试<code>insert()</code>方法
      */
@@ -21,10 +22,10 @@ public class StudentDaoTest {
     public void testInsert() {
         Connection conn = null;
         try {
-            StudentDao studentDao = new StudentDaoImpl();
+            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            Student student = new Student(1, "3120007215", "李浩霖", "123456", "物理与光电工程学院", "20", "20电子科学与技术3班");
-            studentDao.insert(conn, student);
+            SelectedCourse selectedCourse = new SelectedCourse(1, "3120007215", "李浩霖", "高等数学");
+            selectedCourseDao.insert(conn, selectedCourse);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -39,10 +40,10 @@ public class StudentDaoTest {
     public void testUpdate() {
         Connection conn = null;
         try{
-            StudentDao studentDao = new StudentDaoImpl();
+            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            Student student = new Student(1, "3121007001", "小明", "111111", "I don't know", "21", "I don't know");
-            studentDao.updateById(conn, student);
+            SelectedCourse selectedCourse = new SelectedCourse(1, "3121007001", "小明", "大学物理");
+            selectedCourseDao.updateById(conn, selectedCourse);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -57,9 +58,9 @@ public class StudentDaoTest {
     public void testDelete() {
         Connection conn = null;
         try{
-            StudentDao studentDao = new StudentDaoImpl();
+            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            studentDao.deleteById(conn, 1);
+            selectedCourseDao.deleteById(conn, 1);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -68,16 +69,16 @@ public class StudentDaoTest {
     }
 
     /**
-     * 测试<code>getStuByStuNum()</code>方法
+     * 测试<code>getSelectedCourseByStuNum()</code>方法
      */
     @Test
     public void testGetByStuNum() {
         Connection conn = null;
         try{
-            StudentDao studentDao = new StudentDaoImpl();
+            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            Student student = studentDao.getStuByStuNum(conn, "3120007215");
-            System.out.println(student);
+            List<SelectedCourse> selectedCourseList = selectedCourseDao.getSelectedCourseByStuNum(conn, "3120007215");
+            System.out.println(selectedCourseList);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -85,17 +86,37 @@ public class StudentDaoTest {
         }
     }
 
+
     /**
-     * 测试<code>getStuByUsername()</code>方法
+     * 测试<code>getSelectedCourseByStuName()</code>方法
      */
     @Test
-    public void testGetByUsername() {
+    public void testGetByStuName() {
         Connection conn = null;
         try{
-            StudentDao studentDao = new StudentDaoImpl();
+            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            Student student = studentDao.getStuByUsername(conn, "李浩霖");
-            System.out.println(student);
+            List<SelectedCourse> selectedCourseList = selectedCourseDao.getSelectedCourseByStuName(conn, "李浩霖");
+            System.out.println(selectedCourseList);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
+
+    /**
+     * 测试<code>getSelectedCourseByCourse()</code>方法
+     */
+    @Test
+    public void testGetByCourse() {
+        Connection conn = null;
+        try{
+            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            List<SelectedCourse> selectedCourseList = selectedCourseDao.getSelectedCourseByCourse(conn, "高等数学");
+            System.out.println(selectedCourseList);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -110,10 +131,10 @@ public class StudentDaoTest {
     public void testGetAll() {
         Connection conn = null;
         try{
-            StudentDao studentDao = new StudentDaoImpl();
+            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            List<Student> students = studentDao.getAll(conn);
-            System.out.println(students.toString());
+            List<SelectedCourse> selectedCourses = selectedCourseDao.getAll(conn);
+            System.out.println(selectedCourses.toString());
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -128,9 +149,9 @@ public class StudentDaoTest {
     public void testGetCount() {
         Connection conn = null;
         try{
-            StudentDao studentDao = new StudentDaoImpl();
+            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            Long count = studentDao.getCount(conn);
+            Long count = selectedCourseDao.getCount(conn);
             System.out.println(count);
         } catch ( Exception e ) {
             e.printStackTrace();
@@ -138,5 +159,4 @@ public class StudentDaoTest {
             JDBCUtils.closeResource(conn, null);
         }
     }
-
 }
