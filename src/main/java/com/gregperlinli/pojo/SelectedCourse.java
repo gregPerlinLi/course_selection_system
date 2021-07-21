@@ -8,15 +8,15 @@ package com.gregperlinli.pojo;
 public class SelectedCourse {
     private int id;
     private String stuName;
-    private String selectCourse;
+    private String course;
 
     public SelectedCourse() {
     }
 
-    public SelectedCourse(int id, String stuName, String selectCourse) {
+    public SelectedCourse(int id, String stuNum, String stuName, String course) {
         this.id = id;
         this.stuName = stuName;
-        this.selectCourse = selectCourse;
+        this.course = course;
     }
 
     public int getId() {
@@ -35,12 +35,12 @@ public class SelectedCourse {
         this.stuName = stuName;
     }
 
-    public String getSelectCourse() {
-        return selectCourse;
+    public String getCourse() {
+        return course;
     }
 
-    public void setSelectCourse(String selectCourse) {
-        this.selectCourse = selectCourse;
+    public void setCourse(String course) {
+        this.course = course;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class SelectedCourse {
         return "SelectedCourse{" +
                 "id=" + id +
                 ", stuName='" + stuName + '\'' +
-                ", selectCourse='" + selectCourse + '\'' +
+                ", selectCourse='" + course + '\'' +
                 '}';
     }
 }
