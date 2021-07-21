@@ -7,6 +7,7 @@ package com.gregperlinli.pojo;
  */
 public class SelectedCourse {
     private int id;
+    private String stuNum;
     private String stuName;
     private String course;
 
@@ -15,6 +16,7 @@ public class SelectedCourse {
 
     public SelectedCourse(int id, String stuNum, String stuName, String course) {
         this.id = id;
+        this.stuNum = stuNum;
         this.stuName = stuName;
         this.course = course;
     }
@@ -25,6 +27,14 @@ public class SelectedCourse {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getStuNum() {
+        return stuNum;
+    }
+
+    public void setStuNum(String stuNum) {
+        this.stuNum = stuNum;
     }
 
     public String getStuName() {
@@ -47,6 +57,7 @@ public class SelectedCourse {
     public String toString() {
         return "SelectedCourse{" +
                 "id=" + id +
+                ", stuNum='" + stuNum + '\'' +
                 ", stuName='" + stuName + '\'' +
                 ", selectCourse='" + course + '\'' +
                 '}';
