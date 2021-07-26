@@ -1,3 +1,4 @@
 # 项目排除路径
 /target/
 /.idea/
+course_selection_system.iml
