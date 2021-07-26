@@ -32,7 +32,7 @@ public class RegisterServiceTest {
      */
     @Test
     public void testAdminRegist() {
-        final Admin ADMIN = new Admin("test1", "test123");
+        final Admin ADMIN = new Admin("test", "test123");
         final RegistServer REGIST_SERVER = new RegistServerImpl();
         boolean isRegisted = REGIST_SERVER.adminRegist(ADMIN);
         System.out.println(isRegisted);
