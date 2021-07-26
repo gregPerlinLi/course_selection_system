@@ -27,6 +27,15 @@ public class Student {
         this.stuClass = stuClass;
     }
 
+    public Student(String stuNum, String username, String password, String college, String grade, String stuClass) {
+        this.stuNum = stuNum;
+        this.username = username;
+        this.password = password;
+        this.college = college;
+        this.grade = grade;
+        this.stuClass = stuClass;
+    }
+
     public String getStuNum() {
         return stuNum;
     }
