@@ -27,6 +27,12 @@ public class AdminDaoImpl extends BaseDAO<Admin> implements AdminDao {
     }
 
     @Override
+    public Admin getAdmById(Connection conn, int id) {
+        String sql = "select id, username, password from admin where id = ?";
+        return getQuery(conn, sql, id);
+    }
+
+    @Override
     public Admin getAdmByUsername(Connection conn, String username) {
         String sql = "select id, username, password from admin where username = ?";
         return getQuery(conn, sql, username);
