@@ -6,12 +6,12 @@ import com.gregperlinli.dao.impl.AdminDaoImpl;
 import com.gregperlinli.dao.impl.StudentDaoImpl;
 import com.gregperlinli.pojo.Admin;
 import com.gregperlinli.pojo.Student;
-import com.gregperlinli.service.RegistServer;
+import com.gregperlinli.service.AccountManageServer;
 import com.gregperlinli.utils.JDBCUtils;
 
 import java.sql.Connection;
 
-public class RegistServerImpl implements RegistServer {
+public class AccountManageServerImpl implements AccountManageServer {
     Connection conn = null;
 
     @Override

@@ -8,7 +8,7 @@ import com.gregperlinli.pojo.Student;
  *
  * @author gregperlinli
  */
-public interface RegistServer {
+public interface AccountManageServer {
     /**
      * 普通学生的注册操作
      *
