@@ -40,4 +40,20 @@ public interface AccountManageServer {
      * @return 返回是否存在该用户，<code>true</code>则为存在该用户，<code>false</code>则为不存在该用户
      */
     boolean adminUpdate(Admin admin);
+
+    /**
+     * 删除普通学生的账号
+     *
+     * @param id 提供要删除的学生的id
+     * @return 返回是否存在该用户，<code>true</code>则为存在该用户，<code>false</code>则为不存在该用户
+     */
+    boolean studentDelete(int id);
+
+    /**
+     * 删除管理员的账号
+     *
+     * @param id 提供要删除的管理员的id
+     * @return 返回是否存在该用户，<code>true</code>则为存在该用户，<code>false</code>则为不存在该用户
+     */
+    boolean adminDelete(int id);
 }
