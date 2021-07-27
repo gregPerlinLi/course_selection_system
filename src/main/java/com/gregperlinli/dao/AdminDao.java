@@ -41,6 +41,15 @@ public interface AdminDao {
     void updateById(Connection conn, Admin admin) throws Exception;
 
     /**
+     * 根据管理员id来获取管理员对象
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param id 提供所要获取管理员的id
+     * @return 查询到的管理员对象，若无结果则返回<code>null</code>
+     */
+    Admin getAdmById(Connection conn, int id);
+
+    /**
      * 根据管理员名字来获取管理员对象
      *
      * @param conn 提供数据库连接池所给的连接

@@ -41,6 +41,14 @@ public interface StudentDao {
     void updateById(Connection conn, Student student) throws Exception;
 
     /**
+     * 根据id来获取学生对象
+     * @param conn 提供数据库连接池所给的连接
+     * @param id 提供所要获取学生的id
+     * @return 查询到的学生对象，若无结果则返回<code>null</code>
+     */
+    Student getStuById(Connection conn, int id);
+
+    /**
      * 根据学生学号来获取学生对象
      *
      * @param conn 提供数据库连接池所给的连接

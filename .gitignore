@@ -2,3 +2,4 @@
 /target/
 /.idea/
 course_selection_system.iml
+.DS_Store

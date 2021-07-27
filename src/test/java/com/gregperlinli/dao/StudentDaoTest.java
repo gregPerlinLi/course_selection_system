@@ -67,6 +67,25 @@ public class StudentDaoTest {
         }
     }
 
+
+    /**
+     * 测试<code>getStuById()</code>方法
+     */
+    @Test
+    public void testGetById() {
+        Connection conn = null;
+        try{
+            StudentDao studentDao = new StudentDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            Student student = studentDao.getStuById(conn, 2);
+            System.out.println(student);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
     /**
      * 测试<code>getStuByStuNum()</code>方法
      */

@@ -67,6 +67,25 @@ public class AdminDaoTest {
         }
     }
 
+
+    /**
+     * 测试<code>getAdmById()</code>方法
+     */
+    @Test
+    public void testGetById() {
+        Connection conn = null;
+        try{
+            AdminDao adminDao = new AdminDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            Admin admin = adminDao.getAdmById(conn, 4);
+            System.out.println(admin);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
     /**
      * 测试<code>getAdmByUsername()</code>方法
      */
