@@ -37,4 +37,33 @@ public class AccountManageServiceTest {
         boolean isRegisted = ACCOUNT_MANAGE_SERVER.adminRegist(ADMIN);
         System.out.println(isRegisted);
     }
+
+    /**
+     * 测试<code>studentUpdate()</code>方法
+     */
+    @Test
+    public void testStudentUpdate() {
+        final Student STUDENT = new Student(3,
+                "3121007213",
+                "黎伊朗",
+                "LargeKindergarten",
+                "物理与光电工程学院",
+                "21级",
+                "21电子科学与技术3班");
+        final AccountManageServer ACCOUNT_MANAGE_SERVER = new AccountManageServerImpl();
+        boolean isUpdated = ACCOUNT_MANAGE_SERVER.studentUpdate(STUDENT);
+        System.out.println(isUpdated);
+    }
+
+
+    /**
+     * 测试<code>adminUpdate()</code>方法
+     */
+    @Test
+    public void testAdminUpdate() {
+        final Admin ADMIN = new Admin(6, "anotherTest", "test_for_other");
+        final AccountManageServer ACCOUNT_MANAGE_SERVER = new AccountManageServerImpl();
+        boolean isUpdated = ACCOUNT_MANAGE_SERVER.adminUpdate(ADMIN);
+        System.out.println(isUpdated);
+    }
 }
