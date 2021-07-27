@@ -30,6 +30,12 @@ public class StudentDaoImpl extends BaseDAO<Student> implements StudentDao {
     }
 
     @Override
+    public Student getStuById(Connection conn, int id) {
+        String sql = "select id, stu_num stuNum, username, password, college, grade, stu_class stuClass from student where id = ?";
+        return getQuery(conn, sql, id);
+    }
+
+    @Override
     public Student getStuByStuNum(Connection conn, String stuNum) {
         String sql = "select id, stu_num stuNum, username, password, college, grade, stu_class stuClass from student where stu_num = ?";
         return getQuery(conn, sql, stuNum);
