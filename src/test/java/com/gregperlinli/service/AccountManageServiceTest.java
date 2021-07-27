@@ -22,8 +22,8 @@ public class AccountManageServiceTest {
                                             "物理与光电工程学院",
                                             "20级",
                                             "20电子科学与技术3班");
-        final AccountManageServer REGIST_SERVER = new AccountManageServerImpl();
-        boolean isRegisted = REGIST_SERVER.studentRegist(STUDENT);
+        final AccountManageServer ACCOUNT_MANAGE_SERVER = new AccountManageServerImpl();
+        boolean isRegisted = ACCOUNT_MANAGE_SERVER.studentRegist(STUDENT);
         System.out.println(isRegisted);
     }
 
@@ -33,8 +33,8 @@ public class AccountManageServiceTest {
     @Test
     public void testAdminRegist() {
         final Admin ADMIN = new Admin("test", "test123");
-        final AccountManageServer REGIST_SERVER = new AccountManageServerImpl();
-        boolean isRegisted = REGIST_SERVER.adminRegist(ADMIN);
+        final AccountManageServer ACCOUNT_MANAGE_SERVER = new AccountManageServerImpl();
+        boolean isRegisted = ACCOUNT_MANAGE_SERVER.adminRegist(ADMIN);
         System.out.println(isRegisted);
     }
 }
