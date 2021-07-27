@@ -18,7 +18,6 @@ public interface AccountManageServer {
     boolean studentRegist(Student student);
 
     /**
-     * 普通学生的注册操作
      * 管理员的注册操作
      *
      * @param admin 提供需要注册的管理员信息
