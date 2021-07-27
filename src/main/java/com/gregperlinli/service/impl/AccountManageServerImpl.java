@@ -47,4 +47,38 @@ public class AccountManageServerImpl implements AccountManageServer {
         }
         return false;
     }
+
+    @Override
+    public boolean studentUpdate(Student student) {
+        final StudentDao STUDENT_DAO = new StudentDaoImpl();
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            if ( STUDENT_DAO.getStuById(conn, student.getId()) != null ) {
+                STUDENT_DAO.updateById(conn, student);
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean adminUpdate(Admin admin) {
+        final AdminDao ADMIN_DAO = new AdminDaoImpl();
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            if ( ADMIN_DAO.getAdmById(conn, admin.getId()) != null ) {
+                ADMIN_DAO.updateById(conn, admin);
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+        return false;
+    }
 }
