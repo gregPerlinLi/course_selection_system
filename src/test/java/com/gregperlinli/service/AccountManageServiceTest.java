@@ -66,4 +66,26 @@ public class AccountManageServiceTest {
         boolean isUpdated = ACCOUNT_MANAGE_SERVER.adminUpdate(ADMIN);
         System.out.println(isUpdated);
     }
+
+
+    /**
+     * 测试<code>studentDelete()</code>方法
+     */
+    @Test
+    public void testStudentDelete() {
+        final AccountManageServer ACCOUNT_MANAGE_SERVER = new AccountManageServerImpl();
+        boolean isDeleted = ACCOUNT_MANAGE_SERVER.studentDelete(7);
+        System.out.println(isDeleted);
+    }
+
+
+    /**
+     * 测试<code>adminDelete()</code>方法
+     */
+    @Test
+    public void testAdminDelete() {
+        final AccountManageServer ACCOUNT_MANAGE_SERVER = new AccountManageServerImpl();
+        boolean isDeleted = ACCOUNT_MANAGE_SERVER.adminDelete(7);
+        System.out.println(isDeleted);
+    }
 }
