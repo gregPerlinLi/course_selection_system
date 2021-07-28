@@ -35,14 +35,11 @@ public class CourseManageServerImpl implements CourseManageServer {
     public boolean updateCourse(Course course) {
         final CourseDao COURSE_DAO = new CourseDaoImpl();
         final SelectedCourseDao SELECTED_COURSE_DAO = new SelectedCourseDaoImpl();
-
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
             conn.setAutoCommit(false);
-
             Course currentCourse = COURSE_DAO.getCourseById(conn, course.getId());
-
             if ( currentCourse != null) {
                 // 先删除该课程下所有已选课程信息
                 SELECTED_COURSE_DAO.deleteByCourse(conn, currentCourse.getCourseName());
@@ -71,14 +68,11 @@ public class CourseManageServerImpl implements CourseManageServer {
     public boolean deleteCourse(int id) {
         final CourseDao COURSE_DAO = new CourseDaoImpl();
         final SelectedCourseDao SELECTED_COURSE_DAO = new SelectedCourseDaoImpl();
-
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
             conn.setAutoCommit(false);
-
             Course currentCourse = COURSE_DAO.getCourseById(conn, id);
-
             if ( currentCourse != null) {
                 // 先删除该课程下所有已选课程信息
                 SELECTED_COURSE_DAO.deleteByCourse(conn, currentCourse.getCourseName());
