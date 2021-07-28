@@ -32,6 +32,24 @@ public interface SelectedCourseDao {
     void deleteById(Connection conn, int id) throws Exception;
 
     /**
+     * 根据课程名字来删除已选课程信息
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param course 提供要删除的已选课程对象的课程名字
+     * @throws Exception 抛出错误
+     */
+    void deleteByCourse(Connection conn, String course) throws Exception;
+
+    /**
+     * 根据学生名字来删除已选课程信息
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param stuName 提供要删除的已选课程对象的学生名字
+     * @throws Exception 抛出错误
+     */
+    void deleteByStuName(Connection conn, String stuName) throws Exception;
+
+    /**
      * 根据id来更新已选课程信息
      *
      * @param conn 提供数据库连接池所给的连接
