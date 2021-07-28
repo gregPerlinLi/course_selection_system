@@ -87,6 +87,24 @@ public class CourseDaoTest {
     }
 
     /**
+     * 测试<code>getCourseById()</code>方法
+     */
+    @Test
+    public void testGetById() {
+        Connection conn = null;
+        try{
+            CourseDao courseDao = new CourseDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            Course course = courseDao.getCourseById(conn, 2);
+            System.out.println(course);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
+    /**
      * 测试<code>getCourseByCourseName()</code>方法
      */
     @Test
