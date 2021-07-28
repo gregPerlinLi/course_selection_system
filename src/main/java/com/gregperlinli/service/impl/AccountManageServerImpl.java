@@ -1,8 +1,10 @@
 package com.gregperlinli.service.impl;
 
 import com.gregperlinli.dao.AdminDao;
+import com.gregperlinli.dao.SelectedCourseDao;
 import com.gregperlinli.dao.StudentDao;
 import com.gregperlinli.dao.impl.AdminDaoImpl;
+import com.gregperlinli.dao.impl.SelectedCourseDaoImpl;
 import com.gregperlinli.dao.impl.StudentDaoImpl;
 import com.gregperlinli.pojo.Admin;
 import com.gregperlinli.pojo.Student;
@@ -10,6 +12,7 @@ import com.gregperlinli.service.AccountManageServer;
 import com.gregperlinli.utils.JDBCUtils;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class AccountManageServerImpl implements AccountManageServer {
     Connection conn = null;
@@ -51,16 +54,32 @@ public class AccountManageServerImpl implements AccountManageServer {
     @Override
     public boolean studentUpdate(Student student) {
         final StudentDao STUDENT_DAO = new StudentDaoImpl();
+        final SelectedCourseDao SELECTED_COURSE_DAO = new SelectedCourseDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
-            if ( STUDENT_DAO.getStuById(conn, student.getId()) != null ) {
+            // 关闭自动提交
+            conn.setAutoCommit(false);
+            Student currentStudent = STUDENT_DAO.getStuById(conn, student.getId());
+            if ( currentStudent != null ) {
+                // 先删除该学生下所有已选课程的信息
+                SELECTED_COURSE_DAO.deleteByStuName(conn, currentStudent.getUsername());
+                // 然后再修改学生信息
                 STUDENT_DAO.updateById(conn, student);
+                // 最后提交更改
+                conn.commit();
                 return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.closeResource(conn, null);
+            try {
+                // 恢复自动提交
+                conn.setAutoCommit(true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                JDBCUtils.closeResource(conn, null);
+            }
         }
         return false;
     }
@@ -85,16 +104,32 @@ public class AccountManageServerImpl implements AccountManageServer {
     @Override
     public boolean studentDelete(int id) {
         final StudentDao STUDENT_DAO = new StudentDaoImpl();
+        final SelectedCourseDao SELECTED_COURSE_DAO = new SelectedCourseDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
-            if ( STUDENT_DAO.getStuById(conn, id) != null ) {
+            // 关闭自动提交
+            conn.setAutoCommit(false);
+            Student currentStudent = STUDENT_DAO.getStuById(conn, id);
+            if ( currentStudent != null ) {
+                // 先删除该学生下所有已选课程的信息
+                SELECTED_COURSE_DAO.deleteByStuName(conn, currentStudent.getUsername());
+                // 然后再删除学生
                 STUDENT_DAO.deleteById(conn, id);
+                // 最后提交更改
+                conn.commit();
                 return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            JDBCUtils.closeResource(conn, null);
+            try {
+                // 恢复自动提交
+                conn.setAutoCommit(true);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                JDBCUtils.closeResource(conn, null);
+            }
         }
         return false;
     }
