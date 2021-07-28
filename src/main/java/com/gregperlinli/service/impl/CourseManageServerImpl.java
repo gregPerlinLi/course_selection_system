@@ -43,9 +43,9 @@ public class CourseManageServerImpl implements CourseManageServer {
             if ( currentCourse != null) {
                 // 先删除该课程下所有已选课程信息
                 SELECTED_COURSE_DAO.deleteByCourse(conn, currentCourse.getCourseName());
-                // 然乎再修改课程信息
+                // 然后再修改课程信息
                 COURSE_DAO.updateById(conn, course);
-                // 提交更改
+                // 最后提交更改
                 conn.commit();
                 return true;
             }
@@ -76,9 +76,9 @@ public class CourseManageServerImpl implements CourseManageServer {
             if ( currentCourse != null) {
                 // 先删除该课程下所有已选课程信息
                 SELECTED_COURSE_DAO.deleteByCourse(conn, currentCourse.getCourseName());
-                // 然乎再删除课程
+                // 然后再删除课程
                 COURSE_DAO.deleteById(conn, id);
-                // 提交更改
+                // 最后提交更改
                 conn.commit();
                 return true;
             }
