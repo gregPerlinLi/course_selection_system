@@ -33,6 +33,12 @@ public class CourseDaoImpl extends BaseDAO<Course> implements CourseDao {
     }
 
     @Override
+    public Course getCourseById(Connection conn, int id) {
+        String sql = "select id, course_name courseName, start_date startDate, start_time startTime, max_stu maxStu, current_stu currentStu from course where id = ?";
+        return getQuery(conn, sql, id);
+    }
+
+    @Override
     public Course getCourseByCourseName(Connection conn, String courseName) {
         String sql = "select id, course_name courseName, start_date startDate, start_time startTime, max_stu maxStu, current_stu currentStu from course where course_name = ?";
         return getQuery(conn, sql, courseName);

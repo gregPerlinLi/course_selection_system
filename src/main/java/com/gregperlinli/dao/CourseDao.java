@@ -51,6 +51,15 @@ public interface CourseDao {
     void updateCurrentStu(Connection conn, int id, int newCurrentStu) throws Exception;
 
     /**
+     * 根据课程id来获取课程对象
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param id 提供所要获取课程的id
+     * @return 查询到的课程对象，若无结果则返回<code>null</code>
+     */
+    Course getCourseById(Connection conn, int id);
+
+    /**
      * 根据课程名字来获取课程对象
      *
      * @param conn 提供数据库连接池所给的连接
