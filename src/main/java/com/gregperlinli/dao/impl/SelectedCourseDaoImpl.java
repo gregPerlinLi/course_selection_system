@@ -21,6 +21,18 @@ public class SelectedCourseDaoImpl extends BaseDAO<SelectedCourse> implements Se
     }
 
     @Override
+    public void deleteByCourse(Connection conn, String course) throws Exception {
+        String sql = "delete from selected_course where course = ?";
+        update(conn, sql, course);
+    }
+
+    @Override
+    public void deleteByStuName(Connection conn, String stuName) throws Exception {
+        String sql = "delete from selected_course where stu_name = ?";
+        update(conn, sql, stuName);
+    }
+
+    @Override
     public void updateById(Connection conn, SelectedCourse selectedCourse) throws Exception {
         String sql = "update selected_course set stu_num = ?, stu_name = ?, course = ? where id = ?";
         update(conn, sql, selectedCourse.getStuNum(), selectedCourse.getStuName(), selectedCourse.getCourse(), selectedCourse.getId());
