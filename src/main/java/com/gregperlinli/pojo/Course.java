@@ -14,12 +14,20 @@ public class Course {
     private Date startDate;
     private Time startTime;
     private int maxStu;
+    private int currentStu = 0;
 
     public Course() {
     }
 
     public Course(int id, String courseName, Date startDate, Time startTime, int maxStu) {
         this.id = id;
+        this.courseName = courseName;
+        this.startDate = startDate;
+        this.startTime = startTime;
+        this.maxStu = maxStu;
+    }
+
+    public Course(String courseName, Date startDate, Time startTime, int maxStu) {
         this.courseName = courseName;
         this.startDate = startDate;
         this.startTime = startTime;
@@ -66,6 +74,14 @@ public class Course {
         this.maxStu = maxStu;
     }
 
+    public int getCurrentStu() {
+        return currentStu;
+    }
+
+    public void setCurrentStu(int currentStu) {
+        this.currentStu = currentStu;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -74,6 +90,7 @@ public class Course {
                 ", startDate=" + startDate +
                 ", startTime=" + startTime +
                 ", maxStu=" + maxStu +
+                ", currentStu=" + currentStu +
                 '}';
     }
 }
