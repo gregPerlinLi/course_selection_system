@@ -28,13 +28,13 @@ public class CourseDaoImpl extends BaseDAO<Course> implements CourseDao {
 
     @Override
     public Course getCourseByCourseName(Connection conn, String courseName) {
-        String sql = "select id, course_name courseName, start_date startDate, start_time startTime, max_stu maxStu from course where course_name = ?";
+        String sql = "select id, course_name courseName, start_date startDate, start_time startTime, max_stu maxStu, current_stu currentStu from course where course_name = ?";
         return getQuery(conn, sql, courseName);
     }
 
     @Override
     public List<Course> getAll(Connection conn) {
-        String sql = "select id, course_name courseName, start_date startDate, start_time startTime, max_stu maxStu from course";
+        String sql = "select id, course_name courseName, start_date startDate, start_time startTime, max_stu maxStu, current_stu currentStu from course";
         return getMultiQuery(conn, sql);
     }
 
