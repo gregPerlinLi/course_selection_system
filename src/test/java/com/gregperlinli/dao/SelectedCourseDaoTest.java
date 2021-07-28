@@ -55,12 +55,46 @@ public class SelectedCourseDaoTest {
      * 测试<code>deleteById()</code>方法
      */
     @Test
-    public void testDelete() {
+    public void testDeleteById() {
         Connection conn = null;
         try{
             SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             selectedCourseDao.deleteById(conn, 1);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
+    /**
+     * 测试<code>deleteByCourse()</code>方法
+     */
+    @Test
+    public void testDeleteByCourse() {
+        Connection conn = null;
+        try{
+            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            selectedCourseDao.deleteByCourse(conn, "大学英语");
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
+    /**
+     * 测试<code>deleteByStuName()</code>方法
+     */
+    @Test
+    public void testDeleteByStuName() {
+        Connection conn = null;
+        try{
+            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            selectedCourseDao.deleteByStuName(conn, "小明");
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
