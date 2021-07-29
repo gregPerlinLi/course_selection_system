@@ -28,7 +28,7 @@ public interface AccountManageServer {
 
     /**
      * 修改普通学生的账号信息<br>
-     * <span style='color:yellow;'>注意：在修改学生的同时会将原来该学生下的所有已选课程信息完全清除，请谨慎使用！</span>
+     * <span style='color:yellow;'>注意：在修改学生的同时会将原来该学生下的所有已选课程信息完全修改</span>
      *
      * @param student 提供带有要修改的学生的新的参数的对象 (注意：id属性一定是学生现有的id属性，且不能更改！)
      * @return 返回是否存在该用户，<code>true</code>则为存在该用户，<code>false</code>则为不存在该用户

@@ -7,12 +7,14 @@ import com.gregperlinli.dao.impl.AdminDaoImpl;
 import com.gregperlinli.dao.impl.SelectedCourseDaoImpl;
 import com.gregperlinli.dao.impl.StudentDaoImpl;
 import com.gregperlinli.pojo.Admin;
+import com.gregperlinli.pojo.SelectedCourse;
 import com.gregperlinli.pojo.Student;
 import com.gregperlinli.service.AccountManageServer;
 import com.gregperlinli.utils.JDBCUtils;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 public class AccountManageServerImpl implements AccountManageServer {
     Connection conn = null;
@@ -61,8 +63,14 @@ public class AccountManageServerImpl implements AccountManageServer {
             conn.setAutoCommit(false);
             Student currentStudent = STUDENT_DAO.getStuById(conn, student.getId());
             if ( currentStudent != null ) {
-                // 先删除该学生下所有已选课程的信息
-                SELECTED_COURSE_DAO.deleteByStuName(conn, currentStudent.getUsername());
+                // 先修改该学生下所有已选课程的信息
+                // SELECTED_COURSE_DAO.deleteByStuName(conn, currentStudent.getUsername());
+                List<SelectedCourse> selectedCourses = SELECTED_COURSE_DAO.getSelectedCourseByStuName(conn, currentStudent.getUsername());
+                for ( SelectedCourse selectedCourse : selectedCourses ) {
+                    selectedCourse.setStuName(student.getUsername());
+                    selectedCourse.setStuNum(student.getStuNum());
+                    SELECTED_COURSE_DAO.updateById(conn, selectedCourse);
+                }
                 // 然后再修改学生信息
                 STUDENT_DAO.updateById(conn, student);
                 // 最后提交更改
