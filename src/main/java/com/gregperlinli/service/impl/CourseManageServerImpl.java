@@ -50,11 +50,17 @@ public class CourseManageServerImpl implements CourseManageServer {
                     selectedCourse.setCourse(course.getCourseName());
                     SELECTED_COURSE_DAO.updateById(conn, selectedCourse);
                 }
-                // 然后再修改课程信息
-                COURSE_DAO.updateById(conn, course);
-                // 最后提交更改
-                conn.commit();
-                return true;
+                if ( COURSE_DAO.getCourseByCourseName(conn, course.getCourseName()) == null ) {
+                    // 然后再修改课程信息
+                    COURSE_DAO.updateById(conn, course);
+                    // 最后提交更改
+                    conn.commit();
+                    return true;
+                } else {
+                    // 若存在同名的对象则停止更改并进行回滚
+                    conn.rollback();
+                    return false;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
