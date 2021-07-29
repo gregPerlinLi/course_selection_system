@@ -4,9 +4,10 @@ import com.gregperlinli.pojo.Admin;
 import com.gregperlinli.pojo.Student;
 
 /**
- * 用于进行注册操作
+ * 用于进行用户修改与管理操作
  *
  * @author gregperlinli
+ * @since 2021-7-26
  */
 public interface AccountManageServer {
     /**
