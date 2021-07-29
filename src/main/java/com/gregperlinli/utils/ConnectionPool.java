@@ -21,9 +21,9 @@ public class ConnectionPool {
     private String dbUsername = ""; // 数据库用户名
     private String dbPassword = ""; // 数据库用户密码
     private String testTable = ""; // 测试连接是否可用的测试表名，默认没有测试表
-    private int initialConnections = 10; // 连接池的初始大小
+    private int initialSize = 10; // 连接池的初始大小
     private int incrementalConnections = 5; // 连接池自动增加的大小
-    private int maxConnections = 50; // 连接池最大的大小
+    private int maxActive = 50; // 连接池最大的大小
     private Vector<PooledConnection> connections = null; // 存放连接池中数据库连接的向量 , 初始时为 null
 
     /**
@@ -37,6 +37,15 @@ public class ConnectionPool {
         this.dbUrl = jdbc.getString("jdbc.url");
         this.dbUsername = jdbc.getString("jdbc.username");
         this.dbPassword = jdbc.getString("jdbc.password");
+        if ( jdbc.containsKey("pool.initialSize") ) {
+            this.initialSize = Integer.parseInt(jdbc.getString("pool.initialSize"));
+        }
+        if ( jdbc.containsKey("pool.incrementalConnections") ) {
+            this.incrementalConnections = Integer.parseInt(jdbc.getString("pool.incrementalConnections"));
+        }
+        if ( jdbc.containsKey("pool.maxActive") ) {
+            this.maxActive = Integer.parseInt(jdbc.getString("pool.maxActive"));
+        }
     }
 
     /**
@@ -54,12 +63,12 @@ public class ConnectionPool {
         this.dbPassword = dbPassword;
     }
 
-    public int getInitialConnections() {
-        return this.initialConnections;
+    public int getInitialSize() {
+        return this.initialSize;
     }
 
-    public void setInitialConnections(int initialConnections) {
-        this.initialConnections = initialConnections;
+    public void setInitialSize(int initialSize) {
+        this.initialSize = initialSize;
     }
 
     public int getIncrementalConnections() {
@@ -70,12 +79,12 @@ public class ConnectionPool {
         this.incrementalConnections = incrementalConnections;
     }
 
-    public int getMaxConnections() {
-        return this.maxConnections;
+    public int getMaxActive() {
+        return this.maxActive;
     }
 
-    public void setMaxConnections(int maxConnections) {
-        this.maxConnections = maxConnections;
+    public void setMaxActive(int maxActive) {
+        this.maxActive = maxActive;
     }
 
     public String getTestTable() {
@@ -101,8 +110,8 @@ public class ConnectionPool {
         DriverManager.registerDriver(driver); // 注册 JDBC 驱动程序
         // 创建保存连接的向量 , 初始时有 0 个元素
         connections = new Vector<PooledConnection>();
-        // 根据 initialConnections 中设置的值，创建连接。
-        createConnections(this.initialConnections);
+        // 根据 initialSize 中设置的值，创建连接。
+        createConnections(this.initialSize);
         System.out.println(" 数据库连接池创建成功！ ");
     }
 
@@ -110,10 +119,10 @@ public class ConnectionPool {
     private void createConnections(int numConnections) throws SQLException {
         // 循环创建指定数目的数据库连接
         for (int x = 0; x < numConnections; x++) {
-            // 是否连接池中的数据库连接的数量己经达到最大？最大值由类成员 maxConnections
-            // 指出，假如 maxConnections 为 0 或负数，表示连接数量没有限制。
+            // 是否连接池中的数据库连接的数量己经达到最大？最大值由类成员 maxActive
+            // 指出，假如 maxActive 为 0 或负数，表示连接数量没有限制。
             // 假如连接数己经达到最大，即退出。
-            if (this.maxConnections > 0 && this.connections.size() >= this.maxConnections) {
+            if (this.maxActive > 0 && this.connections.size() >= this.maxActive) {
                 break;
             }
             //add a new PooledConnection object to connections vector
@@ -142,8 +151,8 @@ public class ConnectionPool {
             // driverMaxConnections 为返回的一个整数，表示此数据库答应客户连接的数目
             // 假如连接池中设置的最大连接数量大于数据库答应的连接数目 , 则置连接池的最大
             // 连接数目为数据库答应的最大数目
-            if (driverMaxConnections > 0 && this.maxConnections > driverMaxConnections) {
-                this.maxConnections = driverMaxConnections;
+            if (driverMaxConnections > 0 && this.maxActive > driverMaxConnections) {
+                this.maxActive = driverMaxConnections;
             }
         }
         return conn; // 返回创建的新的数据库连接
