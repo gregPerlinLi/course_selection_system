@@ -12,6 +12,10 @@ public class Grade {
     public Grade() {
     }
 
+    public Grade(String gradeName) {
+        this.gradeName = gradeName;
+    }
+
     public Grade(int id, String gradeName) {
         this.id = id;
         this.gradeName = gradeName;

@@ -12,6 +12,10 @@ public class College {
     public College() {
     }
 
+    public College(String collegeName) {
+        this.collegeName = collegeName;
+    }
+
     public College(int id, String collegeName) {
         this.id = id;
         this.collegeName = collegeName;

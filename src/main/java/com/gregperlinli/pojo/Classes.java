@@ -14,6 +14,12 @@ public class Classes {
     public Classes() {
     }
 
+    public Classes(String classesName, String college, String grade) {
+        this.classesName = classesName;
+        this.college = college;
+        this.grade = grade;
+    }
+
     public Classes(int id, String classesName, String college, String grade) {
         this.id = id;
         this.classesName = classesName;
