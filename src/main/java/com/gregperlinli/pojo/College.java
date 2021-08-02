@@ -4,6 +4,7 @@ package com.gregperlinli.pojo;
  * 用于对应数据库中的college表
  *
  * @author gregperlinli
+ * @since 2021-7-20
  */
 public class College {
     private int id;

@@ -2,11 +2,11 @@ package com.gregperlinli.service;
 
 import com.gregperlinli.pojo.Admin;
 import com.gregperlinli.pojo.Student;
-import com.gregperlinli.service.impl.AccountManageServerImpl;
+import com.gregperlinli.service.impl.AccountManageServiceImpl;
 import org.junit.jupiter.api.Test;
 
 /**
- * 对<code>AccountManageServer</code>进行单元测试
+ * 对<code>AccountManageService</code>进行单元测试
  *
  * @author gregperlinli
  * @since 2021-7-26
@@ -23,7 +23,7 @@ public class AccountManageServiceTest {
                                             "物理与光电工程学院",
                                             "20级",
                                             "20电子科学与技术3班");
-        final AccountManageServer ACCOUNT_MANAGE_SERVER = new AccountManageServerImpl();
+        final AccountManageService ACCOUNT_MANAGE_SERVER = new AccountManageServiceImpl();
         boolean isRegisted = ACCOUNT_MANAGE_SERVER.studentRegist(STUDENT);
         System.out.println(isRegisted);
     }
@@ -34,7 +34,7 @@ public class AccountManageServiceTest {
     @Test
     public void testAdminRegist() {
         final Admin ADMIN = new Admin("test", "test123");
-        final AccountManageServer ACCOUNT_MANAGE_SERVER = new AccountManageServerImpl();
+        final AccountManageService ACCOUNT_MANAGE_SERVER = new AccountManageServiceImpl();
         boolean isRegisted = ACCOUNT_MANAGE_SERVER.adminRegist(ADMIN);
         System.out.println(isRegisted);
     }
@@ -51,7 +51,7 @@ public class AccountManageServiceTest {
                 "物理与光电工程学院",
                 "21级",
                 "21电子科学与技术3班");
-        final AccountManageServer ACCOUNT_MANAGE_SERVER = new AccountManageServerImpl();
+        final AccountManageService ACCOUNT_MANAGE_SERVER = new AccountManageServiceImpl();
         boolean isUpdated = ACCOUNT_MANAGE_SERVER.studentUpdate(STUDENT);
         System.out.println(isUpdated);
     }
@@ -63,7 +63,7 @@ public class AccountManageServiceTest {
     @Test
     public void testAdminUpdate() {
         final Admin ADMIN = new Admin(6, "anotherTest", "test_for_other");
-        final AccountManageServer ACCOUNT_MANAGE_SERVER = new AccountManageServerImpl();
+        final AccountManageService ACCOUNT_MANAGE_SERVER = new AccountManageServiceImpl();
         boolean isUpdated = ACCOUNT_MANAGE_SERVER.adminUpdate(ADMIN);
         System.out.println(isUpdated);
     }
@@ -74,7 +74,7 @@ public class AccountManageServiceTest {
      */
     @Test
     public void testStudentDelete() {
-        final AccountManageServer ACCOUNT_MANAGE_SERVER = new AccountManageServerImpl();
+        final AccountManageService ACCOUNT_MANAGE_SERVER = new AccountManageServiceImpl();
         boolean isDeleted = ACCOUNT_MANAGE_SERVER.studentDelete(7);
         System.out.println(isDeleted);
     }
@@ -85,7 +85,7 @@ public class AccountManageServiceTest {
      */
     @Test
     public void testAdminDelete() {
-        final AccountManageServer ACCOUNT_MANAGE_SERVER = new AccountManageServerImpl();
+        final AccountManageService ACCOUNT_MANAGE_SERVER = new AccountManageServiceImpl();
         boolean isDeleted = ACCOUNT_MANAGE_SERVER.adminDelete(7);
         System.out.println(isDeleted);
     }

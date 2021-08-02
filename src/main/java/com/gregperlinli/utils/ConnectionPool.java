@@ -12,22 +12,53 @@ import java.util.Vector;
 
 /**
  * <h1><span style='color:red;'>MySQL数据库连接池</span></h1>
+ *
  * @author gregperlinli
+ * @since 2021-7-20
+ * @version 1.0.2
  */
 public class ConnectionPool {
 
-    private String jdbcDriver = ""; // 数据库驱动
-    private String dbUrl = ""; // 数据 URL
-    private String dbUsername = ""; // 数据库用户名
-    private String dbPassword = ""; // 数据库用户密码
-    private String testTable = ""; // 测试连接是否可用的测试表名，默认没有测试表
-    private int initialSize = 10; // 连接池的初始大小
-    private int incrementalConnections = 5; // 连接池自动增加的大小
-    private int maxActive = 50; // 连接池最大的大小
-    private Vector<PooledConnection> connections = null; // 存放连接池中数据库连接的向量 , 初始时为 null
+    /**
+     * 数据库驱动
+     */
+    private String jdbcDriver = "";
+    /**
+     * 数据 URL
+     */
+    private String dbUrl = "";
+    /**
+     * 数据库用户名
+     */
+    private String dbUsername = "";
+    /**
+     * 数据库用户密码
+     */
+    private String dbPassword = "";
+    /**
+     * 测试连接是否可用的测试表名，默认没有测试表
+     */
+    private String testTable = "";
+    /**
+     * 连接池的初始大小
+     */
+    private int initialSize = 10;
+    /**
+     * 连接池自动增加的大小
+     */
+    private int incrementalConnections = 5;
+    /**
+     * 连接池最大的大小
+     */
+    private int maxActive = 50;
+    /**
+     * 存放连接池中数据库连接的向量 , 初始时为 <code>null</code>
+     */
+    private Vector<PooledConnection> connections = null;
 
     /**
      * <h2><span style='color:red;'>设置数据库连接池参数（直接提供JDBC配置文件名）</span></h2>
+     * <h2><span style='color:yellow;'>推荐使用该方法</h2>
      *
      * @param bundleName 提供一个jdbc的properties配置文件的名称（注意要放在<b>resources</b>目录下）
      */
@@ -101,13 +132,15 @@ public class ConnectionPool {
      */
     public synchronized void createPool() throws Exception {
         // 确保连接池没有创建
-        // 假如连接池己经创建了，保存连接的向量 connections 不会为空
+        // 假如连接池已经创建了，保存连接的向量 connections 不会为空
         if (connections != null) {
-            return; // 假如己经创建，则返回
+            // 假如已经创建，则返回
+            return;
         }
         // 实例化 JDBC Driver 中指定的驱动类实例
         Driver driver = (Driver) (Class.forName(this.jdbcDriver).newInstance());
-        DriverManager.registerDriver(driver); // 注册 JDBC 驱动程序
+        // 注册 JDBC 驱动程序
+        DriverManager.registerDriver(driver);
         // 创建保存连接的向量 , 初始时有 0 个元素
         connections = new Vector<PooledConnection>();
         // 根据 initialSize 中设置的值，创建连接。
@@ -119,9 +152,9 @@ public class ConnectionPool {
     private void createConnections(int numConnections) throws SQLException {
         // 循环创建指定数目的数据库连接
         for (int x = 0; x < numConnections; x++) {
-            // 是否连接池中的数据库连接的数量己经达到最大？最大值由类成员 maxActive
+            // 是否连接池中的数据库连接的数量已经达到最大？最大值由类成员 maxActive
             // 指出，假如 maxActive 为 0 或负数，表示连接数量没有限制。
-            // 假如连接数己经达到最大，即退出。
+            // 假如连接数已经达到最大，即退出。
             if (this.maxActive > 0 && this.connections.size() >= this.maxActive) {
                 break;
             }
@@ -155,7 +188,8 @@ public class ConnectionPool {
                 this.maxActive = driverMaxConnections;
             }
         }
-        return conn; // 返回创建的新的数据库连接
+        // 返回创建的新的数据库连接
+        return conn;
     }
 
     /**
@@ -167,18 +201,22 @@ public class ConnectionPool {
     public synchronized Connection getConnection() throws SQLException {
         // 确保连接池己被创建
         if (connections == null) {
-            return null; // 连接池还没创建，则返回 null
+            // 连接池还没创建，则返回 null
+            return null;
         }
-        Connection conn = getFreeConnection(); // 获得一个可用的数据库连接
+        // 获得一个可用的数据库连接
+        Connection conn = getFreeConnection();
         // 假如目前没有可以使用的连接，即所有的连接都在使用中
         while (conn == null) {
             // 等一会再试
             wait(250);
-            conn = getFreeConnection(); // 重新再试，直到获得可用的连接，假如
+            // 重新再试，直到获得可用的连接，假如
+            conn = getFreeConnection();
             // getFreeConnection() 返回的为 null
             // 则表明创建一批连接后也不可获得可用连接
         }
-        return conn; // 返回获得的可用的连接
+        // 返回获得的可用的连接
+        return conn;
     }
 
     private Connection getFreeConnection() throws SQLException {
@@ -222,16 +260,18 @@ public class ConnectionPool {
                     }
                     pConn.setConnection(conn);
                 }
-                break; // 己经找到一个可用的连接，退出
+                // 已经找到一个可用的连接，退出
+                break;
             }
         }
-        return conn; // 返回找到到的可用连接
+        // 返回找到到的可用连接
+        return conn;
     }
 
     private boolean testConnection(Connection conn) {
         try {
             // 判定测试表是否存在
-            if (testTable.equals("")) {
+            if ("".equals(testTable)) {
                 // 假如测试表为空，试着使用此连接的 setAutoCommit() 方法
                 // 来判定连接否可用（此方法只在部分数据库可用，假如不可用 ,
                 // 抛出异常）。注重：使用测试表的方法更可靠
@@ -294,7 +334,8 @@ public class ConnectionPool {
             pConn = (PooledConnection) enumerate.nextElement();
             // 假如对象忙则等 5 秒 ,5 秒后直接刷新
             if (pConn.isBusy()) {
-                wait(5000); // 等 5 秒
+                // 等 5 秒
+                wait(5000);
             }
             // 关闭此连接，用一个新的连接代替它。
             closeConnection(pConn.getConnection());
@@ -320,7 +361,8 @@ public class ConnectionPool {
             pConn = (PooledConnection) enumerate.nextElement();
             // 假如忙，等 5 秒
             if (pConn.isBusy()) {
-                wait(5000); // 等 5 秒
+                // 等 5 秒
+                wait(5000);
             }
             //5 秒后直接关闭它
             closeConnection(pConn.getConnection());
@@ -343,12 +385,15 @@ public class ConnectionPool {
         try {
             Thread.sleep(mSeconds);
         } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
     class PooledConnection {
-        Connection connection = null; // 数据库连接
-        boolean busy = false; // 此连接是否正在使用的标志，默认没有正在使用
+        // 数据库连接
+        Connection connection = null;
+        // 此连接是否正在使用的标志，默认没有正在使用
+        boolean busy = false;
         // 构造函数，根据一个 Connection 构告一个 PooledConnection 对象
         public PooledConnection(Connection connection) {
             this.connection = connection;

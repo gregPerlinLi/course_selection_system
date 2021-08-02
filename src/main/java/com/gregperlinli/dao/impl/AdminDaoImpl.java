@@ -7,6 +7,12 @@ import com.gregperlinli.pojo.Admin;
 import java.sql.Connection;
 import java.util.List;
 
+/**
+ * @author gregperlinli
+ * @see com.gregperlinli.dao.BaseDAO
+ * @see com.gregperlinli.dao.AdminDao
+ * @since 2021-7-21
+ */
 public class AdminDaoImpl extends BaseDAO<Admin> implements AdminDao {
     @Override
     public void insert(Connection conn, Admin admin) throws Exception {

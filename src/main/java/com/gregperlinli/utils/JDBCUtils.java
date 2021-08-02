@@ -7,7 +7,8 @@ import java.util.ResourceBundle;
  * <h1><span style='color:red;'>Tools for operating the database</span></h1>
  *
  * @author gregperlinli
- *
+ * @since 2021-5-20
+ * @version 2.0.1
  */
 public class JDBCUtils {
 

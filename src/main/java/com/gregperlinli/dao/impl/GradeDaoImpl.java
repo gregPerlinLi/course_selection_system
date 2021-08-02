@@ -7,6 +7,12 @@ import com.gregperlinli.pojo.Grade;
 import java.sql.Connection;
 import java.util.List;
 
+/**
+ * @author gregperlinli
+ * @see com.gregperlinli.dao.BaseDAO
+ * @see com.gregperlinli.dao.SelectedCourseDao
+ * @since 2021-7-21
+ */
 public class GradeDaoImpl extends BaseDAO<Grade> implements GradeDao {
     @Override
     public void insert(Connection conn, Grade grade) throws Exception {

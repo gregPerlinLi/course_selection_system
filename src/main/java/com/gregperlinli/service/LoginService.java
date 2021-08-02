@@ -4,8 +4,9 @@ package com.gregperlinli.service;
  * 用于进行登录操作
  *
  * @author gregperlinli
+ * @since 2021-7-26
  */
-public interface LoginServer {
+public interface LoginService {
 
     /**
      * 普通学生的登录操作

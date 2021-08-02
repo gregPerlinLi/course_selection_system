@@ -1,6 +1,6 @@
 package com.gregperlinli.service;
 
-import com.gregperlinli.service.impl.LoginServerImpl;
+import com.gregperlinli.service.impl.LoginServiceImpl;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -14,7 +14,7 @@ public class LoginServiceTest {
      */
     @Test
     public void testStudentLogin() {
-        final LoginServer LOGIN_SERVER = new LoginServerImpl();
+        final LoginService LOGIN_SERVER = new LoginServiceImpl();
         final String USERNAME = "李浩霖";
         final String PASSWORD = "123456";
         boolean isCorrect = LOGIN_SERVER.studentLogin(USERNAME, PASSWORD);
@@ -25,7 +25,7 @@ public class LoginServiceTest {
      */
     @Test
     public void testAdminLogin() {
-        final LoginServer LOGIN_SERVER = new LoginServerImpl();
+        final LoginService LOGIN_SERVER = new LoginServiceImpl();
         final String USERNAME = "gregPerlinLi";
         final String PASSWORD = "123456";
         boolean isCorrect = LOGIN_SERVER.adminLogin(USERNAME, PASSWORD);
