@@ -3,7 +3,7 @@ package com.gregperlinli.service;
 import com.gregperlinli.pojo.Classes;
 import com.gregperlinli.pojo.College;
 import com.gregperlinli.pojo.Grade;
-import com.gregperlinli.service.impl.CollegeGradeClassManageServerImpl;
+import com.gregperlinli.service.impl.CollegeGradeClassManageServiceImpl;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -12,14 +12,14 @@ import org.junit.jupiter.api.Test;
  * @author gregperlinli
  * @since 2021-7-29
  */
-public class CollegeGradeClassManageServerTest {
+public class CollegeGradeClassManageServiceTest {
     /**
      * 测试<code>collegeInsert()</code>方法
      */
     @Test
     public void testCollegeInsert() {
         final College COLLEGE = new College("微电子学院");
-        final CollegeGradeClassManageServer CGCMS = new CollegeGradeClassManageServerImpl();
+        final CollegeGradeClassManageService CGCMS = new CollegeGradeClassManageServiceImpl();
         boolean isAdded = CGCMS.collegeInsert(COLLEGE);
         System.out.println(isAdded);
     }
@@ -30,7 +30,7 @@ public class CollegeGradeClassManageServerTest {
     @Test
     public void tesGradeInsert() {
         final Grade GRADE = new Grade("21级");
-        final CollegeGradeClassManageServer CGCMS = new CollegeGradeClassManageServerImpl();
+        final CollegeGradeClassManageService CGCMS = new CollegeGradeClassManageServiceImpl();
         boolean isAdded = CGCMS.gradeInsert(GRADE);
         System.out.println(isAdded);
     }
@@ -41,7 +41,7 @@ public class CollegeGradeClassManageServerTest {
     @Test
     public void tesClassesInsert() {
         final Classes CLASSES = new Classes("20光电信息科学与技术1班", "物理与光电工程学院", "20级");
-        final CollegeGradeClassManageServer CGCMS = new CollegeGradeClassManageServerImpl();
+        final CollegeGradeClassManageService CGCMS = new CollegeGradeClassManageServiceImpl();
         boolean isAdded = CGCMS.classesInsert(CLASSES);
         System.out.println(isAdded);
     }

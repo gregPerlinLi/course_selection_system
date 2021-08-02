@@ -5,6 +5,12 @@ import com.gregperlinli.pojo.Grade;
 import java.sql.Connection;
 import java.util.List;
 
+/**
+ * 用于对数据库中的grade表进行增删改查处理
+ *
+ * @author gregperlinli
+ * @since 2021-7-21
+ */
 public interface GradeDao {
 
     /**

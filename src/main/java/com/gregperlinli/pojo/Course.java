@@ -7,6 +7,7 @@ import java.sql.Time;
  * 用于对应数据库中的course表
  *
  * @author gregperlinli
+ * @since 2021-7-28
  */
 public class Course {
     private int id;

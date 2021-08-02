@@ -9,14 +9,19 @@ import com.gregperlinli.dao.impl.StudentDaoImpl;
 import com.gregperlinli.pojo.Admin;
 import com.gregperlinli.pojo.SelectedCourse;
 import com.gregperlinli.pojo.Student;
-import com.gregperlinli.service.AccountManageServer;
+import com.gregperlinli.service.AccountManageService;
 import com.gregperlinli.utils.JDBCUtils;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class AccountManageServerImpl implements AccountManageServer {
+/**
+ * @author gregperlinli
+ * @see AccountManageService
+ * @since 2021-7-28
+ */
+public class AccountManageServiceImpl implements AccountManageService {
     Connection conn = null;
 
     @Override

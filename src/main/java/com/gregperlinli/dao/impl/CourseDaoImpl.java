@@ -7,6 +7,12 @@ import com.gregperlinli.pojo.Course;
 import java.sql.Connection;
 import java.util.List;
 
+/**
+ * @author gregperlinli
+ * @see com.gregperlinli.dao.BaseDAO
+ * @see com.gregperlinli.dao.CourseDao
+ * @since 2021-7-21
+ */
 public class CourseDaoImpl extends BaseDAO<Course> implements CourseDao {
     @Override
     public void insert(Connection conn, Course course) throws Exception {

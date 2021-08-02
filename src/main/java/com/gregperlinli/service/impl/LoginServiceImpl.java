@@ -6,12 +6,17 @@ import com.gregperlinli.dao.impl.AdminDaoImpl;
 import com.gregperlinli.dao.impl.StudentDaoImpl;
 import com.gregperlinli.pojo.Admin;
 import com.gregperlinli.pojo.Student;
-import com.gregperlinli.service.LoginServer;
+import com.gregperlinli.service.LoginService;
 import com.gregperlinli.utils.JDBCUtils;
 
 import java.sql.Connection;
 
-public class LoginServerImpl implements LoginServer {
+/**
+ * @author gregperlinli
+ * @see LoginService
+ * @since 2021-7-26
+ */
+public class LoginServiceImpl implements LoginService {
     Connection conn = null;
 
     @Override

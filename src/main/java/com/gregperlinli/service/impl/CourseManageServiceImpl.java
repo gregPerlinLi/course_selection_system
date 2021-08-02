@@ -6,14 +6,19 @@ import com.gregperlinli.dao.impl.CourseDaoImpl;
 import com.gregperlinli.dao.impl.SelectedCourseDaoImpl;
 import com.gregperlinli.pojo.Course;
 import com.gregperlinli.pojo.SelectedCourse;
-import com.gregperlinli.service.CourseManageServer;
+import com.gregperlinli.service.CourseManageService;
 import com.gregperlinli.utils.JDBCUtils;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CourseManageServerImpl implements CourseManageServer {
+/**
+ * @author gregperlinli
+ * @see CourseManageService
+ * @since 2021-7-28
+ */
+public class CourseManageServiceImpl implements CourseManageService {
     Connection conn = null;
 
     @Override

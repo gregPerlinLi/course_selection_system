@@ -5,6 +5,8 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * @author gregperlinli
+ * @since 2021-5-20
+ * @version 1.2.0
  */
 public class MD5Encrypt {
 

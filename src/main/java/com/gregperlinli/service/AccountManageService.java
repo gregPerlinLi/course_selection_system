@@ -7,9 +7,9 @@ import com.gregperlinli.pojo.Student;
  * 用于进行用户修改与管理操作
  *
  * @author gregperlinli
- * @since 2021-7-26
+ * @since 2021-7-28
  */
-public interface AccountManageServer {
+public interface AccountManageService {
     /**
      * 普通学生的注册操作
      *

@@ -8,7 +8,7 @@ import com.gregperlinli.pojo.Course;
  * @author gregperlinli
  * @since 2021-7-28
  */
-public interface CourseManageServer {
+public interface CourseManageService {
     /**
      * 新增课程操作
      *

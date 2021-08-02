@@ -18,6 +18,8 @@ import java.util.List;
  * <h2>Packaged generic operation of data</h2>
  *
  * @author gregperlinli
+ * @since 2021-5-20
+ * @version 2.1.0
  */
 public abstract class BaseDAO<T> {
 

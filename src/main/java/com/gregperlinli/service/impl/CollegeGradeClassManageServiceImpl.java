@@ -9,12 +9,17 @@ import com.gregperlinli.dao.impl.GradeDaoImpl;
 import com.gregperlinli.pojo.Classes;
 import com.gregperlinli.pojo.College;
 import com.gregperlinli.pojo.Grade;
-import com.gregperlinli.service.CollegeGradeClassManageServer;
+import com.gregperlinli.service.CollegeGradeClassManageService;
 import com.gregperlinli.utils.JDBCUtils;
 
 import java.sql.Connection;
 
-public class CollegeGradeClassManageServerImpl implements CollegeGradeClassManageServer {
+/**
+ * @author gregperlinli
+ * @see CollegeGradeClassManageService
+ * @since 2021-7-29
+ */
+public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassManageService {
     Connection conn = null;
 
     @Override
