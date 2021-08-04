@@ -68,6 +68,25 @@ public class ClassesDaoTest {
         }
     }
 
+
+    /**
+     * 测试<code>getClassById()</code>方法
+     */
+    @Test
+    public void testGetById() {
+        Connection conn = null;
+        try{
+            ClassesDao classesDao = new ClassesDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            Classes classes = classesDao.getClassById(conn, 3);
+            System.out.println(classes);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
     /**
      * 测试<code>getClassByClassName()</code>方法
      */
