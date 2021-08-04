@@ -67,11 +67,30 @@ public class GradeDaoTest {
         }
     }
 
+
+    /**
+     * 测试<code>getGradeById()</code>方法
+     */
+    @Test
+    public void testGetById() {
+        Connection conn = null;
+        try{
+            GradeDao gradeDao = new GradeDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            Grade grade = gradeDao.getGradeById(conn, 2);
+            System.out.println(grade);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
     /**
      * 测试<code>getGradeByGradeName()</code>方法
      */
     @Test
-    public void testGetByGradeNam() {
+    public void testGetByGradeName() {
         Connection conn = null;
         try{
             GradeDao gradeDao = new GradeDaoImpl();

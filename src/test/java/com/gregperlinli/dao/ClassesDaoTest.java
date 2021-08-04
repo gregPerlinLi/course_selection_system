@@ -55,12 +55,65 @@ public class ClassesDaoTest {
      * 测试<code>deleteById()</code>方法
      */
     @Test
-    public void testDelete() {
+    public void testDeleteById() {
         Connection conn = null;
         try{
             ClassesDao classesDao = new ClassesDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             classesDao.deleteById(conn, 1);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
+    /**
+     * 测试<code>deleteByCollege()</code>方法
+     */
+    @Test
+    public void testDeleteByCollege() {
+        Connection conn = null;
+        try{
+            ClassesDao classesDao = new ClassesDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            classesDao.deleteByCollege(conn, "计算机学院");
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
+    /**
+     * 测试<code>deleteByGrade()</code>方法
+     */
+    @Test
+    public void testDeleteByGrade() {
+        Connection conn = null;
+        try{
+            ClassesDao classesDao = new ClassesDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            classesDao.deleteByGrade(conn, "22级");
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
+
+    /**
+     * 测试<code>getClassById()</code>方法
+     */
+    @Test
+    public void testGetById() {
+        Connection conn = null;
+        try{
+            ClassesDao classesDao = new ClassesDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            Classes classes = classesDao.getClassById(conn, 3);
+            System.out.println(classes);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {

@@ -23,8 +23,8 @@ public class CourseManageServiceTest {
                 Date.valueOf("2021-8-30"),
                 Time.valueOf("12:00:00"),
                 120);
-        final CourseManageService COURSE_MANAGE_SERVER = new CourseManageServiceImpl();
-        boolean isAdded = COURSE_MANAGE_SERVER.addCourse(COURSE);
+        final CourseManageService courseManageService = new CourseManageServiceImpl();
+        boolean isAdded = courseManageService.addCourse(COURSE);
         System.out.println(isAdded);
     }
 
@@ -33,13 +33,13 @@ public class CourseManageServiceTest {
      */
     @Test
     public void testUpdateCourse() {
-        final Course COURSE = new Course(3,
+        final Course course = new Course(3,
                 "大学物理",
                 Date.valueOf("2021-8-29"),
                 Time.valueOf("11:00:00"),
                 150);
-        final CourseManageService COURSE_MANAGE_SERVER = new CourseManageServiceImpl();
-        boolean isUpdated = COURSE_MANAGE_SERVER.updateCourse(COURSE);
+        final CourseManageService courseManageService = new CourseManageServiceImpl();
+        boolean isUpdated = courseManageService.updateCourse(course);
         System.out.println(isUpdated);
     }
 
@@ -48,8 +48,8 @@ public class CourseManageServiceTest {
      */
     @Test
     public void testDeleteCourse() {
-        final CourseManageService COURSE_MANAGE_SERVER = new CourseManageServiceImpl();
-        boolean isDeleted = COURSE_MANAGE_SERVER.deleteCourse(3);
+        final CourseManageService courseManageService = new CourseManageServiceImpl();
+        boolean isDeleted = courseManageService.deleteCourse(3);
         System.out.println(isDeleted);
     }
 }

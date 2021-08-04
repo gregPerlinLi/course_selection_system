@@ -26,11 +26,11 @@ public class AccountManageServiceImpl implements AccountManageService {
 
     @Override
     public boolean studentRegist(Student student) {
-        final StudentDao STUDENT_DAO = new StudentDaoImpl();
+        final StudentDao studentDao = new StudentDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
-            if ( STUDENT_DAO.getStuByUsername(conn, student.getUsername()) == null && STUDENT_DAO.getStuByStuNum(conn, student.getStuNum()) == null ) {
-                STUDENT_DAO.insert(conn, student);
+            if ( studentDao.getStuByUsername(conn, student.getUsername()) == null && studentDao.getStuByStuNum(conn, student.getStuNum()) == null ) {
+                studentDao.insert(conn, student);
                 return true;
             }
         } catch (Exception e) {
@@ -43,11 +43,11 @@ public class AccountManageServiceImpl implements AccountManageService {
 
     @Override
     public boolean adminRegist(Admin admin) {
-        final AdminDao ADMIN_DAO = new AdminDaoImpl();
+        final AdminDao adminDao = new AdminDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
-            if ( ADMIN_DAO.getAdmByUsername(conn, admin.getUsername()) == null ) {
-                ADMIN_DAO.insert(conn, admin);
+            if ( adminDao.getAdmByUsername(conn, admin.getUsername()) == null ) {
+                adminDao.insert(conn, admin);
                 return true;
             }
         } catch (Exception e) {
@@ -60,25 +60,25 @@ public class AccountManageServiceImpl implements AccountManageService {
 
     @Override
     public boolean studentUpdate(Student student) {
-        final StudentDao STUDENT_DAO = new StudentDaoImpl();
-        final SelectedCourseDao SELECTED_COURSE_DAO = new SelectedCourseDaoImpl();
+        final StudentDao studentDao = new StudentDaoImpl();
+        final SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
             conn.setAutoCommit(false);
-            Student currentStudent = STUDENT_DAO.getStuById(conn, student.getId());
+            Student currentStudent = studentDao.getStuById(conn, student.getId());
             if ( currentStudent != null ) {
                 // 先修改该学生下所有已选课程的信息
-                // SELECTED_COURSE_DAO.deleteByStuName(conn, currentStudent.getUsername());
-                List<SelectedCourse> selectedCourses = SELECTED_COURSE_DAO.getSelectedCourseByStuName(conn, currentStudent.getUsername());
+                // selectedCourseDao.deleteByStuName(conn, currentStudent.getUsername());
+                List<SelectedCourse> selectedCourses = selectedCourseDao.getSelectedCourseByStuName(conn, currentStudent.getUsername());
                 for ( SelectedCourse selectedCourse : selectedCourses ) {
                     selectedCourse.setStuName(student.getUsername());
                     selectedCourse.setStuNum(student.getStuNum());
-                    SELECTED_COURSE_DAO.updateById(conn, selectedCourse);
+                    selectedCourseDao.updateById(conn, selectedCourse);
                 }
-                if ( STUDENT_DAO.getStuByUsername(conn, student.getUsername()) == null && STUDENT_DAO.getStuByStuNum(conn, student.getStuNum()) == null ) {
+                if ( studentDao.getStuByUsername(conn, student.getUsername()) == null && studentDao.getStuByStuNum(conn, student.getStuNum()) == null ) {
                     // 然后再修改学生信息
-                    STUDENT_DAO.updateById(conn, student);
+                    studentDao.updateById(conn, student);
                     // 最后提交更改
                     conn.commit();
                     return true;
@@ -105,11 +105,11 @@ public class AccountManageServiceImpl implements AccountManageService {
 
     @Override
     public boolean adminUpdate(Admin admin) {
-        final AdminDao ADMIN_DAO = new AdminDaoImpl();
+        final AdminDao adminDao = new AdminDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
-            if ( ADMIN_DAO.getAdmById(conn, admin.getId()) != null ) {
-                ADMIN_DAO.updateById(conn, admin);
+            if ( adminDao.getAdmById(conn, admin.getId()) != null ) {
+                adminDao.updateById(conn, admin);
                 return true;
             }
         } catch (Exception e) {
@@ -122,18 +122,18 @@ public class AccountManageServiceImpl implements AccountManageService {
 
     @Override
     public boolean studentDelete(int id) {
-        final StudentDao STUDENT_DAO = new StudentDaoImpl();
+        final StudentDao studentDao = new StudentDaoImpl();
         final SelectedCourseDao SELECTED_COURSE_DAO = new SelectedCourseDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
             conn.setAutoCommit(false);
-            Student currentStudent = STUDENT_DAO.getStuById(conn, id);
+            Student currentStudent = studentDao.getStuById(conn, id);
             if ( currentStudent != null ) {
                 // 先删除该学生下所有已选课程的信息
                 SELECTED_COURSE_DAO.deleteByStuName(conn, currentStudent.getUsername());
                 // 然后再删除学生
-                STUDENT_DAO.deleteById(conn, id);
+                studentDao.deleteById(conn, id);
                 // 最后提交更改
                 conn.commit();
                 return true;
@@ -155,11 +155,11 @@ public class AccountManageServiceImpl implements AccountManageService {
 
     @Override
     public boolean adminDelete(int id) {
-        final AdminDao ADMIN_DAO = new AdminDaoImpl();
+        final AdminDao adminDao = new AdminDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
-            if ( ADMIN_DAO.getAdmById(conn, id) != null ) {
-                ADMIN_DAO.deleteById(conn, id);
+            if ( adminDao.getAdmById(conn, id) != null ) {
+                adminDao.deleteById(conn, id);
                 return true;
             }
         } catch (Exception e) {

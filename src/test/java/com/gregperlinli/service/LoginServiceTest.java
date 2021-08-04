@@ -14,10 +14,10 @@ public class LoginServiceTest {
      */
     @Test
     public void testStudentLogin() {
-        final LoginService LOGIN_SERVER = new LoginServiceImpl();
-        final String USERNAME = "李浩霖";
-        final String PASSWORD = "123456";
-        boolean isCorrect = LOGIN_SERVER.studentLogin(USERNAME, PASSWORD);
+        final LoginService loginService = new LoginServiceImpl();
+        final String username = "李浩霖";
+        final String password = "123456";
+        boolean isCorrect = loginService.studentLogin(username, password);
         System.out.println(isCorrect);
     }
     /**
@@ -25,10 +25,10 @@ public class LoginServiceTest {
      */
     @Test
     public void testAdminLogin() {
-        final LoginService LOGIN_SERVER = new LoginServiceImpl();
-        final String USERNAME = "gregPerlinLi";
-        final String PASSWORD = "123456";
-        boolean isCorrect = LOGIN_SERVER.adminLogin(USERNAME, PASSWORD);
+        final LoginService loginService = new LoginServiceImpl();
+        final String username = "gregPerlinLi";
+        final String password = "123456";
+        boolean isCorrect = loginService.adminLogin(username, password);
         System.out.println(isCorrect);
     }
 }

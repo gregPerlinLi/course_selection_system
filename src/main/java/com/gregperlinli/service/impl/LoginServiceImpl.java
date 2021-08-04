@@ -21,11 +21,11 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public boolean studentLogin(String username, String password) {
-        final StudentDao STUDENT_DAO = new StudentDaoImpl();
+        final StudentDao studentDao = new StudentDaoImpl();
         Student student = null;
         try {
             conn = JDBCUtils.getConnectionWithPool();
-            student = STUDENT_DAO.getStuByUsername(conn, username);
+            student = studentDao.getStuByUsername(conn, username);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -41,11 +41,11 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public boolean adminLogin(String username, String password) {
-        final AdminDao ADMIN_DAO = new AdminDaoImpl();
+        final AdminDao adminDao = new AdminDaoImpl();
         Admin admin = null;
         try {
             conn = JDBCUtils.getConnectionWithPool();
-            admin = ADMIN_DAO.getAdmByUsername(conn, username);
+            admin = adminDao.getAdmByUsername(conn, username);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

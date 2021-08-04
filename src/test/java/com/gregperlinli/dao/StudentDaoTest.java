@@ -54,7 +54,7 @@ public class StudentDaoTest {
      * 测试<code>deleteById()</code>方法
      */
     @Test
-    public void testDelete() {
+    public void testDeleteById() {
         Connection conn = null;
         try{
             StudentDao studentDao = new StudentDaoImpl();
@@ -66,6 +66,60 @@ public class StudentDaoTest {
             JDBCUtils.closeResource(conn, null);
         }
     }
+
+
+    /**
+     * 测试<code>deleteByCollege()</code>方法
+     */
+    @Test
+    public void testDeleteByCollege() {
+        Connection conn = null;
+        try{
+            StudentDao studentDao = new StudentDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            studentDao.deleteByCollege(conn, "计算机学院");
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
+    /**
+     * 测试<code>deleteByGrade()</code>方法
+     */
+    @Test
+    public void testDeleteByGrade() {
+        Connection conn = null;
+        try{
+            StudentDao studentDao = new StudentDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            studentDao.deleteByGrade(conn, "22级");
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
+    /**
+     * 测试<code>deleteByClass()</code>方法
+     */
+    @Test
+    public void testDeleteByClass() {
+        Connection conn = null;
+        try{
+            StudentDao studentDao = new StudentDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            studentDao.deleteByClass(conn, "21计算机科学与技术1班");
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
+
 
 
     /**
@@ -115,6 +169,63 @@ public class StudentDaoTest {
             conn = JDBCUtils.getConnectionWithPool();
             Student student = studentDao.getStuByUsername(conn, "李浩霖");
             System.out.println(student);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
+
+    /**
+     * 测试<code>getStuByCollege()</code>方法
+     */
+    @Test
+    public void testGetByCollege() {
+        Connection conn = null;
+        try{
+            StudentDao studentDao = new StudentDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            List<Student> students = studentDao.getStuByCollege(conn, "物理与光电工程学院");
+            System.out.println(students.toString());
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
+
+    /**
+     * 测试<code>getStuByGrade()</code>方法
+     */
+    @Test
+    public void testGetByGrade() {
+        Connection conn = null;
+        try{
+            StudentDao studentDao = new StudentDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            List<Student> students = studentDao.getStuByGrade(conn, "20级");
+            System.out.println(students.toString());
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
+
+    /**
+     * 测试<code>getStuByClasses()</code>方法
+     */
+    @Test
+    public void testGetByStuClass() {
+        Connection conn = null;
+        try{
+            StudentDao studentDao = new StudentDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            List<Student> students = studentDao.getStuByStuClass(conn, "20电子科学与技术3班");
+            System.out.println(students.toString());
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {

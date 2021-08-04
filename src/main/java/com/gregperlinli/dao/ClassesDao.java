@@ -33,6 +33,24 @@ public interface ClassesDao {
     void deleteById(Connection conn, int id) throws Exception;
 
     /**
+     * 根据学院名来删除班级信息
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param college 提供要删除的班级对象所在的学院名
+     * @throws Exception 抛出错误
+     */
+    void deleteByCollege(Connection conn, String college) throws Exception;
+
+    /**
+     * 根据年级来删除班级信息
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param grade 提供要删除的班级对象所在的年级
+     * @throws Exception 抛出错误
+     */
+    void deleteByGrade(Connection conn, String grade) throws Exception;
+
+    /**
      * 根据id来更新班级信息
      *
      * @param conn 提供数据库连接池所给的连接
@@ -40,6 +58,15 @@ public interface ClassesDao {
      * @throws Exception 抛出错误
      */
     void updateById(Connection conn, Classes classes) throws Exception;
+
+    /**
+     * 根据班级id来获取班级对象
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param id 提供所要获取班级的id
+     * @return 查询到的班级对象，若无结果则返回<code>null</code>
+     */
+    Classes getClassById(Connection conn, int id);
     
     /**
      * 根据班级名字来获取班级对象

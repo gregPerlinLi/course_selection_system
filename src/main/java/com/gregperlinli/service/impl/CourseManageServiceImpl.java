@@ -23,11 +23,11 @@ public class CourseManageServiceImpl implements CourseManageService {
 
     @Override
     public boolean addCourse(Course course) {
-        final CourseDao COURSE_DAO = new CourseDaoImpl();
+        final CourseDao courseDao = new CourseDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
-            if ( COURSE_DAO.getCourseByCourseName(conn, course.getCourseName()) == null) {
-                COURSE_DAO.insert(conn, course);
+            if ( courseDao.getCourseByCourseName(conn, course.getCourseName()) == null) {
+                courseDao.insert(conn, course);
                 return true;
             }
         } catch (Exception e) {
@@ -40,24 +40,24 @@ public class CourseManageServiceImpl implements CourseManageService {
 
     @Override
     public boolean updateCourse(Course course) {
-        final CourseDao COURSE_DAO = new CourseDaoImpl();
-        final SelectedCourseDao SELECTED_COURSE_DAO = new SelectedCourseDaoImpl();
+        final CourseDao courseDao = new CourseDaoImpl();
+        final SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
             conn.setAutoCommit(false);
-            Course currentCourse = COURSE_DAO.getCourseById(conn, course.getId());
+            Course currentCourse = courseDao.getCourseById(conn, course.getId());
             if ( currentCourse != null) {
                 // 先修改该课程下所有已选课程信息
-                // SELECTED_COURSE_DAO.deleteByCourse(conn, currentCourse.getCourseName());
-                List<SelectedCourse> selectedCourses = SELECTED_COURSE_DAO.getSelectedCourseByCourse(conn, currentCourse.getCourseName());
+                // selectedCourseDao.deleteByCourse(conn, currentCourse.getCourseName());
+                List<SelectedCourse> selectedCourses = selectedCourseDao.getSelectedCourseByCourse(conn, currentCourse.getCourseName());
                 for ( SelectedCourse selectedCourse : selectedCourses ) {
                     selectedCourse.setCourse(course.getCourseName());
-                    SELECTED_COURSE_DAO.updateById(conn, selectedCourse);
+                    selectedCourseDao.updateById(conn, selectedCourse);
                 }
-                if ( COURSE_DAO.getCourseByCourseName(conn, course.getCourseName()) == null ) {
+                if ( courseDao.getCourseByCourseName(conn, course.getCourseName()) == null ) {
                     // 然后再修改课程信息
-                    COURSE_DAO.updateById(conn, course);
+                    courseDao.updateById(conn, course);
                     // 最后提交更改
                     conn.commit();
                     return true;
@@ -84,18 +84,18 @@ public class CourseManageServiceImpl implements CourseManageService {
 
     @Override
     public boolean deleteCourse(int id) {
-        final CourseDao COURSE_DAO = new CourseDaoImpl();
-        final SelectedCourseDao SELECTED_COURSE_DAO = new SelectedCourseDaoImpl();
+        final CourseDao courseDao = new CourseDaoImpl();
+        final SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
             conn.setAutoCommit(false);
-            Course currentCourse = COURSE_DAO.getCourseById(conn, id);
+            Course currentCourse = courseDao.getCourseById(conn, id);
             if ( currentCourse != null) {
                 // 先删除该课程下所有已选课程信息
-                SELECTED_COURSE_DAO.deleteByCourse(conn, currentCourse.getCourseName());
+                selectedCourseDao.deleteByCourse(conn, currentCourse.getCourseName());
                 // 然后再删除课程
-                COURSE_DAO.deleteById(conn, id);
+                courseDao.deleteById(conn, id);
                 // 最后提交更改
                 conn.commit();
                 return true;

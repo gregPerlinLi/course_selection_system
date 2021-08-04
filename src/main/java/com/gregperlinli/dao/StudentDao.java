@@ -33,6 +33,33 @@ public interface StudentDao {
     void deleteById(Connection conn, int id) throws Exception;
 
     /**
+     * 根据学院名来删除学生信息
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param college 提供要删除的学生对象所在的学院名
+     * @throws Exception 抛出错误
+     */
+    void deleteByCollege(Connection conn, String college) throws Exception;
+
+    /**
+     * 根据年级来删除学生信息
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param grade 提供要删除的学生对象所在的年级
+     * @throws Exception 抛出错误
+     */
+    void deleteByGrade(Connection conn, String grade) throws Exception;
+
+    /**
+     * 根据班级名来删除学生信息
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param className 提供要删除的学生对象所在的班级名
+     * @throws Exception 抛出错误
+     */
+    void deleteByClass(Connection conn, String className) throws Exception;
+
+    /**
      * 根据id来更新学生信息
      *
      * @param conn 提供数据库连接池所给的连接
@@ -66,6 +93,33 @@ public interface StudentDao {
      * @return 查询到的学生对象，若无结果则返回<code>null</code>
      */
     Student getStuByUsername(Connection conn, String username);
+
+    /**
+     * 根据学生所在学院来获取学生对象
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param college 提供所要获取学生的所在学院
+     * @return 查询到的学生对象集合，若无结果则返回<code>null</code>
+     */
+    List<Student> getStuByCollege(Connection conn, String college);
+
+    /**
+     * 根据学生所在年级来获取学生对象
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param grade 提供所要获取学生的所在年级
+     * @return 查询到的学生对象，若无结果则返回<code>null</code>
+     */
+    List<Student> getStuByGrade(Connection conn, String grade);
+
+    /**
+     * 根据学生所在班级来获取学生对象
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param stuClass 提供所要获取学生的所在班级
+     * @return 查询到的学生对象，若无结果则返回<code>null</code>
+     */
+    List<Student> getStuByStuClass(Connection conn, String stuClass);
 
     /**
      * 获取所有学生对象

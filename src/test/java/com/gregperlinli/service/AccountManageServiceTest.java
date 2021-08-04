@@ -17,14 +17,14 @@ public class AccountManageServiceTest {
      */
     @Test
     public void testStudentRegist() {
-        final Student STUDENT = new Student("3120007214",
+        final Student student = new Student("3120007214",
                                             "李翰霆",
                                             "123456",
                                             "物理与光电工程学院",
                                             "20级",
                                             "20电子科学与技术3班");
         final AccountManageService ACCOUNT_MANAGE_SERVER = new AccountManageServiceImpl();
-        boolean isRegisted = ACCOUNT_MANAGE_SERVER.studentRegist(STUDENT);
+        boolean isRegisted = ACCOUNT_MANAGE_SERVER.studentRegist(student);
         System.out.println(isRegisted);
     }
 
@@ -33,9 +33,9 @@ public class AccountManageServiceTest {
      */
     @Test
     public void testAdminRegist() {
-        final Admin ADMIN = new Admin("test", "test123");
+        final Admin admin = new Admin("test", "test123");
         final AccountManageService ACCOUNT_MANAGE_SERVER = new AccountManageServiceImpl();
-        boolean isRegisted = ACCOUNT_MANAGE_SERVER.adminRegist(ADMIN);
+        boolean isRegisted = ACCOUNT_MANAGE_SERVER.adminRegist(admin);
         System.out.println(isRegisted);
     }
 
@@ -44,7 +44,7 @@ public class AccountManageServiceTest {
      */
     @Test
     public void testStudentUpdate() {
-        final Student STUDENT = new Student(3,
+        final Student student = new Student(3,
                 "3121007213",
                 "黎伊朗",
                 "LargeKindergarten",
@@ -52,7 +52,7 @@ public class AccountManageServiceTest {
                 "21级",
                 "21电子科学与技术3班");
         final AccountManageService ACCOUNT_MANAGE_SERVER = new AccountManageServiceImpl();
-        boolean isUpdated = ACCOUNT_MANAGE_SERVER.studentUpdate(STUDENT);
+        boolean isUpdated = ACCOUNT_MANAGE_SERVER.studentUpdate(student);
         System.out.println(isUpdated);
     }
 
@@ -62,9 +62,9 @@ public class AccountManageServiceTest {
      */
     @Test
     public void testAdminUpdate() {
-        final Admin ADMIN = new Admin(6, "anotherTest", "test_for_other");
+        final Admin admin = new Admin(6, "anotherTest", "test_for_other");
         final AccountManageService ACCOUNT_MANAGE_SERVER = new AccountManageServiceImpl();
-        boolean isUpdated = ACCOUNT_MANAGE_SERVER.adminUpdate(ADMIN);
+        boolean isUpdated = ACCOUNT_MANAGE_SERVER.adminUpdate(admin);
         System.out.println(isUpdated);
     }
 
@@ -74,8 +74,8 @@ public class AccountManageServiceTest {
      */
     @Test
     public void testStudentDelete() {
-        final AccountManageService ACCOUNT_MANAGE_SERVER = new AccountManageServiceImpl();
-        boolean isDeleted = ACCOUNT_MANAGE_SERVER.studentDelete(7);
+        final AccountManageService accountManageService = new AccountManageServiceImpl();
+        boolean isDeleted = accountManageService.studentDelete(7);
         System.out.println(isDeleted);
     }
 
@@ -85,8 +85,8 @@ public class AccountManageServiceTest {
      */
     @Test
     public void testAdminDelete() {
-        final AccountManageService ACCOUNT_MANAGE_SERVER = new AccountManageServiceImpl();
-        boolean isDeleted = ACCOUNT_MANAGE_SERVER.adminDelete(7);
+        final AccountManageService accountManageService = new AccountManageServiceImpl();
+        boolean isDeleted = accountManageService.adminDelete(7);
         System.out.println(isDeleted);
     }
 }
