@@ -42,6 +42,14 @@ public interface GradeDao {
     void updateById(Connection conn, Grade grade) throws Exception;
 
     /**
+     * 根据年级id来获取年级对象
+     * @param conn 提供数据库连接池所给的连接
+     * @param id 提供所要获取年级的id
+     * @return 查询到的年级对象，若无结果则返回<code>null</code>
+     */
+    Grade getGradeById(Connection conn, int id);
+
+    /**
      * 根据年级名字来获取年级对象
      *
      * @param conn 提供数据库连接池所给的连接

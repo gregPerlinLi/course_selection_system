@@ -33,6 +33,12 @@ public class GradeDaoImpl extends BaseDAO<Grade> implements GradeDao {
     }
 
     @Override
+    public Grade getGradeById(Connection conn, int id) {
+        String sql = "select id, grade_name gradeName from grade where id = ?";
+        return getQuery(conn, sql, id);
+    }
+
+    @Override
     public Grade getGradeByGradeName(Connection conn, String gradeName) {
         String sql = "select id, grade_name gradeName from grade where grade_name = ?";
         return getQuery(conn, sql, gradeName);
