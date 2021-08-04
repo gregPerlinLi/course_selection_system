@@ -67,6 +67,25 @@ public class CollegeDaoTest {
         }
     }
 
+
+    /**
+     * 测试<code>getCollegeById()</code>方法
+     */
+    @Test
+    public void testGetById() {
+        Connection conn = null;
+        try{
+            CollegeDao collegeDao = new CollegeDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            College college = collegeDao.getCollegeById(conn, 2);
+            System.out.println(college);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
     /**
      * 测试<code>getCollegeByCollegeName()</code>方法
      */
