@@ -34,18 +34,18 @@ public interface CollegeGradeClassManageService {
      * @param classes 提供需要新增的班级对象
      * @return 返回知否已存在该学院，<code>true</code>则为不存在同名班级，<code>false</code>则为存在同名班级
      */
-    boolean classesInsert(Classes classes);
+    boolean classInsert(Classes classes);
 
     boolean collegeUpdate(College college);
 
     boolean gradeUpdate(Grade grade);
 
-    boolean classesUpdate(Classes classes);
+    boolean classUpdate(Classes classes);
 
     boolean collegeDelete(int id);
 
     boolean gradeDelete(int id);
 
-    boolean classesDelete(int id);
+    boolean classDelete(int id);
 
 }

@@ -57,7 +57,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
     }
 
     @Override
-    public boolean classesInsert(Classes classes) {
+    public boolean classInsert(Classes classes) {
         final ClassesDao CLASSES_DAO = new ClassesDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
@@ -84,7 +84,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
     }
 
     @Override
-    public boolean classesUpdate(Classes classes) {
+    public boolean classUpdate(Classes classes) {
         return false;
     }
 
@@ -99,7 +99,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
     }
 
     @Override
-    public boolean classesDelete(int id) {
+    public boolean classDelete(int id) {
         return false;
     }
 }

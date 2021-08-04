@@ -39,10 +39,10 @@ public class CollegeGradeClassManageServiceTest {
      * 测试<code>classesInsert()</code>方法
      */
     @Test
-    public void tesClassesInsert() {
+    public void tesClassInsert() {
         final Classes CLASSES = new Classes("20光电信息科学与技术1班", "物理与光电工程学院", "20级");
         final CollegeGradeClassManageService CGCMS = new CollegeGradeClassManageServiceImpl();
-        boolean isAdded = CGCMS.classesInsert(CLASSES);
+        boolean isAdded = CGCMS.classInsert(CLASSES);
         System.out.println(isAdded);
     }
 
