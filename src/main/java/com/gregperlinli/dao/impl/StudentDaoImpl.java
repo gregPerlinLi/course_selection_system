@@ -27,6 +27,24 @@ public class StudentDaoImpl extends BaseDAO<Student> implements StudentDao {
     }
 
     @Override
+    public void deleteByCollege(Connection conn, String college) throws Exception {
+        String sql = "delete from student where college = ?";
+        update(conn, sql, college);
+    }
+
+    @Override
+    public void deleteByGrade(Connection conn, String grade) throws Exception {
+        String sql = "delete from student where grade = ?";
+        update(conn, sql, grade);
+    }
+
+    @Override
+    public void deleteByClass(Connection conn, String className) throws Exception {
+        String sql = "delete from student where stu_class = ?";
+        update(conn, sql, className);
+    }
+
+    @Override
     public void updateById(Connection conn, Student student) throws Exception {
         String sql = "update student set stu_num = ?, username = ?, password = ?, college = ?, grade = ?, stu_class = ? where id = ?";
         update(conn, sql, student.getStuNum(), student.getUsername(), student.getPassword(), student.getCollege(), student.getGrade(), student.getStuClass(), student.getId());

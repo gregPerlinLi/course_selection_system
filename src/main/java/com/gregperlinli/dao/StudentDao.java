@@ -33,6 +33,33 @@ public interface StudentDao {
     void deleteById(Connection conn, int id) throws Exception;
 
     /**
+     * 根据学院名来删除学生信息
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param college 提供要删除的学生对象所在的学院名
+     * @throws Exception 抛出错误
+     */
+    void deleteByCollege(Connection conn, String college) throws Exception;
+
+    /**
+     * 根据年级来删除学生信息
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param grade 提供要删除的学生对象所在的年级
+     * @throws Exception 抛出错误
+     */
+    void deleteByGrade(Connection conn, String grade) throws Exception;
+
+    /**
+     * 根据班级名来删除学生信息
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param className 提供要删除的学生对象所在的班级名
+     * @throws Exception 抛出错误
+     */
+    void deleteByClass(Connection conn, String className) throws Exception;
+
+    /**
      * 根据id来更新学生信息
      *
      * @param conn 提供数据库连接池所给的连接
