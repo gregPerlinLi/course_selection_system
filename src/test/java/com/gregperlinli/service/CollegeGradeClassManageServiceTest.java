@@ -18,9 +18,9 @@ public class CollegeGradeClassManageServiceTest {
      */
     @Test
     public void testCollegeInsert() {
-        final College COLLEGE = new College("微电子学院");
-        final CollegeGradeClassManageService CGCMS = new CollegeGradeClassManageServiceImpl();
-        boolean isAdded = CGCMS.collegeInsert(COLLEGE);
+        final College college = new College("微电子学院");
+        final CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
+        boolean isAdded = cgcms.collegeInsert(college);
         System.out.println(isAdded);
     }
 
@@ -29,9 +29,9 @@ public class CollegeGradeClassManageServiceTest {
      */
     @Test
     public void tesGradeInsert() {
-        final Grade GRADE = new Grade("21级");
-        final CollegeGradeClassManageService CGCMS = new CollegeGradeClassManageServiceImpl();
-        boolean isAdded = CGCMS.gradeInsert(GRADE);
+        final Grade grade = new Grade("21级");
+        final CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
+        boolean isAdded = cgcms.gradeInsert(grade);
         System.out.println(isAdded);
     }
 
@@ -40,9 +40,9 @@ public class CollegeGradeClassManageServiceTest {
      */
     @Test
     public void tesClassInsert() {
-        final Classes CLASSES = new Classes("20光电信息科学与技术1班", "物理与光电工程学院", "20级");
-        final CollegeGradeClassManageService CGCMS = new CollegeGradeClassManageServiceImpl();
-        boolean isAdded = CGCMS.classInsert(CLASSES);
+        final Classes classes = new Classes("20光电信息科学与技术1班", "物理与光电工程学院", "20级");
+        final CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
+        boolean isAdded = cgcms.classInsert(classes);
         System.out.println(isAdded);
     }
 

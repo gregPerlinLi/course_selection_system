@@ -29,11 +29,11 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
 
     @Override
     public boolean collegeInsert(College college) {
-        final CollegeDao COLLEGE_DAO = new CollegeDaoImpl();
+        final CollegeDao collegeDao = new CollegeDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
-            if ( COLLEGE_DAO.getCollegeByCollegeName(conn, college.getCollegeName()) == null ) {
-                COLLEGE_DAO.insert(conn, college);
+            if ( collegeDao.getCollegeByCollegeName(conn, college.getCollegeName()) == null ) {
+                collegeDao.insert(conn, college);
                 return true;
             }
         } catch (Exception e) {
@@ -46,11 +46,11 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
 
     @Override
     public boolean gradeInsert(Grade grade) {
-        final GradeDao GRADE_DAO = new GradeDaoImpl();
+        final GradeDao gradeDao = new GradeDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
-            if ( GRADE_DAO.getGradeByGradeName(conn, grade.getGradeName()) == null ) {
-                GRADE_DAO.insert(conn, grade);
+            if ( gradeDao.getGradeByGradeName(conn, grade.getGradeName()) == null ) {
+                gradeDao.insert(conn, grade);
                 return true;
             }
         } catch (Exception e) {
@@ -63,11 +63,11 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
 
     @Override
     public boolean classInsert(Classes classes) {
-        final ClassesDao CLASSES_DAO = new ClassesDaoImpl();
+        final ClassesDao classesDao = new ClassesDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
-            if ( CLASSES_DAO.getClassByClassName(conn, classes.getClassesName()) == null ) {
-                CLASSES_DAO.insert(conn, classes);
+            if ( classesDao.getClassByClassName(conn, classes.getClassesName()) == null ) {
+                classesDao.insert(conn, classes);
                 return true;
             }
         } catch (Exception e) {
