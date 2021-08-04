@@ -43,6 +43,15 @@ public interface CollegeDao {
     void updateById(Connection conn, College college) throws Exception;
 
     /**
+     * 根据学院id来获取学院对象
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param id 提供所要获取学院的id
+     * @return 查询到的学院对象，若无结果则返回<code>null</code>
+     */
+    College getCollegeById(Connection conn, int id);
+
+    /**
      * 根据学院名字来获取学院对象
      *
      * @param conn 提供数据库连接池所给的连接

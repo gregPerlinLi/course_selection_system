@@ -33,6 +33,12 @@ public class CollegeDaoImpl extends BaseDAO<College> implements CollegeDao {
     }
 
     @Override
+    public College getCollegeById(Connection conn, int id) {
+        String sql = "select id, college_name collegeName from college where id = ?";
+        return getQuery(conn, sql, id);
+    }
+
+    @Override
     public College getCollegeByCollegeName(Connection conn, String collegeName) {
         String sql = "select id, college_name collegeName from college where college_name = ?";
         return getQuery(conn, sql, collegeName);
