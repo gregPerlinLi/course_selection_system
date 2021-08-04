@@ -40,6 +40,15 @@ public interface ClassesDao {
      * @throws Exception 抛出错误
      */
     void updateById(Connection conn, Classes classes) throws Exception;
+
+    /**
+     * 根据班级id来获取班级对象
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param id 提供所要获取班级的id
+     * @return 查询到的班级对象，若无结果则返回<code>null</code>
+     */
+    Classes getClassById(Connection conn, int id);
     
     /**
      * 根据班级名字来获取班级对象

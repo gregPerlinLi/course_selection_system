@@ -33,6 +33,12 @@ public class ClassesDaoImpl extends BaseDAO<Classes> implements ClassesDao {
     }
 
     @Override
+    public Classes getClassById(Connection conn, int id) {
+        String sql = "select id, classes_name classesName, college, grade from classes where id = ? ";
+        return getQuery(conn, sql, id);
+    }
+
+    @Override
     public Classes getClassByClassName(Connection conn, String classesName) {
         String sql = "select id, classes_name classesName, college, grade from classes where classes_name = ? ";
         return getQuery(conn, sql, classesName);
