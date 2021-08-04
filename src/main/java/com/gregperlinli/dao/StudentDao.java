@@ -68,6 +68,33 @@ public interface StudentDao {
     Student getStuByUsername(Connection conn, String username);
 
     /**
+     * 根据学生所在学院来获取学生对象
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param college 提供所要获取学生的所在学院
+     * @return 查询到的学生对象集合，若无结果则返回<code>null</code>
+     */
+    List<Student> getStuByCollege(Connection conn, String college);
+
+    /**
+     * 根据学生所在年级来获取学生对象
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param grade 提供所要获取学生的所在年级
+     * @return 查询到的学生对象，若无结果则返回<code>null</code>
+     */
+    List<Student> getStuByGrade(Connection conn, String grade);
+
+    /**
+     * 根据学生所在班级来获取学生对象
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param stuClass 提供所要获取学生的所在班级
+     * @return 查询到的学生对象，若无结果则返回<code>null</code>
+     */
+    List<Student> getStuByStuClass(Connection conn, String stuClass);
+
+    /**
      * 获取所有学生对象
      *
      * @param conn 提供数据库连接池所给的连接

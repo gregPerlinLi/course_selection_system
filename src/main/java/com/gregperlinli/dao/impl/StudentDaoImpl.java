@@ -51,6 +51,24 @@ public class StudentDaoImpl extends BaseDAO<Student> implements StudentDao {
     }
 
     @Override
+    public List<Student> getStuByCollege(Connection conn, String college) {
+        String sql = "select id, stu_num stuNum, username, password, college, grade, stu_class stuClass from student where college = ?";
+        return getMultiQuery(conn, sql, college);
+    }
+
+    @Override
+    public List<Student> getStuByGrade(Connection conn, String grade) {
+        String sql = "select id, stu_num stuNum, username, password, college, grade, stu_class stuClass from student where grade = ?";
+        return getMultiQuery(conn, sql, grade);
+    }
+
+    @Override
+    public List<Student> getStuByStuClass(Connection conn, String stuClass) {
+        String sql = "select id, stu_num stuNum, username, password, college, grade, stu_class stuClass from student where stu_class = ?";
+        return getMultiQuery(conn, sql, stuClass);
+    }
+
+    @Override
     public List<Student> getAll(Connection conn) {
         String sql = "select id, stu_num stuNum, username, password, college, grade, stu_class stuClass from student";
         return getMultiQuery(conn, sql);
