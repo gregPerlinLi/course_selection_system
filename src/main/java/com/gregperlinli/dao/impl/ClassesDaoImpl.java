@@ -27,6 +27,18 @@ public class ClassesDaoImpl extends BaseDAO<Classes> implements ClassesDao {
     }
 
     @Override
+    public void deleteByCollege(Connection conn, String college) throws Exception {
+        String sql = "delete from classes where college = ?";
+        update(conn, sql, college);
+    }
+
+    @Override
+    public void deleteByGrade(Connection conn, String grade) throws Exception {
+        String sql = "delete from classes where grade = ?";
+        update(conn, sql, grade);
+    }
+
+    @Override
     public void updateById(Connection conn, Classes classes) throws Exception {
         String sql = "update classes set classes_name = ?, college = ?, grade = ? where id = ?";
         update(conn, sql, classes.getClassesName(), classes.getCollege(), classes.getGrade(), classes.getId());
