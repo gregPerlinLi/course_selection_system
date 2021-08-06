@@ -17,6 +17,7 @@ import com.gregperlinli.utils.JDBCUtils;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -320,5 +321,54 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
             }
         }
         return false;
+    }
+
+    @Override
+    public List<College> searchAllCollege() {
+        final CollegeDao collegeDao = new CollegeDaoImpl();
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return collegeDao.getAll(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Grade> searchAllGrade() {
+        final GradeDao gradeDao = new GradeDaoImpl();
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return gradeDao.getAll(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Classes> searchClassByCollegeAndGrade(String college, String grade) {
+        final ClassesDao classesDao = new ClassesDaoImpl();
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            List<Classes> classesByCollege = classesDao.getClassesByCollege(conn, college);
+            List<Classes> classesByCollegeAndGrade = new ArrayList<>();
+            for ( Classes classes : classesByCollege ) {
+                if ( grade.equals(classes.getGrade()) ) {
+                    classesByCollegeAndGrade.add(classes);
+                }
+            }
+            return classesByCollegeAndGrade;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+        return null;
     }
 }

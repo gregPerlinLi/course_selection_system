@@ -4,6 +4,8 @@ import com.gregperlinli.pojo.Classes;
 import com.gregperlinli.pojo.College;
 import com.gregperlinli.pojo.Grade;
 
+import java.util.List;
+
 /**
  * 用于对学院/年级/班级进行管理
  *
@@ -86,5 +88,16 @@ public interface CollegeGradeClassManageService {
      * @return 返回知否已存在该班级，<code>true</code>则为存在该班级，<code>false</code>则为不存在该班级
      */
     boolean classDelete(int id);
+
+    /**
+     * 查找所有学院操作
+     *
+     * @return 返回带有所有学院对象的集合
+     */
+    List<College> searchAllCollege();
+
+    List<Grade> searchAllGrade();
+
+    List<Classes> searchClassByCollegeAndGrade(String college, String grade);
 
 }
