@@ -18,9 +18,6 @@ import java.lang.reflect.Method;
  */
 @WebServlet(name = "BaseServlet", value = "/BaseServlet")
 public abstract class BaseServlet extends HttpServlet {
-    protected final LoginService loginService = new LoginServiceImpl();
-    protected final AccountManageService accountManageService = new AccountManageServiceImpl();
-    protected final CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

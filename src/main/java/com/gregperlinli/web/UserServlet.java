@@ -5,6 +5,12 @@ import com.gregperlinli.pojo.Classes;
 import com.gregperlinli.pojo.College;
 import com.gregperlinli.pojo.Grade;
 import com.gregperlinli.pojo.Student;
+import com.gregperlinli.service.AccountManageService;
+import com.gregperlinli.service.CollegeGradeClassManageService;
+import com.gregperlinli.service.LoginService;
+import com.gregperlinli.service.impl.AccountManageServiceImpl;
+import com.gregperlinli.service.impl.CollegeGradeClassManageServiceImpl;
+import com.gregperlinli.service.impl.LoginServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -22,6 +28,11 @@ import java.util.Map;
  */
 @WebServlet(name = "UserServlet", value = "/userServlet")
 public class UserServlet extends BaseServlet {
+
+    protected final LoginService loginService = new LoginServiceImpl();
+    protected final AccountManageService accountManageService = new AccountManageServiceImpl();
+    protected final CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
+
     /**
      * 处理学生登录功能<br/>
      * 若登录成功会转发到<code>index.html</src>，若失败则继续停留在登录页面

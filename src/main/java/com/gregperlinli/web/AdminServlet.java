@@ -1,5 +1,8 @@
 package com.gregperlinli.web;
 
+import com.gregperlinli.service.LoginService;
+import com.gregperlinli.service.impl.LoginServiceImpl;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +18,8 @@ import java.nio.charset.StandardCharsets;
  */
 @WebServlet(name = "AdminServlet", value = "/adminServlet")
 public class AdminServlet extends BaseServlet{
+
+    protected final LoginService loginService = new LoginServiceImpl();
 
     /**
      * 处理管理员登录功能<br/>
