@@ -1,0 +1,22 @@
+body {
+    font-family: "PingFang SC", Helvetica, Arial, sans-serif;
+}
+table {
+    border: 1px black solid;
+
+}
+.info {
+    font-size: 10px;
+    vertical-align: top;
+    color: red;
+}
+.inputText {
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+}
+#regist {
+    width: 100px;
+    height: 30px;
+    font-size: 30px;
+}

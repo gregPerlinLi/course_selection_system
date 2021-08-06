@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <!-- Write the base tag and fix the result of relative path jump forever -->
+    <base href="http://localhost:8080/course_selection_system/" />
+    <link rel="stylesheet" href="static/css/register.css">
+    <script type="text/javascript" src="static/js/jQuery.js"></script>
+    <script type="text/javascript" src="static/js/jquery.md5.js"></script>
+    <script type="text/javascript" src="static/js/register.js"></script>
+
+</head>
+<body>
+    <form action="userServlet" method="post">
+        <input type="hidden" name="action" value="studentRegist">
+        <table align="center">
+            <h1 align="center">学生注册</h1>
+            <tr>
+                <td>学号：</td>
+                <td><label>
+                    <input type="text" name="stuNum" class="inputText" id="stuNum" />
+                </label></td>
+                <td><span class="warning" id="stuNumWarm"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="stuNumInfo" class="info"></span></td>
+            </tr>
+            <tr>
+                <td>姓名：</td>
+                <td><label>
+                    <input type="text" name="username" class="inputText" id="username"/>
+                </label></td>
+                <td><span class="warning" id="userWarm"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="userInfo" class="info"></span></td>
+            </tr>
+            <tr>
+                <td>学院</td>
+                <td><label>
+                    <select name="college" class="inputText" id="college">
+                        <option disabled selected>----请选择----</option>
+                    </select>
+                </label></td>
+                <td><span class="warning" id="collegeWarm"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="collegeInfo" class="info"></span></td>
+            </tr>
+            <tr>
+                <td>年级</td>
+                <td><label>
+                    <select name="grade" class="inputText" id="grade">
+                        <option disabled selected>----请选择----</option>
+                    </select>
+                </label></td>
+                <td><span class="warning" id="gradeWarm"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="gradeInfo" class="info"></span></td>
+            </tr>
+            <tr>
+                <td>班级</td>
+                <td><label>
+                    <select name="classes" class="inputText" id="classes">
+                        <option disabled selected>----请选择----</option>
+                    </select>
+                </label></td>
+                <td><span class="warning" id="classWarm"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="classInfo" class="info"></span></td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td><label>
+                    <input type="password" name="password" class="inputText" id="password" />
+                </label></td>
+                <td><span class="warning" id="passwordWarm"></span></td>
+                <td><label>
+                    <input type="hidden" name="encryptedPassword" id="encryptedPassword" value="" />
+                </label></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="passwordInfo" class="info"></span></td>
+            </tr>
+            <tr>
+                <td>确认密码：</td>
+                <td><label>
+                    <input type="password" name="confirmPassword" class="inputText" id="confirmPassword" />
+                </label></td>
+                <td><span class="warning" id="confirmPasswordWarm"></span> </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="confirmPasswordInfo" class="info"></span></td>
+            </tr>
+            <tr>
+                <td><label><input type="submit" value="注册" id="regist" disabled="disabled" /></label></td>
+                <td><a href="pages/login/login.html">已有账户？点此登录</a></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
