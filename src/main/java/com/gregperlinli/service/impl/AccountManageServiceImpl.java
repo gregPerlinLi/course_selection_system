@@ -169,4 +169,36 @@ public class AccountManageServiceImpl implements AccountManageService {
         }
         return false;
     }
+
+    @Override
+    public boolean existStudentUsername(String username) {
+        final StudentDao studentDao = new StudentDaoImpl();
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            if ( studentDao.getStuByUsername(conn, username) != null ) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean existStudentStuNum(String stuNum) {
+        final StudentDao studentDao = new StudentDaoImpl();
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            if ( studentDao.getStuByStuNum(conn, stuNum) != null ) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+        return false;
+    }
 }
