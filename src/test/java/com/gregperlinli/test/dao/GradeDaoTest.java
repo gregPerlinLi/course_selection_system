@@ -1,21 +1,20 @@
-package com.gregperlinli.dao;
+package com.gregperlinli.test.dao;
 
-import com.gregperlinli.dao.impl.CourseDaoImpl;
-import com.gregperlinli.pojo.Course;
+import com.gregperlinli.dao.GradeDao;
+import com.gregperlinli.dao.impl.GradeDaoImpl;
+import com.gregperlinli.pojo.Grade;
 import com.gregperlinli.utils.JDBCUtils;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.Time;
 import java.util.List;
 
 /**
- * 用于对<code>CourseDao</code>进行单元测试
+ * 用于对<code>GradeDao</code>进行单元测试
  *
  * @author gregperlinli
  */
-public class CourseDaoTest {
+public class GradeDaoTest {
     /**
      * 测试<code>insert()</code>方法
      */
@@ -23,10 +22,10 @@ public class CourseDaoTest {
     public void testInsert() {
         Connection conn = null;
         try {
-            CourseDao courseDao = new CourseDaoImpl();
+            GradeDao gradeDao = new GradeDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            Course course = new Course(1, "高等数学", Date.valueOf("2021-9-1") , Time.valueOf("12:00:00"), 100);
-            courseDao.insert(conn, course);
+            Grade grade = new Grade(1, "20级");
+            gradeDao.insert(conn, grade);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -41,10 +40,10 @@ public class CourseDaoTest {
     public void testUpdate() {
         Connection conn = null;
         try{
-            CourseDao courseDao = new CourseDaoImpl();
+            GradeDao gradeDao = new GradeDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            Course course = new Course(1, "大学物理", Date.valueOf("2021-8-30"), Time.valueOf("12:30:00"), 80);
-            courseDao.updateById(conn, course);
+            Grade grade = new Grade(1, "21级");
+            gradeDao.updateById(conn, grade);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -59,9 +58,9 @@ public class CourseDaoTest {
     public void testDelete() {
         Connection conn = null;
         try{
-            CourseDao courseDao = new CourseDaoImpl();
+            GradeDao gradeDao = new GradeDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            courseDao.deleteById(conn, 1);
+            gradeDao.deleteById(conn, 1);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -69,34 +68,18 @@ public class CourseDaoTest {
         }
     }
 
-    /**
-     * 测试<code>updateCurrentStu()</code>方法
-     */
-    @Test
-    public void testUpdateCurrentStu() {
-        Connection conn = null;
-        try {
-            CourseDao courseDao = new CourseDaoImpl();
-            conn = JDBCUtils.getConnectionWithPool();
-            courseDao.updateCurrentStu(conn, 2, 80);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
-        }
-    }
 
     /**
-     * 测试<code>getCourseById()</code>方法
+     * 测试<code>getGradeById()</code>方法
      */
     @Test
     public void testGetById() {
         Connection conn = null;
         try{
-            CourseDao courseDao = new CourseDaoImpl();
+            GradeDao gradeDao = new GradeDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            Course course = courseDao.getCourseById(conn, 2);
-            System.out.println(course);
+            Grade grade = gradeDao.getGradeById(conn, 2);
+            System.out.println(grade);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -105,23 +88,22 @@ public class CourseDaoTest {
     }
 
     /**
-     * 测试<code>getCourseByCourseName()</code>方法
+     * 测试<code>getGradeByGradeName()</code>方法
      */
     @Test
-    public void testGetByCourseName() {
+    public void testGetByGradeName() {
         Connection conn = null;
         try{
-            CourseDao courseDao = new CourseDaoImpl();
+            GradeDao gradeDao = new GradeDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            Course course = courseDao.getCourseByCourseName(conn, "高等数学");
-            System.out.println(course);
+            Grade grade = gradeDao.getGradeByGradeName(conn, "20级");
+            System.out.println(grade);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
             JDBCUtils.closeResource(conn, null);
         }
     }
-
 
     /**
      * 测试<code>getAll()</code>方法
@@ -130,10 +112,10 @@ public class CourseDaoTest {
     public void testGetAll() {
         Connection conn = null;
         try{
-            CourseDao courseDao = new CourseDaoImpl();
+            GradeDao gradeDao = new GradeDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            List<Course> courses = courseDao.getAll(conn);
-            System.out.println(courses.toString());
+            List<Grade> grades = gradeDao.getAll(conn);
+            System.out.println(grades.toString());
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -148,9 +130,9 @@ public class CourseDaoTest {
     public void testGetCount() {
         Connection conn = null;
         try{
-            CourseDao courseDao = new CourseDaoImpl();
+            GradeDao gradeDao = new GradeDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            Long count = courseDao.getCount(conn);
+            Long count = gradeDao.getCount(conn);
             System.out.println(count);
         } catch ( Exception e ) {
             e.printStackTrace();
