@@ -114,7 +114,8 @@ public abstract class BaseDAO<T> {
             int columnCount = rsmd.getColumnCount();
 
             if (rs.next()) {
-                T t = clazz.newInstance();
+                // T t = clazz.newInstance();
+                T t = clazz.getDeclaredConstructor().newInstance();
 
                 // handle each column in one row of the result set
                 for (int i = 0; i < columnCount; i++) {
@@ -179,7 +180,8 @@ public abstract class BaseDAO<T> {
             ArrayList<T> list = new ArrayList<T>();
 
             while (rs.next()) {
-                T t = clazz.newInstance();
+                // T t = clazz.newInstance();
+                T t = clazz.getDeclaredConstructor().newInstance();
 
                 // handle each column in one row of the result set and assignment the value to object "t"
                 for (int i = 0; i < columnCount; i++) {
