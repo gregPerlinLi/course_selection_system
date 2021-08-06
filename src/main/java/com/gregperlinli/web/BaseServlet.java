@@ -19,11 +19,9 @@ public abstract class BaseServlet extends HttpServlet {
      *
      * @param request 请求，需要提供要调用的业务方法名<code>action</code>
      * @param response 响应
-     * @throws ServletException 抛出错误
-     * @throws IOException 抛出错误
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         String action = request.getParameter("action");
         try {
             // Through the action business identification string, get the corresponding business method reflection
@@ -40,11 +38,9 @@ public abstract class BaseServlet extends HttpServlet {
      *
      * @param request 请求，需要提供要调用的业务方法名<code>action</code>（建议用隐藏型输入标签来在表单中存放）
      * @param response 响应
-     * @throws ServletException 抛出错误
-     * @throws IOException 抛出错误
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         String action = request.getParameter("action");
         try {
             // Through the action business identification string, get the corresponding business method reflection
