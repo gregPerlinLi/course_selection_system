@@ -1,12 +1,5 @@
 package com.gregperlinli.web;
 
-import com.gregperlinli.service.AccountManageService;
-import com.gregperlinli.service.CollegeGradeClassManageService;
-import com.gregperlinli.service.LoginService;
-import com.gregperlinli.service.impl.AccountManageServiceImpl;
-import com.gregperlinli.service.impl.CollegeGradeClassManageServiceImpl;
-import com.gregperlinli.service.impl.LoginServiceImpl;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
