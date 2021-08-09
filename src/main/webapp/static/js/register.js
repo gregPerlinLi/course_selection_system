@@ -146,5 +146,7 @@ $(function () {
         if ( wrongNum > 0 ) {
             return false;
         }
+        var notEncryptedPassword = $("#password").val();
+        $("#password").val($.md5(notEncryptedPassword));
     });
 });

@@ -34,15 +34,15 @@ public class UserServlet extends BaseServlet {
      * 处理学生登录功能<br/>
      * 若登录成功会转发到<code>index.html</src>，若失败则继续停留在登录页面
      *
-     * @param request 登录请求，需要提供登录的学生姓名<code>username</code>，以及经过MD5加密后的登录密码<code>encryptedPassword</code>
+     * @param request 登录请求，需要提供登录的学生姓名<code>username</code>，以及经过MD5加密后的登录密码<code>password</code>
      * @param response 登录响应
      * @throws ServletException 抛出错误
      * @throws IOException 抛出错误
      */
     protected void studentLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
         // 1. Get request parameters
-        String password = request.getParameter("encryptedPassword");
         String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
         System.out.println(username);
         System.out.println(password);
@@ -67,7 +67,7 @@ public class UserServlet extends BaseServlet {
      *                学生所在学院<code>college</code>，
      *                所在年级<code>grade</code>，
      *                所在班级<code>classes</code>，
-     *                以及经过MD5加密后的密码<code>encryptedPassword</code>
+     *                以及经过MD5加密后的密码<code>password</code>
      * @param response 注册响应
      * @throws ServletException 抛出错误
      * @throws IOException 抛出错误
