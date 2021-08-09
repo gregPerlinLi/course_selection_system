@@ -2,7 +2,7 @@ package com.gregperlinli.web;
 
 import org.apache.commons.beanutils.BeanUtils;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * 用于Web的一系列工具
@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 public class WebUtils {
 
     /**
-     * 将POST请求过来的表单自动转换为Bean对象
+     * 将Map键值对自动转换为Bean对象
      *
-     * @param request 请求，其中需要包含要转换的表单
+     * @param value 需要转换的Map键值对
      * @param bean 转换的目标Bean对象
      */
-    public static void copyParamToBean(HttpServletRequest request, Object bean) {
+    public static void copyParamToBean(Map value, Object bean) {
         try {
-            BeanUtils.populate(bean, request.getParameterMap());
+            BeanUtils.populate(bean, value);
         } catch (Exception e) {
             e.printStackTrace();
         }
