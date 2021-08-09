@@ -1,4 +1,4 @@
-package com.gregperlinli.web;
+package com.gregperlinli.utils;
 
 import org.apache.commons.beanutils.BeanUtils;
 
