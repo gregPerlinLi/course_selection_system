@@ -74,20 +74,16 @@ public class UserServlet extends BaseServlet {
      */
     protected void studentRegist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. Get request parameters
-        String stuNum = request.getParameter("stuNum");
-        String username = new String(request.getParameter("username").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-        String college = new String(request.getParameter("college").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-        String grade = new String(request.getParameter("grade").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-        String classes = new String(request.getParameter("classes").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
-        String password = request.getParameter("encryptedPassword");
+        Student student = new Student();
+        WebUtils.copyParamToBean(request, student);
 
         // 2. Check whether the username is correct
-        if ( accountManageService.studentRegist(new Student(stuNum, username, password, college, grade, classes)) ) {
+        if ( accountManageService.studentRegist(student) ) {
             // available
             request.getRequestDispatcher("/pages/user/regist_success.html").forward(request, response);
         } else {
             // not available
-            System.out.println("The username [ " + username + " ] is already exist!");
+            System.out.println("The username [ " + student.getUsername() + " ] is already exist!");
             request.getRequestDispatcher("/pages/login/register.html").forward(request, response);
         }
 
