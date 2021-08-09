@@ -13,7 +13,7 @@ import java.util.Map;
 public class WebUtils {
 
     /**
-     * 将Map键值对自动转换为Bean对象
+     * 将Map键值对注入到对应的JavaBean对象属性中
      *
      * @param value 需要转换的Map键值对
      * @param bean 转换的目标Bean对象
