@@ -74,8 +74,7 @@ public class UserServlet extends BaseServlet {
      */
     protected void studentRegist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. Get request parameters
-        Student student = new Student();
-        WebUtils.copyParamToBean(request.getParameterMap(), student);
+        Student student = WebUtils.copyParamToBean(request.getParameterMap(), new Student());
 
         // 2. Check whether the username is correct
         if ( accountManageService.studentRegist(student) ) {
