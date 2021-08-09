@@ -16,9 +16,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,11 +40,9 @@ public class UserServlet extends BaseServlet {
      * @throws IOException 抛出错误
      */
     protected void studentLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-        request.setCharacterEncoding("UTF-8");
-
         // 1. Get request parameters
-        String username = new String(request.getParameter("username").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
         String password = request.getParameter("encryptedPassword");
+        String username = request.getParameter("username");
 
         System.out.println(username);
         System.out.println(password);
@@ -78,9 +73,6 @@ public class UserServlet extends BaseServlet {
      * @throws IOException 抛出错误
      */
     protected void studentRegist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // 0. Set the character encoding
-        request.setCharacterEncoding("UTF-8");
-
         // 1. Get request parameters
         String stuNum = request.getParameter("stuNum");
         String username = new String(request.getParameter("username").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);

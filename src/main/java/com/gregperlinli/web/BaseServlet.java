@@ -21,7 +21,9 @@ public abstract class BaseServlet extends HttpServlet {
      * @param response 响应
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
         try {
             // Through the action business identification string, get the corresponding business method reflection
@@ -40,7 +42,9 @@ public abstract class BaseServlet extends HttpServlet {
      * @param response 响应
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         String action = request.getParameter("action");
         try {
             // Through the action business identification string, get the corresponding business method reflection

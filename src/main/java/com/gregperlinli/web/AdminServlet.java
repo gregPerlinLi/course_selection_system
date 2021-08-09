@@ -8,7 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 /**
  * 管理员
@@ -34,8 +33,8 @@ public class AdminServlet extends BaseServlet{
         request.setCharacterEncoding("UTF-8");
 
         // 1. Get request parameters
-        String username = new String(request.getParameter("username").getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
         String password = request.getParameter("encryptedPassword");
+        String username = request.getParameter("username");
 
         System.out.println(username);
         System.out.println(password);
