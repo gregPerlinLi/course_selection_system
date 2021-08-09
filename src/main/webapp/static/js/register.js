@@ -81,14 +81,14 @@ $(function () {
     });
 
     function getClasses(college, grade) {
-        $("#classes").empty().append("<option disabled selected>----请选择----</option>");
+        $("#stuClass").empty().append("<option disabled selected>----请选择----</option>");
         $.getJSON(ajaxUrl, "action=ajaxSearchClasses&charset=utf-8&college=" + college + "&grade=" + grade, function (data) {
             console.log(data);
             var outputString = "";
             $.each(data, function (index, classes) {
                 outputString += "<option>" + classes.classesName + "</option>";
             });
-            $("#classes").append(outputString);
+            $("#stuClass").append(outputString);
         });
     }
 
@@ -138,7 +138,7 @@ $(function () {
             $("#gradeInfo").text("请选择所在年级");
             wrongNum++;
         }
-        if ( $("#classes").val() === null ) {
+        if ( $("#stuClass").val() === null ) {
             $("#classWarm").html("<img src=\"static/img/wrong.png\" height=\"18\" width=\"18\"/>");
             $("#classInfo").text("请选择所在班级");
             wrongNum++;
