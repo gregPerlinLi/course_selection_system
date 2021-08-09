@@ -1,6 +1,7 @@
-package com.gregperlinli.service;
+package com.gregperlinli.test.service;
 
 import com.gregperlinli.pojo.Course;
+import com.gregperlinli.service.CourseManageService;
 import com.gregperlinli.service.impl.CourseManageServiceImpl;
 import org.junit.jupiter.api.Test;
 

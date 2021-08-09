@@ -1,8 +1,9 @@
-package com.gregperlinli.service;
+package com.gregperlinli.test.service;
 
 import com.gregperlinli.pojo.Classes;
 import com.gregperlinli.pojo.College;
 import com.gregperlinli.pojo.Grade;
+import com.gregperlinli.service.CollegeGradeClassManageService;
 import com.gregperlinli.service.impl.CollegeGradeClassManageServiceImpl;
 import org.junit.jupiter.api.Test;
 

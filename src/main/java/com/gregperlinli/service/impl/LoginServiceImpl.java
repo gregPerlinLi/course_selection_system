@@ -20,7 +20,7 @@ public class LoginServiceImpl implements LoginService {
     Connection conn = null;
 
     @Override
-    public boolean studentLogin(String username, String password) {
+    public Student studentLogin(String username, String password) {
         final StudentDao studentDao = new StudentDaoImpl();
         Student student = null;
         try {
@@ -31,16 +31,16 @@ public class LoginServiceImpl implements LoginService {
         } finally {
             JDBCUtils.closeResource(conn, null);
         }
-        if ( student != null) {
-            return student.getPassword().equals(password);
+        if ( student != null && student.getPassword().equals(password)) {
+            return student;
         } else {
-            return false;
+            return null;
         }
     }
 
 
     @Override
-    public boolean adminLogin(String username, String password) {
+    public Admin adminLogin(String username, String password) {
         final AdminDao adminDao = new AdminDaoImpl();
         Admin admin = null;
         try {
@@ -51,10 +51,10 @@ public class LoginServiceImpl implements LoginService {
         } finally {
             JDBCUtils.closeResource(conn, null);
         }
-        if ( admin != null) {
-            return admin.getPassword().equals(password);
+        if ( admin != null && admin.getPassword().equals(password)) {
+            return admin;
         } else {
-            return false;
+            return null;
         }
     }
 }

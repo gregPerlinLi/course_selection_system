@@ -1,4 +1,4 @@
-package com.gregperlinli.utils;
+package com.gregperlinli.test.utils;
 
 import com.gregperlinli.utils.JDBCUtils;
 import org.junit.jupiter.api.Test;

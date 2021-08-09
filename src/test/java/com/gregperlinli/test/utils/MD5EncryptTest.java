@@ -1,5 +1,6 @@
-package com.gregperlinli.utils;
+package com.gregperlinli.test.utils;
 
+import com.gregperlinli.utils.MD5Encrypt;
 import org.junit.jupiter.api.Test;
 
 public class MD5EncryptTest {

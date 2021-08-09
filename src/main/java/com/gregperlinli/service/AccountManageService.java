@@ -59,4 +59,20 @@ public interface AccountManageService {
      * @return 返回是否存在该用户，<code>true</code>则为存在该用户，<code>false</code>则为不存在该用户
      */
     boolean adminDelete(int id);
+
+    /**
+     * 检查是否存在该学生姓名
+     *
+     * @param username 提供需要检查的姓名
+     * @return 返回是否存在该用户，<code>true</code>则为存在该用户，<code>false</code>则为不存在该用户
+     */
+    boolean existStudentUsername(String username);
+
+    /**
+     * 检查是否存在该学号
+     *
+     * @param stuNum 提供需要检查的学号
+     * @return 返回是否存在该用户，<code>true</code>则为存在该用户，<code>false</code>则为不存在该用户
+     */
+    boolean existStudentStuNum(String stuNum);
 }

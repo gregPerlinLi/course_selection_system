@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员登录</title>
+    <base href="http://localhost:8080/course_selection_system/">
+    <link rel="stylesheet" type="text/css" href="static/css/login.css">
+    <script type="text/javascript" src="static/js/jQuery.js"></script>
+    <script type="text/javascript" src="static/js/jquery.md5.js"></script>
+    <script type="text/javascript" src="static/js/login.js"></script>
+</head>
+<body>
+    <form action="adminServlet" method="post">
+        <input type="hidden" name="action" value="adminLogin">
+        <table align="center">
+            <h1 align="center">管理员登录</h1>
+            <tr>
+                <td>用户名：</td>
+                <td><label><input type="text" name="username" class="inputText" id="username"/></label></td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td><label><input type="password" name="password" class="inputText" id="password" /></label></td>
+                <td><label><input type="hidden" name="encryptedPassword" id="encryptedPassword" value=""></label></td>
+            </tr>
+            <tr>
+                <td><label><input type="submit" name="login" value="登陆" id="login" /></label></td>
+            </tr>
+            <tr>
+                <td><a href="pages/login/login.html">普通学生登录</a></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

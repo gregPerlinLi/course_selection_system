@@ -1,5 +1,8 @@
-package com.gregperlinli.service;
+package com.gregperlinli.test.service;
 
+import com.gregperlinli.pojo.Admin;
+import com.gregperlinli.pojo.Student;
+import com.gregperlinli.service.LoginService;
 import com.gregperlinli.service.impl.LoginServiceImpl;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +20,13 @@ public class LoginServiceTest {
         final LoginService loginService = new LoginServiceImpl();
         final String username = "李浩霖";
         final String password = "123456";
-        boolean isCorrect = loginService.studentLogin(username, password);
+        Student student = loginService.studentLogin(username, password);
+        boolean isCorrect;
+        if ( student != null ) {
+            isCorrect = true;
+        } else {
+            isCorrect = false;
+        }
         System.out.println(isCorrect);
     }
     /**
@@ -28,7 +37,13 @@ public class LoginServiceTest {
         final LoginService loginService = new LoginServiceImpl();
         final String username = "gregPerlinLi";
         final String password = "123456";
-        boolean isCorrect = loginService.adminLogin(username, password);
+        Admin admin = loginService.adminLogin(username, password);
+        boolean isCorrect;
+        if ( admin != null ) {
+            isCorrect = true;
+        } else {
+            isCorrect = false;
+        }
         System.out.println(isCorrect);
     }
 }

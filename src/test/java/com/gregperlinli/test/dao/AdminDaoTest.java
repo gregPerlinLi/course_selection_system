@@ -1,7 +1,8 @@
-package com.gregperlinli.dao;
+package com.gregperlinli.test.dao;
 
-import com.gregperlinli.dao.impl.CollegeDaoImpl;
-import com.gregperlinli.pojo.College;
+import com.gregperlinli.dao.AdminDao;
+import com.gregperlinli.dao.impl.AdminDaoImpl;
+import com.gregperlinli.pojo.Admin;
 import com.gregperlinli.utils.JDBCUtils;
 import org.junit.jupiter.api.Test;
 
@@ -9,11 +10,11 @@ import java.sql.Connection;
 import java.util.List;
 
 /**
- * 用于对<code>CollegeDao</code>进行单元测试
+ * 用于对<code>AdminDao</code>进行单元测试
  *
  * @author gregperlinli
  */
-public class CollegeDaoTest {
+public class AdminDaoTest {
     /**
      * 测试<code>insert()</code>方法
      */
@@ -21,10 +22,10 @@ public class CollegeDaoTest {
     public void testInsert() {
         Connection conn = null;
         try {
-            CollegeDao collegeDao = new CollegeDaoImpl();
+            AdminDao adminDao = new AdminDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            College college = new College(1, "物理与光电工程学院");
-            collegeDao.insert(conn, college);
+            Admin admin = new Admin(0, "gregperlinli", "123456");
+            adminDao.insert(conn, admin);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -39,10 +40,10 @@ public class CollegeDaoTest {
     public void testUpdate() {
         Connection conn = null;
         try{
-            CollegeDao collegeDao = new CollegeDaoImpl();
+            AdminDao adminDao = new AdminDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            College college = new College(1, "I don't know");
-            collegeDao.updateById(conn, college);
+            Admin admin = new Admin(3, "test1", "111111");
+            adminDao.updateById(conn, admin);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -57,9 +58,9 @@ public class CollegeDaoTest {
     public void testDelete() {
         Connection conn = null;
         try{
-            CollegeDao collegeDao = new CollegeDaoImpl();
+            AdminDao adminDao = new AdminDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            collegeDao.deleteById(conn, 1);
+            adminDao.deleteById(conn, 3);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -69,16 +70,16 @@ public class CollegeDaoTest {
 
 
     /**
-     * 测试<code>getCollegeById()</code>方法
+     * 测试<code>getAdmById()</code>方法
      */
     @Test
     public void testGetById() {
         Connection conn = null;
         try{
-            CollegeDao collegeDao = new CollegeDaoImpl();
+            AdminDao adminDao = new AdminDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            College college = collegeDao.getCollegeById(conn, 2);
-            System.out.println(college);
+            Admin admin = adminDao.getAdmById(conn, 4);
+            System.out.println(admin);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -87,16 +88,16 @@ public class CollegeDaoTest {
     }
 
     /**
-     * 测试<code>getCollegeByCollegeName()</code>方法
+     * 测试<code>getAdmByUsername()</code>方法
      */
     @Test
-    public void testGetByCollegeNam() {
+    public void testGetByUsername() {
         Connection conn = null;
         try{
-            CollegeDao collegeDao = new CollegeDaoImpl();
+            AdminDao adminDao = new AdminDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            College college = collegeDao.getCollegeByCollegeName(conn, "物理与光电工程学院");
-            System.out.println(college);
+            Admin admin = adminDao.getAdmByUsername(conn, "gregperlinli");
+            System.out.println(admin);
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -111,10 +112,10 @@ public class CollegeDaoTest {
     public void testGetAll() {
         Connection conn = null;
         try{
-            CollegeDao collegeDao = new CollegeDaoImpl();
+            AdminDao adminDao = new AdminDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            List<College> colleges = collegeDao.getAll(conn);
-            System.out.println(colleges.toString());
+            List<Admin> admins = adminDao.getAll(conn);
+            System.out.println(admins.toString());
         } catch ( Exception e ) {
             e.printStackTrace();
         } finally {
@@ -129,9 +130,9 @@ public class CollegeDaoTest {
     public void testGetCount() {
         Connection conn = null;
         try{
-            CollegeDao collegeDao = new CollegeDaoImpl();
+            AdminDao adminDao = new AdminDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
-            Long count = collegeDao.getCount(conn);
+            Long count = adminDao.getCount(conn);
             System.out.println(count);
         } catch ( Exception e ) {
             e.printStackTrace();
@@ -139,5 +140,4 @@ public class CollegeDaoTest {
             JDBCUtils.closeResource(conn, null);
         }
     }
-
 }

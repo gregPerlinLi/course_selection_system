@@ -1,5 +1,6 @@
-package com.gregperlinli.dao;
+package com.gregperlinli.test.dao;
 
+import com.gregperlinli.dao.StudentDao;
 import com.gregperlinli.dao.impl.StudentDaoImpl;
 import com.gregperlinli.pojo.Student;
 import com.gregperlinli.utils.JDBCUtils;

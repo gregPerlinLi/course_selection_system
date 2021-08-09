@@ -1,0 +1,20 @@
+body {
+    font-family: "PingFang SC", Helvetica, Arial, sans-serif;
+}
+table {
+    border: 1px black solid;
+
+}
+/*td ,th {*/
+/*    border: 1px solid black;*/
+/*}*/
+.inputText {
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+}
+#regist {
+    width: 100px;
+    height: 30px;
+    font-size: 30px;
+}
