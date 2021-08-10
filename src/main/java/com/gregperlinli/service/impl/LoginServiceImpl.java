@@ -17,11 +17,12 @@ import java.sql.Connection;
  * @since 2021-7-26
  */
 public class LoginServiceImpl implements LoginService {
+    final private StudentDao studentDao = new StudentDaoImpl();
+    final private AdminDao adminDao = new AdminDaoImpl();
     private Connection conn = null;
 
     @Override
     public Student studentLogin(String username, String password) {
-        final StudentDao studentDao = new StudentDaoImpl();
         Student student = null;
         try {
             conn = JDBCUtils.getConnectionWithPool();
@@ -41,7 +42,6 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Admin adminLogin(String username, String password) {
-        final AdminDao adminDao = new AdminDaoImpl();
         Admin admin = null;
         try {
             conn = JDBCUtils.getConnectionWithPool();
