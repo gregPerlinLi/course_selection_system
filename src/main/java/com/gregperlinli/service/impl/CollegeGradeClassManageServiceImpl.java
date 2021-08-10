@@ -26,7 +26,7 @@ import java.util.List;
  * @since 2021-7-29
  */
 public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassManageService {
-    Connection conn = null;
+    private Connection conn = null;
 
     @Override
     public boolean collegeInsert(College college) {

@@ -17,7 +17,7 @@ import java.sql.Connection;
  * @since 2021-7-26
  */
 public class LoginServiceImpl implements LoginService {
-    Connection conn = null;
+    private Connection conn = null;
 
     @Override
     public Student studentLogin(String username, String password) {

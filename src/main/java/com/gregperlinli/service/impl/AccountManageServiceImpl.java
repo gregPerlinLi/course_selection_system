@@ -22,7 +22,7 @@ import java.util.List;
  * @since 2021-7-28
  */
 public class AccountManageServiceImpl implements AccountManageService {
-    Connection conn = null;
+    private Connection conn = null;
 
     @Override
     public boolean studentRegist(Student student) {
