@@ -2,6 +2,8 @@ package com.gregperlinli.service;
 
 import com.gregperlinli.pojo.Course;
 
+import java.util.List;
+
 /**
  * 用于进行课程管理
  *
@@ -34,4 +36,8 @@ public interface CourseManageService {
      * @return 返回知否已存在该课程，<code>true</code>则为存在该课程，<code>false</code>则为不存在该课程
      */
     boolean deleteCourse(int id);
+
+    Course getCourseById(int id);
+
+    List<Course> getAllCourse();
 }

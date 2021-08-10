@@ -112,4 +112,30 @@ public class CourseManageServiceImpl implements CourseManageService {
         }
         return false;
     }
+
+    @Override
+    public Course getCourseById(int id) {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return courseDao.getCourseById(conn, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+        return null;
+    }
+
+    @Override
+    public List<Course> getAllCourse() {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return courseDao.getAll(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+        return null;
+    }
 }
