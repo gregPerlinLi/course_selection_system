@@ -15,6 +15,7 @@ import java.util.List;
  * @author gregperlinli
  */
 public class ClassesDaoTest {
+    final private ClassesDao classesDao = new ClassesDaoImpl();
 
     /**
      * 测试<code>insert()</code>方法
@@ -23,7 +24,6 @@ public class ClassesDaoTest {
     public void insert() {
         Connection conn = null;
         try {
-            ClassesDao classesDao = new ClassesDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Classes classes = new Classes(1, "20电子科学与技术1班", "物理与光电工程学院", "20级");
             classesDao.insert(conn, classes);
@@ -41,7 +41,6 @@ public class ClassesDaoTest {
     public void updateById() {
         Connection conn = null;
         try{
-            ClassesDao classesDao = new ClassesDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Classes classes = new Classes(1, "21电子科学与技术2班", "物理与光电工程学院", "21级");
             classesDao.updateById(conn, classes);
@@ -59,7 +58,6 @@ public class ClassesDaoTest {
     public void deleteById() {
         Connection conn = null;
         try{
-            ClassesDao classesDao = new ClassesDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             classesDao.deleteById(conn, 1);
         } catch ( Exception e ) {
@@ -76,7 +74,6 @@ public class ClassesDaoTest {
     public void deleteByCollege() {
         Connection conn = null;
         try{
-            ClassesDao classesDao = new ClassesDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             classesDao.deleteByCollege(conn, "计算机学院");
         } catch ( Exception e ) {
@@ -93,7 +90,6 @@ public class ClassesDaoTest {
     public void deleteByGrade() {
         Connection conn = null;
         try{
-            ClassesDao classesDao = new ClassesDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             classesDao.deleteByGrade(conn, "22级");
         } catch ( Exception e ) {
@@ -111,7 +107,6 @@ public class ClassesDaoTest {
     public void getClassById() {
         Connection conn = null;
         try{
-            ClassesDao classesDao = new ClassesDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Classes classes = classesDao.getClassById(conn, 3);
             System.out.println(classes);
@@ -129,7 +124,6 @@ public class ClassesDaoTest {
     public void getClassByClassName() {
         Connection conn = null;
         try{
-            ClassesDao classesDao = new ClassesDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Classes classes = classesDao.getClassByClassName(conn, "20电子科学与技术1班");
             System.out.println(classes);
@@ -147,7 +141,6 @@ public class ClassesDaoTest {
     public void getClassesByCollege() {
         Connection conn = null;
         try{
-            ClassesDao classesDao = new ClassesDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             List<Classes> classesList = classesDao.getClassesByCollege(conn, "物理与光电工程学院");
             System.out.println(classesList);
@@ -165,7 +158,6 @@ public class ClassesDaoTest {
     public void getClassesByGrade() {
         Connection conn = null;
         try{
-            ClassesDao classesDao = new ClassesDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             List<Classes> classesList = classesDao.getClassesByGrade(conn, "20级");
             System.out.println(classesList);
@@ -183,7 +175,6 @@ public class ClassesDaoTest {
     public void getAll() {
         Connection conn = null;
         try{
-            ClassesDao classesDao = new ClassesDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             List<Classes> classess = classesDao.getAll(conn);
             System.out.println(classess.toString());
@@ -201,7 +192,6 @@ public class ClassesDaoTest {
     public void getCount() {
         Connection conn = null;
         try{
-            ClassesDao classesDao = new ClassesDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Long count = classesDao.getCount(conn);
             System.out.println(count);

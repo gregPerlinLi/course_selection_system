@@ -17,6 +17,7 @@ import java.util.List;
  * @author gregperlinli
  */
 public class CourseDaoTest {
+    final private CourseDao courseDao = new CourseDaoImpl();
 
     /**
      * 测试<code>insert()</code>方法
@@ -25,7 +26,6 @@ public class CourseDaoTest {
     void insert() {
         Connection conn = null;
         try {
-            CourseDao courseDao = new CourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Course course = new Course(1, "高等数学", Date.valueOf("2021-9-1") , Time.valueOf("12:00:00"), 100);
             courseDao.insert(conn, course);
@@ -43,7 +43,6 @@ public class CourseDaoTest {
     void deleteById() {
         Connection conn = null;
         try{
-            CourseDao courseDao = new CourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             courseDao.deleteById(conn, 1);
         } catch ( Exception e ) {
@@ -60,7 +59,6 @@ public class CourseDaoTest {
     void updateById() {
         Connection conn = null;
         try{
-            CourseDao courseDao = new CourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Course course = new Course(1, "大学物理", Date.valueOf("2021-8-30"), Time.valueOf("12:30:00"), 80);
             courseDao.updateById(conn, course);
@@ -78,7 +76,6 @@ public class CourseDaoTest {
     void updateCurrentStu() {
         Connection conn = null;
         try {
-            CourseDao courseDao = new CourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             courseDao.updateCurrentStu(conn, 2, 80);
         } catch (Exception e) {
@@ -95,7 +92,6 @@ public class CourseDaoTest {
     void getCourseById() {
         Connection conn = null;
         try{
-            CourseDao courseDao = new CourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Course course = courseDao.getCourseById(conn, 2);
             System.out.println(course);
@@ -113,7 +109,6 @@ public class CourseDaoTest {
     void getCourseByCourseName() {
         Connection conn = null;
         try{
-            CourseDao courseDao = new CourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Course course = courseDao.getCourseByCourseName(conn, "高等数学");
             System.out.println(course);
@@ -131,7 +126,6 @@ public class CourseDaoTest {
     void getAll() {
         Connection conn = null;
         try{
-            CourseDao courseDao = new CourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             List<Course> courses = courseDao.getAll(conn);
             System.out.println(courses.toString());
@@ -149,7 +143,6 @@ public class CourseDaoTest {
     void getCount() {
         Connection conn = null;
         try{
-            CourseDao courseDao = new CourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Long count = courseDao.getCount(conn);
             System.out.println(count);

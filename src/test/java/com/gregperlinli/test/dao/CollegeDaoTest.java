@@ -15,6 +15,8 @@ import java.util.List;
  * @author gregperlinli
  */
 public class CollegeDaoTest {
+    final private CollegeDao collegeDao = new CollegeDaoImpl();
+
     /**
      * 测试<code>insert()</code>方法
      */
@@ -22,7 +24,6 @@ public class CollegeDaoTest {
     public void insert() {
         Connection conn = null;
         try {
-            CollegeDao collegeDao = new CollegeDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             College college = new College(1, "物理与光电工程学院");
             collegeDao.insert(conn, college);
@@ -40,7 +41,6 @@ public class CollegeDaoTest {
     public void updateById() {
         Connection conn = null;
         try{
-            CollegeDao collegeDao = new CollegeDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             College college = new College(1, "I don't know");
             collegeDao.updateById(conn, college);
@@ -58,7 +58,6 @@ public class CollegeDaoTest {
     public void deleteById() {
         Connection conn = null;
         try{
-            CollegeDao collegeDao = new CollegeDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             collegeDao.deleteById(conn, 1);
         } catch ( Exception e ) {
@@ -76,7 +75,6 @@ public class CollegeDaoTest {
     public void getCollegeById() {
         Connection conn = null;
         try{
-            CollegeDao collegeDao = new CollegeDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             College college = collegeDao.getCollegeById(conn, 2);
             System.out.println(college);
@@ -94,7 +92,6 @@ public class CollegeDaoTest {
     public void getCollegeByCollegeName() {
         Connection conn = null;
         try{
-            CollegeDao collegeDao = new CollegeDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             College college = collegeDao.getCollegeByCollegeName(conn, "物理与光电工程学院");
             System.out.println(college);
@@ -112,7 +109,6 @@ public class CollegeDaoTest {
     public void getAllgetAll() {
         Connection conn = null;
         try{
-            CollegeDao collegeDao = new CollegeDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             List<College> colleges = collegeDao.getAll(conn);
             System.out.println(colleges.toString());
@@ -130,7 +126,6 @@ public class CollegeDaoTest {
     public void getCount() {
         Connection conn = null;
         try{
-            CollegeDao collegeDao = new CollegeDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Long count = collegeDao.getCount(conn);
             System.out.println(count);

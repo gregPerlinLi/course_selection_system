@@ -15,6 +15,7 @@ import java.util.List;
  * @author gregperlinli
  */
 public class SelectedCourseDaoTest {
+    final private SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
 
     /**
      * 测试<code>insert()</code>方法
@@ -23,7 +24,6 @@ public class SelectedCourseDaoTest {
     public void insert() {
         Connection conn = null;
         try {
-            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             SelectedCourse selectedCourse = new SelectedCourse(1, "3120007215", "李浩霖", "高等数学");
             selectedCourseDao.insert(conn, selectedCourse);
@@ -41,7 +41,6 @@ public class SelectedCourseDaoTest {
     public void updateById() {
         Connection conn = null;
         try{
-            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             SelectedCourse selectedCourse = new SelectedCourse(1, "3121007001", "小明", "大学物理");
             selectedCourseDao.updateById(conn, selectedCourse);
@@ -59,7 +58,6 @@ public class SelectedCourseDaoTest {
     public void deleteById() {
         Connection conn = null;
         try{
-            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             selectedCourseDao.deleteById(conn, 1);
         } catch ( Exception e ) {
@@ -76,7 +74,6 @@ public class SelectedCourseDaoTest {
     public void deleteByCourse() {
         Connection conn = null;
         try{
-            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             selectedCourseDao.deleteByCourse(conn, "大学英语");
         } catch ( Exception e ) {
@@ -93,7 +90,6 @@ public class SelectedCourseDaoTest {
     public void deleteByStuName() {
         Connection conn = null;
         try{
-            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             selectedCourseDao.deleteByStuName(conn, "小明");
         } catch ( Exception e ) {
@@ -110,7 +106,6 @@ public class SelectedCourseDaoTest {
     public void getSelectedCourseByStuNum() {
         Connection conn = null;
         try{
-            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             List<SelectedCourse> selectedCourseList = selectedCourseDao.getSelectedCourseByStuNum(conn, "3120007215");
             System.out.println(selectedCourseList);
@@ -129,7 +124,6 @@ public class SelectedCourseDaoTest {
     public void getSelectedCourseByStuName() {
         Connection conn = null;
         try{
-            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             List<SelectedCourse> selectedCourseList = selectedCourseDao.getSelectedCourseByStuName(conn, "李浩霖");
             System.out.println(selectedCourseList);
@@ -148,7 +142,6 @@ public class SelectedCourseDaoTest {
     public void getSelectedCourseByCourse() {
         Connection conn = null;
         try{
-            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             List<SelectedCourse> selectedCourseList = selectedCourseDao.getSelectedCourseByCourse(conn, "高等数学");
             System.out.println(selectedCourseList);
@@ -166,7 +159,6 @@ public class SelectedCourseDaoTest {
     public void getAll() {
         Connection conn = null;
         try{
-            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             List<SelectedCourse> selectedCourses = selectedCourseDao.getAll(conn);
             System.out.println(selectedCourses.toString());
@@ -184,7 +176,6 @@ public class SelectedCourseDaoTest {
     public void getCount() {
         Connection conn = null;
         try{
-            SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Long count = selectedCourseDao.getCount(conn);
             System.out.println(count);
