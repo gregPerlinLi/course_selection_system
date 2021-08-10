@@ -49,7 +49,7 @@ public interface CourseDao {
      * @param newCurrentStu 提供更新后的已报名学生人数
      * @throws Exception 抛出错误
      */
-    void updateCurrentStu(Connection conn, int id, int newCurrentStu) throws Exception;
+    void updateCurrentStu(Connection conn, int id, Integer newCurrentStu) throws Exception;
 
     /**
      * 根据课程id来获取课程对象

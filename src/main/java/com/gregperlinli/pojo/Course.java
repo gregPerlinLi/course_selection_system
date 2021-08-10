@@ -14,8 +14,8 @@ public class Course {
     private String courseName;
     private Date startDate;
     private Time startTime;
-    private int maxStu;
-    private int currentStu = 0;
+    private Integer maxStu;
+    private Integer currentStu = 0;
 
     public Course() {
     }
