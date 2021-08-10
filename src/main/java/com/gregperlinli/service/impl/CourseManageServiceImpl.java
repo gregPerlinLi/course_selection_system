@@ -19,11 +19,11 @@ import java.util.List;
  * @since 2021-7-28
  */
 public class CourseManageServiceImpl implements CourseManageService {
-    Connection conn = null;
+    final private CourseDao courseDao = new CourseDaoImpl();
+    private Connection conn = null;
 
     @Override
     public boolean addCourse(Course course) {
-        final CourseDao courseDao = new CourseDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             if ( courseDao.getCourseByCourseName(conn, course.getCourseName()) == null) {
@@ -40,7 +40,6 @@ public class CourseManageServiceImpl implements CourseManageService {
 
     @Override
     public boolean updateCourse(Course course) {
-        final CourseDao courseDao = new CourseDaoImpl();
         final SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
@@ -84,7 +83,6 @@ public class CourseManageServiceImpl implements CourseManageService {
 
     @Override
     public boolean deleteCourse(int id) {
-        final CourseDao courseDao = new CourseDaoImpl();
         final SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
