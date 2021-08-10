@@ -14,13 +14,14 @@ import org.junit.jupiter.api.Test;
  * @since 2021-7-29
  */
 public class CollegeGradeClassManageServiceTest {
+    final private CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
+
     /**
      * 测试<code>collegeInsert()</code>方法
      */
     @Test
     public void collegeInsert() {
         final College college = new College("微电子学院");
-        final CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
         boolean isAdded = cgcms.collegeInsert(college);
         System.out.println(isAdded);
     }
@@ -31,7 +32,6 @@ public class CollegeGradeClassManageServiceTest {
     @Test
     public void gradeInsert() {
         final Grade grade = new Grade("21级");
-        final CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
         boolean isAdded = cgcms.gradeInsert(grade);
         System.out.println(isAdded);
     }
@@ -42,7 +42,6 @@ public class CollegeGradeClassManageServiceTest {
     @Test
     public void classesInsert() {
         final Classes classes = new Classes("20光电信息科学与技术1班", "物理与光电工程学院", "20级");
-        final CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
         boolean isAdded = cgcms.classInsert(classes);
         System.out.println(isAdded);
     }
@@ -53,7 +52,6 @@ public class CollegeGradeClassManageServiceTest {
     @Test
     public void collegeUpdate() {
         final College college = new College(2, "物电学院");
-        final CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
         boolean isUpdate = cgcms.collegeUpdate(college);
         System.out.println(isUpdate);
     }
@@ -65,7 +63,6 @@ public class CollegeGradeClassManageServiceTest {
     @Test
     public void gradeUpdate() {
         final Grade grade = new Grade(2, "19级");
-        final CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
         boolean isUpdate = cgcms.gradeUpdate(grade);
         System.out.println(isUpdate);
     }
@@ -77,7 +74,6 @@ public class CollegeGradeClassManageServiceTest {
     @Test
     public void classUpdate() {
         final Classes classes = new Classes(3,"20电子科学与技术3班", "物理与光电工程学院", "20级");
-        final CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
         boolean isUpdate = cgcms.classUpdate(classes);
         System.out.println(isUpdate);
     }
@@ -87,7 +83,6 @@ public class CollegeGradeClassManageServiceTest {
      */
     @Test
     public void collegeDelete() {
-        final CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
         boolean isDelete = cgcms.collegeDelete(5);
         System.out.println(isDelete);
     }
@@ -98,7 +93,6 @@ public class CollegeGradeClassManageServiceTest {
      */
     @Test
     public void gradeDelete() {
-        final CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
         boolean isDelete = cgcms.gradeDelete(5);
         System.out.println(isDelete);
     }
@@ -109,7 +103,6 @@ public class CollegeGradeClassManageServiceTest {
      */
     @Test
     public void classDelete() {
-        final CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
         boolean isDelete = cgcms.classDelete(12);
         System.out.println(isDelete);
     }
