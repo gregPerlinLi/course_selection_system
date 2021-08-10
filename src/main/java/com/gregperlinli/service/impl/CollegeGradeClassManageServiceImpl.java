@@ -26,11 +26,14 @@ import java.util.List;
  * @since 2021-7-29
  */
 public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassManageService {
-    Connection conn = null;
+    final private CollegeDao collegeDao = new CollegeDaoImpl();
+    final private GradeDao gradeDao = new GradeDaoImpl();
+    final private ClassesDao classesDao = new ClassesDaoImpl();
+    final private StudentDao studentDao = new StudentDaoImpl();
+    private Connection conn = null;
 
     @Override
     public boolean collegeInsert(College college) {
-        final CollegeDao collegeDao = new CollegeDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             if ( collegeDao.getCollegeByCollegeName(conn, college.getCollegeName()) == null ) {
@@ -47,7 +50,6 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
 
     @Override
     public boolean gradeInsert(Grade grade) {
-        final GradeDao gradeDao = new GradeDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             if ( gradeDao.getGradeByGradeName(conn, grade.getGradeName()) == null ) {
@@ -64,7 +66,6 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
 
     @Override
     public boolean classInsert(Classes classes) {
-        final ClassesDao classesDao = new ClassesDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             if ( classesDao.getClassByClassName(conn, classes.getClassesName()) == null ) {
@@ -81,9 +82,6 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
 
     @Override
     public boolean collegeUpdate(College college) {
-        final CollegeDao collegeDao = new CollegeDaoImpl();
-        final StudentDao studentDao = new StudentDaoImpl();
-        final ClassesDao classesDao = new ClassesDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
@@ -130,9 +128,6 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
 
     @Override
     public boolean gradeUpdate(Grade grade) {
-        final GradeDao gradeDao = new GradeDaoImpl();
-        final StudentDao studentDao = new StudentDaoImpl();
-        final ClassesDao classesDao = new ClassesDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
@@ -179,8 +174,6 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
 
     @Override
     public boolean classUpdate(Classes classes) {
-        final ClassesDao classesDao = new ClassesDaoImpl();
-        final StudentDao studentDao = new StudentDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
@@ -222,9 +215,6 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
 
     @Override
     public boolean collegeDelete(int id) {
-        final CollegeDao collegeDao = new CollegeDaoImpl();
-        final StudentDao studentDao = new StudentDaoImpl();
-        final ClassesDao classesDao = new ClassesDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
@@ -257,9 +247,6 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
 
     @Override
     public boolean gradeDelete(int id) {
-        final GradeDao gradeDao = new GradeDaoImpl();
-        final StudentDao studentDao = new StudentDaoImpl();
-        final ClassesDao classesDao = new ClassesDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
@@ -292,8 +279,6 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
 
     @Override
     public boolean classDelete(int id) {
-        final ClassesDao classesDao = new ClassesDaoImpl();
-        final StudentDao studentDao = new StudentDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
@@ -325,7 +310,6 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
 
     @Override
     public List<College> searchAllCollege() {
-        final CollegeDao collegeDao = new CollegeDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             return collegeDao.getAll(conn);
@@ -339,7 +323,6 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
 
     @Override
     public List<Grade> searchAllGrade() {
-        final GradeDao gradeDao = new GradeDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             return gradeDao.getAll(conn);
@@ -353,7 +336,6 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
 
     @Override
     public List<Classes> searchClassByCollegeAndGrade(String college, String grade) {
-        final ClassesDao classesDao = new ClassesDaoImpl();
         try {
             conn = JDBCUtils.getConnectionWithPool();
             List<Classes> classesByCollege = classesDao.getClassesByCollege(conn, college);

@@ -12,12 +12,13 @@ import org.junit.jupiter.api.Test;
  * @author gregperlinli
  */
 public class LoginServiceTest {
+    final private LoginService loginService = new LoginServiceImpl();
+
     /**
      * 测试<code>studentLogin()</code>方法
      */
     @Test
-    public void testStudentLogin() {
-        final LoginService loginService = new LoginServiceImpl();
+    public void studentLogin() {
         final String username = "李浩霖";
         final String password = "123456";
         Student student = loginService.studentLogin(username, password);
@@ -33,8 +34,7 @@ public class LoginServiceTest {
      * 测试<code>adminLogin()</code>方法
      */
     @Test
-    public void testAdminLogin() {
-        final LoginService loginService = new LoginServiceImpl();
+    public void adminLogin() {
         final String username = "gregPerlinLi";
         final String password = "123456";
         Admin admin = loginService.adminLogin(username, password);

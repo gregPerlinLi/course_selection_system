@@ -15,14 +15,15 @@ import java.util.List;
  * @author gregperlinli
  */
 public class AdminDaoTest {
+    final private AdminDao adminDao = new AdminDaoImpl();
+
     /**
      * 测试<code>insert()</code>方法
      */
     @Test
-    public void testInsert() {
+    public void insert() {
         Connection conn = null;
         try {
-            AdminDao adminDao = new AdminDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Admin admin = new Admin(0, "gregperlinli", "123456");
             adminDao.insert(conn, admin);
@@ -37,10 +38,9 @@ public class AdminDaoTest {
      * 测试<code>updateById()</code>方法
      */
     @Test
-    public void testUpdate() {
+    public void updateById() {
         Connection conn = null;
         try{
-            AdminDao adminDao = new AdminDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Admin admin = new Admin(3, "test1", "111111");
             adminDao.updateById(conn, admin);
@@ -55,10 +55,9 @@ public class AdminDaoTest {
      * 测试<code>deleteById()</code>方法
      */
     @Test
-    public void testDelete() {
+    public void deleteById() {
         Connection conn = null;
         try{
-            AdminDao adminDao = new AdminDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             adminDao.deleteById(conn, 3);
         } catch ( Exception e ) {
@@ -73,10 +72,9 @@ public class AdminDaoTest {
      * 测试<code>getAdmById()</code>方法
      */
     @Test
-    public void testGetById() {
+    public void getAdmById() {
         Connection conn = null;
         try{
-            AdminDao adminDao = new AdminDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Admin admin = adminDao.getAdmById(conn, 4);
             System.out.println(admin);
@@ -91,10 +89,9 @@ public class AdminDaoTest {
      * 测试<code>getAdmByUsername()</code>方法
      */
     @Test
-    public void testGetByUsername() {
+    public void getAdmByUsername() {
         Connection conn = null;
         try{
-            AdminDao adminDao = new AdminDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Admin admin = adminDao.getAdmByUsername(conn, "gregperlinli");
             System.out.println(admin);
@@ -109,10 +106,9 @@ public class AdminDaoTest {
      * 测试<code>getAll()</code>方法
      */
     @Test
-    public void testGetAll() {
+    public void getAll() {
         Connection conn = null;
         try{
-            AdminDao adminDao = new AdminDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             List<Admin> admins = adminDao.getAll(conn);
             System.out.println(admins.toString());
@@ -127,10 +123,9 @@ public class AdminDaoTest {
      * 测试<code>getCount()</code>方法
      */
     @Test
-    public void testGetCount() {
+    public void getCount() {
         Connection conn = null;
         try{
-            AdminDao adminDao = new AdminDaoImpl();
             conn = JDBCUtils.getConnectionWithPool();
             Long count = adminDao.getCount(conn);
             System.out.println(count);

@@ -15,17 +15,18 @@ import java.sql.Time;
  * @since 2021-7-28
  */
 public class CourseManageServiceTest {
+    private final CourseManageService courseManageService = new CourseManageServiceImpl();
+
     /**
      * 测试<code>insertCourse()</code>方法
      */
     @Test
-    public void testInsertCourse() {
-        final Course COURSE = new Course("大学英语",
+    public void insertCourse() {
+        final Course course = new Course("大学英语",
                 Date.valueOf("2021-8-30"),
                 Time.valueOf("12:00:00"),
                 120);
-        final CourseManageService courseManageService = new CourseManageServiceImpl();
-        boolean isAdded = courseManageService.addCourse(COURSE);
+        boolean isAdded = courseManageService.addCourse(course);
         System.out.println(isAdded);
     }
 
@@ -33,13 +34,12 @@ public class CourseManageServiceTest {
      * 测试<code>updateCourse()</code>方法
      */
     @Test
-    public void testUpdateCourse() {
+    public void updateCourse() {
         final Course course = new Course(3,
                 "大学物理",
                 Date.valueOf("2021-8-29"),
                 Time.valueOf("11:00:00"),
                 150);
-        final CourseManageService courseManageService = new CourseManageServiceImpl();
         boolean isUpdated = courseManageService.updateCourse(course);
         System.out.println(isUpdated);
     }
@@ -48,9 +48,24 @@ public class CourseManageServiceTest {
      * 测试<code>deleteCourse()</code>方法
      */
     @Test
-    public void testDeleteCourse() {
-        final CourseManageService courseManageService = new CourseManageServiceImpl();
+    public void deleteCourse() {
         boolean isDeleted = courseManageService.deleteCourse(3);
         System.out.println(isDeleted);
+    }
+
+    /**
+     * 测试getCourseById()方法
+     */
+    @Test
+    void getCourseById() {
+        System.out.println(courseManageService.getCourseById(2));
+    }
+
+    /**
+     * getAllCourse()方法
+     */
+    @Test
+    void getAllCourse() {
+        System.out.println(courseManageService.getAllCourse());
     }
 }

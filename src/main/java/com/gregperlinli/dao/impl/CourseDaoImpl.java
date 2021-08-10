@@ -33,7 +33,7 @@ public class CourseDaoImpl extends BaseDAO<Course> implements CourseDao {
     }
 
     @Override
-    public void updateCurrentStu(Connection conn, int id, int newCurrentStu) throws Exception {
+    public void updateCurrentStu(Connection conn, int id, Integer newCurrentStu) throws Exception {
         String sql = "update course set current_stu = ? where id = ?";
         update(conn, sql, newCurrentStu, id);
     }
