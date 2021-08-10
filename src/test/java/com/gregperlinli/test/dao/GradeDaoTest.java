@@ -19,7 +19,7 @@ public class GradeDaoTest {
      * 测试<code>insert()</code>方法
      */
     @Test
-    public void testInsert() {
+    public void insert() {
         Connection conn = null;
         try {
             GradeDao gradeDao = new GradeDaoImpl();
@@ -37,7 +37,7 @@ public class GradeDaoTest {
      * 测试<code>updateById()</code>方法
      */
     @Test
-    public void testUpdate() {
+    public void updateById() {
         Connection conn = null;
         try{
             GradeDao gradeDao = new GradeDaoImpl();
@@ -55,7 +55,7 @@ public class GradeDaoTest {
      * 测试<code>deleteById()</code>方法
      */
     @Test
-    public void testDelete() {
+    public void deleteById() {
         Connection conn = null;
         try{
             GradeDao gradeDao = new GradeDaoImpl();
@@ -73,7 +73,7 @@ public class GradeDaoTest {
      * 测试<code>getGradeById()</code>方法
      */
     @Test
-    public void testGetById() {
+    public void getGradeById() {
         Connection conn = null;
         try{
             GradeDao gradeDao = new GradeDaoImpl();
@@ -91,7 +91,7 @@ public class GradeDaoTest {
      * 测试<code>getGradeByGradeName()</code>方法
      */
     @Test
-    public void testGetByGradeName() {
+    public void getGradeByGradeName() {
         Connection conn = null;
         try{
             GradeDao gradeDao = new GradeDaoImpl();
@@ -109,7 +109,7 @@ public class GradeDaoTest {
      * 测试<code>getAll()</code>方法
      */
     @Test
-    public void testGetAll() {
+    public void getAll() {
         Connection conn = null;
         try{
             GradeDao gradeDao = new GradeDaoImpl();
@@ -127,7 +127,7 @@ public class GradeDaoTest {
      * 测试<code>getCount()</code>方法
      */
     @Test
-    public void testGetCount() {
+    public void getCount() {
         Connection conn = null;
         try{
             GradeDao gradeDao = new GradeDaoImpl();

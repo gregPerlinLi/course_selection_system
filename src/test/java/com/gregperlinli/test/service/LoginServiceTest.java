@@ -16,7 +16,7 @@ public class LoginServiceTest {
      * 测试<code>studentLogin()</code>方法
      */
     @Test
-    public void testStudentLogin() {
+    public void studentLogin() {
         final LoginService loginService = new LoginServiceImpl();
         final String username = "李浩霖";
         final String password = "123456";
@@ -33,7 +33,7 @@ public class LoginServiceTest {
      * 测试<code>adminLogin()</code>方法
      */
     @Test
-    public void testAdminLogin() {
+    public void adminLogin() {
         final LoginService loginService = new LoginServiceImpl();
         final String username = "gregPerlinLi";
         final String password = "123456";

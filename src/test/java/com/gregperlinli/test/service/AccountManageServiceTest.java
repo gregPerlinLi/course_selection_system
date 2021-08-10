@@ -17,7 +17,7 @@ public class AccountManageServiceTest {
      * 测试<code>studentRegist()</code>方法
      */
     @Test
-    public void testStudentRegist() {
+    public void studentRegist() {
         final Student student = new Student("3120007214",
                                             "李翰霆",
                                             "123456",
@@ -33,7 +33,7 @@ public class AccountManageServiceTest {
      * 测试<code>adminRegist()</code>方法
      */
     @Test
-    public void testAdminRegist() {
+    public void adminRegist() {
         final Admin admin = new Admin("test", "test123");
         final AccountManageService ACCOUNT_MANAGE_SERVER = new AccountManageServiceImpl();
         boolean isRegisted = ACCOUNT_MANAGE_SERVER.adminRegist(admin);
@@ -44,7 +44,7 @@ public class AccountManageServiceTest {
      * 测试<code>studentUpdate()</code>方法
      */
     @Test
-    public void testStudentUpdate() {
+    public void studentUpdate() {
         final Student student = new Student(3,
                 "3121007213",
                 "黎伊朗",
@@ -62,7 +62,7 @@ public class AccountManageServiceTest {
      * 测试<code>adminUpdate()</code>方法
      */
     @Test
-    public void testAdminUpdate() {
+    public void adminUpdate() {
         final Admin admin = new Admin(6, "anotherTest", "test_for_other");
         final AccountManageService ACCOUNT_MANAGE_SERVER = new AccountManageServiceImpl();
         boolean isUpdated = ACCOUNT_MANAGE_SERVER.adminUpdate(admin);
@@ -74,7 +74,7 @@ public class AccountManageServiceTest {
      * 测试<code>studentDelete()</code>方法
      */
     @Test
-    public void testStudentDelete() {
+    public void studentDelete() {
         final AccountManageService accountManageService = new AccountManageServiceImpl();
         boolean isDeleted = accountManageService.studentDelete(7);
         System.out.println(isDeleted);
@@ -85,7 +85,7 @@ public class AccountManageServiceTest {
      * 测试<code>adminDelete()</code>方法
      */
     @Test
-    public void testAdminDelete() {
+    public void adminDelete() {
         final AccountManageService accountManageService = new AccountManageServiceImpl();
         boolean isDeleted = accountManageService.adminDelete(7);
         System.out.println(isDeleted);

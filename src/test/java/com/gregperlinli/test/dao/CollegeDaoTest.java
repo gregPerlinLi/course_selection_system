@@ -19,7 +19,7 @@ public class CollegeDaoTest {
      * 测试<code>insert()</code>方法
      */
     @Test
-    public void testInsert() {
+    public void insert() {
         Connection conn = null;
         try {
             CollegeDao collegeDao = new CollegeDaoImpl();
@@ -37,7 +37,7 @@ public class CollegeDaoTest {
      * 测试<code>updateById()</code>方法
      */
     @Test
-    public void testUpdate() {
+    public void updateById() {
         Connection conn = null;
         try{
             CollegeDao collegeDao = new CollegeDaoImpl();
@@ -55,7 +55,7 @@ public class CollegeDaoTest {
      * 测试<code>deleteById()</code>方法
      */
     @Test
-    public void testDelete() {
+    public void deleteById() {
         Connection conn = null;
         try{
             CollegeDao collegeDao = new CollegeDaoImpl();
@@ -73,7 +73,7 @@ public class CollegeDaoTest {
      * 测试<code>getCollegeById()</code>方法
      */
     @Test
-    public void testGetById() {
+    public void getCollegeById() {
         Connection conn = null;
         try{
             CollegeDao collegeDao = new CollegeDaoImpl();
@@ -91,7 +91,7 @@ public class CollegeDaoTest {
      * 测试<code>getCollegeByCollegeName()</code>方法
      */
     @Test
-    public void testGetByCollegeNam() {
+    public void getCollegeByCollegeName() {
         Connection conn = null;
         try{
             CollegeDao collegeDao = new CollegeDaoImpl();
@@ -109,7 +109,7 @@ public class CollegeDaoTest {
      * 测试<code>getAll()</code>方法
      */
     @Test
-    public void testGetAll() {
+    public void getAllgetAll() {
         Connection conn = null;
         try{
             CollegeDao collegeDao = new CollegeDaoImpl();
@@ -127,7 +127,7 @@ public class CollegeDaoTest {
      * 测试<code>getCount()</code>方法
      */
     @Test
-    public void testGetCount() {
+    public void getCount() {
         Connection conn = null;
         try{
             CollegeDao collegeDao = new CollegeDaoImpl();

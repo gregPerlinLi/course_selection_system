@@ -17,11 +17,12 @@ import java.util.List;
  * @author gregperlinli
  */
 public class CourseDaoTest {
+
     /**
      * 测试<code>insert()</code>方法
      */
     @Test
-    public void testInsert() {
+    void insert() {
         Connection conn = null;
         try {
             CourseDao courseDao = new CourseDaoImpl();
@@ -36,10 +37,27 @@ public class CourseDaoTest {
     }
 
     /**
+     * 测试<code>deleteById()</code>方法
+     */
+    @Test
+    void deleteById() {
+        Connection conn = null;
+        try{
+            CourseDao courseDao = new CourseDaoImpl();
+            conn = JDBCUtils.getConnectionWithPool();
+            courseDao.deleteById(conn, 1);
+        } catch ( Exception e ) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+    }
+
+    /**
      * 测试<code>updateById()</code>方法
      */
     @Test
-    public void testUpdate() {
+    void updateById() {
         Connection conn = null;
         try{
             CourseDao courseDao = new CourseDaoImpl();
@@ -54,27 +72,10 @@ public class CourseDaoTest {
     }
 
     /**
-     * 测试<code>deleteById()</code>方法
-     */
-    @Test
-    public void testDelete() {
-        Connection conn = null;
-        try{
-            CourseDao courseDao = new CourseDaoImpl();
-            conn = JDBCUtils.getConnectionWithPool();
-            courseDao.deleteById(conn, 1);
-        } catch ( Exception e ) {
-            e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
-        }
-    }
-
-    /**
      * 测试<code>updateCurrentStu()</code>方法
      */
     @Test
-    public void testUpdateCurrentStu() {
+    void updateCurrentStu() {
         Connection conn = null;
         try {
             CourseDao courseDao = new CourseDaoImpl();
@@ -91,7 +92,7 @@ public class CourseDaoTest {
      * 测试<code>getCourseById()</code>方法
      */
     @Test
-    public void testGetById() {
+    void getCourseById() {
         Connection conn = null;
         try{
             CourseDao courseDao = new CourseDaoImpl();
@@ -109,7 +110,7 @@ public class CourseDaoTest {
      * 测试<code>getCourseByCourseName()</code>方法
      */
     @Test
-    public void testGetByCourseName() {
+    void getCourseByCourseName() {
         Connection conn = null;
         try{
             CourseDao courseDao = new CourseDaoImpl();
@@ -123,12 +124,11 @@ public class CourseDaoTest {
         }
     }
 
-
     /**
      * 测试<code>getAll()</code>方法
      */
     @Test
-    public void testGetAll() {
+    void getAll() {
         Connection conn = null;
         try{
             CourseDao courseDao = new CourseDaoImpl();
@@ -146,7 +146,7 @@ public class CourseDaoTest {
      * 测试<code>getCount()</code>方法
      */
     @Test
-    public void testGetCount() {
+    void getCount() {
         Connection conn = null;
         try{
             CourseDao courseDao = new CourseDaoImpl();
@@ -159,5 +159,4 @@ public class CourseDaoTest {
             JDBCUtils.closeResource(conn, null);
         }
     }
-
 }

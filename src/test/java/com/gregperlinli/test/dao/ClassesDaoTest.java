@@ -20,7 +20,7 @@ public class ClassesDaoTest {
      * 测试<code>insert()</code>方法
      */
     @Test
-    public void testInsert() {
+    public void insert() {
         Connection conn = null;
         try {
             ClassesDao classesDao = new ClassesDaoImpl();
@@ -38,7 +38,7 @@ public class ClassesDaoTest {
      * 测试<code>updateById()</code>方法
      */
     @Test
-    public void testUpdate() {
+    public void updateById() {
         Connection conn = null;
         try{
             ClassesDao classesDao = new ClassesDaoImpl();
@@ -56,7 +56,7 @@ public class ClassesDaoTest {
      * 测试<code>deleteById()</code>方法
      */
     @Test
-    public void testDeleteById() {
+    public void deleteById() {
         Connection conn = null;
         try{
             ClassesDao classesDao = new ClassesDaoImpl();
@@ -73,7 +73,7 @@ public class ClassesDaoTest {
      * 测试<code>deleteByCollege()</code>方法
      */
     @Test
-    public void testDeleteByCollege() {
+    public void deleteByCollege() {
         Connection conn = null;
         try{
             ClassesDao classesDao = new ClassesDaoImpl();
@@ -90,7 +90,7 @@ public class ClassesDaoTest {
      * 测试<code>deleteByGrade()</code>方法
      */
     @Test
-    public void testDeleteByGrade() {
+    public void deleteByGrade() {
         Connection conn = null;
         try{
             ClassesDao classesDao = new ClassesDaoImpl();
@@ -108,7 +108,7 @@ public class ClassesDaoTest {
      * 测试<code>getClassById()</code>方法
      */
     @Test
-    public void testGetById() {
+    public void getClassById() {
         Connection conn = null;
         try{
             ClassesDao classesDao = new ClassesDaoImpl();
@@ -126,7 +126,7 @@ public class ClassesDaoTest {
      * 测试<code>getClassByClassName()</code>方法
      */
     @Test
-    public void testGetByStuNum() {
+    public void getClassByClassName() {
         Connection conn = null;
         try{
             ClassesDao classesDao = new ClassesDaoImpl();
@@ -144,7 +144,7 @@ public class ClassesDaoTest {
      * 测试<code>getClassesByCollege()</code>方法
      */
     @Test
-    public void testGetByCollege() {
+    public void getClassesByCollege() {
         Connection conn = null;
         try{
             ClassesDao classesDao = new ClassesDaoImpl();
@@ -162,7 +162,7 @@ public class ClassesDaoTest {
      * 测试<code>getClassesByGrade()</code>方法
      */
     @Test
-    public void testGetByGrade() {
+    public void getClassesByGrade() {
         Connection conn = null;
         try{
             ClassesDao classesDao = new ClassesDaoImpl();
@@ -180,7 +180,7 @@ public class ClassesDaoTest {
      * 测试<code>getAll()</code>方法
      */
     @Test
-    public void testGetAll() {
+    public void getAll() {
         Connection conn = null;
         try{
             ClassesDao classesDao = new ClassesDaoImpl();
@@ -198,7 +198,7 @@ public class ClassesDaoTest {
      * 测试<code>getCount()</code>方法
      */
     @Test
-    public void testGetCount() {
+    public void getCount() {
         Connection conn = null;
         try{
             ClassesDao classesDao = new ClassesDaoImpl();

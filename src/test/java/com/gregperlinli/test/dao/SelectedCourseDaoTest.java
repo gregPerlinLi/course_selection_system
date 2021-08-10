@@ -20,7 +20,7 @@ public class SelectedCourseDaoTest {
      * 测试<code>insert()</code>方法
      */
     @Test
-    public void testInsert() {
+    public void insert() {
         Connection conn = null;
         try {
             SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
@@ -38,7 +38,7 @@ public class SelectedCourseDaoTest {
      * 测试<code>updateById()</code>方法
      */
     @Test
-    public void testUpdate() {
+    public void updateById() {
         Connection conn = null;
         try{
             SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
@@ -56,7 +56,7 @@ public class SelectedCourseDaoTest {
      * 测试<code>deleteById()</code>方法
      */
     @Test
-    public void testDeleteById() {
+    public void deleteById() {
         Connection conn = null;
         try{
             SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
@@ -73,7 +73,7 @@ public class SelectedCourseDaoTest {
      * 测试<code>deleteByCourse()</code>方法
      */
     @Test
-    public void testDeleteByCourse() {
+    public void deleteByCourse() {
         Connection conn = null;
         try{
             SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
@@ -90,7 +90,7 @@ public class SelectedCourseDaoTest {
      * 测试<code>deleteByStuName()</code>方法
      */
     @Test
-    public void testDeleteByStuName() {
+    public void deleteByStuName() {
         Connection conn = null;
         try{
             SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
@@ -107,7 +107,7 @@ public class SelectedCourseDaoTest {
      * 测试<code>getSelectedCourseByStuNum()</code>方法
      */
     @Test
-    public void testGetByStuNum() {
+    public void getSelectedCourseByStuNum() {
         Connection conn = null;
         try{
             SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
@@ -126,7 +126,7 @@ public class SelectedCourseDaoTest {
      * 测试<code>getSelectedCourseByStuName()</code>方法
      */
     @Test
-    public void testGetByStuName() {
+    public void getSelectedCourseByStuName() {
         Connection conn = null;
         try{
             SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
@@ -145,7 +145,7 @@ public class SelectedCourseDaoTest {
      * 测试<code>getSelectedCourseByCourse()</code>方法
      */
     @Test
-    public void testGetByCourse() {
+    public void getSelectedCourseByCourse() {
         Connection conn = null;
         try{
             SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
@@ -163,7 +163,7 @@ public class SelectedCourseDaoTest {
      * 测试<code>getAll()</code>方法
      */
     @Test
-    public void testGetAll() {
+    public void getAll() {
         Connection conn = null;
         try{
             SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
@@ -181,7 +181,7 @@ public class SelectedCourseDaoTest {
      * 测试<code>getCount()</code>方法
      */
     @Test
-    public void testGetCount() {
+    public void getCount() {
         Connection conn = null;
         try{
             SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();

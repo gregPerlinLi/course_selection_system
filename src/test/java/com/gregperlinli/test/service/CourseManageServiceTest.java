@@ -19,7 +19,7 @@ public class CourseManageServiceTest {
      * 测试<code>insertCourse()</code>方法
      */
     @Test
-    public void testInsertCourse() {
+    public void insertCourse() {
         final Course COURSE = new Course("大学英语",
                 Date.valueOf("2021-8-30"),
                 Time.valueOf("12:00:00"),
@@ -33,7 +33,7 @@ public class CourseManageServiceTest {
      * 测试<code>updateCourse()</code>方法
      */
     @Test
-    public void testUpdateCourse() {
+    public void updateCourse() {
         final Course course = new Course(3,
                 "大学物理",
                 Date.valueOf("2021-8-29"),
@@ -48,7 +48,7 @@ public class CourseManageServiceTest {
      * 测试<code>deleteCourse()</code>方法
      */
     @Test
-    public void testDeleteCourse() {
+    public void deleteCourse() {
         final CourseManageService courseManageService = new CourseManageServiceImpl();
         boolean isDeleted = courseManageService.deleteCourse(3);
         System.out.println(isDeleted);
