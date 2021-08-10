@@ -53,6 +53,7 @@ public abstract class BaseDAO<T> {
      * @param conn connection of database
      * @param sql sql format
      * @param args fill the placeholder(variable)
+     * @return either (1) the row count for SQL Data Manipulation Language (DML) statements or (2) 0 for SQL statements that return nothing
      */
     public int update(Connection conn, String sql, Object ...args) throws Exception {  // the length of variable parameters should be equal to the number of placeholders
 
