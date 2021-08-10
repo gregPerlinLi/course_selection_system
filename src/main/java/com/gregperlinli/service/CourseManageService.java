@@ -37,7 +37,17 @@ public interface CourseManageService {
      */
     boolean deleteCourse(int id);
 
+    /**
+     * 根据id查询课程操作
+     *
+     * @param id 提供要查询的课程id
+     * @return 返回查询到的课程对象，如果为<code>null</code>则不存在该对象
+     */
     Course getCourseById(int id);
 
+    /**
+     * 查询所有课程操作
+     * @return 返回所有课程对象的集合，如果为<code>null</code>则没有课程
+     */
     List<Course> getAllCourse();
 }
