@@ -46,6 +46,14 @@ public interface CourseManageService {
     Course getCourseById(int id);
 
     /**
+     * 检查是否存在该课程名
+     *
+     * @param courseName 提供需要检查的课程名称
+     * @return 返回是否存在该课程，<code>true</code>则为存在该课程，<code>false</code>则为不存在该课程
+     */
+    boolean existCourseName(String courseName);
+
+    /**
      * 查询所有课程操作
      * @return 返回所有课程对象的集合，如果为<code>null</code>则没有课程
      */

@@ -127,6 +127,21 @@ public class CourseManageServiceImpl implements CourseManageService {
     }
 
     @Override
+    public boolean existCourseName(String courseName) {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            if ( courseDao.getCourseByCourseName(conn, courseName) != null ) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+        return false;
+    }
+
+    @Override
     public List<Course> getAllCourse() {
         try {
             conn = JDBCUtils.getConnectionWithPool();
