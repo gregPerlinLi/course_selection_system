@@ -1,14 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <title>课程管理</title>
-    <base href="http://localhost:8080/course_selection_system/">
-    <link rel="stylesheet" type="text/css" href="static/css/login.css">
+    <base href="http://localhost:8080/course_selection_system/" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/output_table.css" />
+    <script type="text/javascript" src="static/js/jQuery.js"></script>
+    <script type="text/javascript" src="static/js/course_management.js"></script>
 </head>
 <body>
     <h1>课程管理</h1>
     <hr/>
-    <span>123</span>
+    <p align="right"><a href="pages/admin/add_course.html">添加课程</a></p>
+    <hr/>
+    <h3>当前课程:</h3><br/>
+    <table id="courseList" align="center">
+        <tr>
+            <th>id</th>
+            <th>课程名称</th>
+            <th>开始选课日期</th>
+            <th>开始选课时间</th>
+            <th>限选</th>
+            <th>已选</th>
+            <th colspan="2">操作</th>
+        </tr>
+    </table>
 </body>
 </html>

@@ -60,7 +60,7 @@ $(function () {
                 registObj.attr("disabled", "disabled");
                 infoObj.text("姓名不能为空！");
             }
-            if ( !data.existUsername && $("#username").val() !== "") {
+            if ( !data.existUsername && $("#username").val() !== "" ) {
                 $("#userWarm").html("<img src=\"static/img/right.png\" height=\"18\" width=\"18\"/>");
                 registObj.attr("disabled", null);
                 infoObj.text("");
