@@ -96,8 +96,20 @@ public interface CollegeGradeClassManageService {
      */
     List<College> searchAllCollege();
 
+    /**
+     * 查找所有年级操作
+     *
+     * @return 返回带有所有年级对象的集合
+     */
     List<Grade> searchAllGrade();
 
+    /**
+     * 根据学院和年级查找班级操作
+     *
+     * @param college 提供班级的所在学院
+     * @param grade 提供班级的所在年级
+     * @return 返回带有符合学院和年级条件的班级对象的集合
+     */
     List<Classes> searchClassByCollegeAndGrade(String college, String grade);
 
 }
