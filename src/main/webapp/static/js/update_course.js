@@ -1,6 +1,6 @@
 $(function () {
     var ajaxUrl = "http://localhost:8080/course_selection_system/admin/courseServlet";
-    var addObj = $("#add");
+    var updateObj = $("#update");
 
     var date = new Date();
     var year = date.getFullYear();
@@ -12,12 +12,23 @@ $(function () {
     $("#startDate").val(year + "-" + month + "-" + day);
     $("#startTime").val(hour + ":" + minute + ":" + second);
 
+    var curId = null;
+    var curCourseName = null;
+    var curStartDate = null;
+    var curStartTime = null;
+    var curMaxStu = null;
+
     $.getJSON(ajaxUrl, "action=getCourse&charset=utf-8&id=" + getQueryString("id"), function (data) {
-        $("#id").text(data.id);
+        $("#id").val(data.id);
         $("#courseName").val(data.courseName);
         $("#startDate").val(data.startDate);
         $("#startTime").val(timeConvert(data.startTime));
         $("#maxStu").val(data.maxStu);
+        curId = data.id;
+        curCourseName = data.courseName;
+        curStartDate = data.startDate;
+        curStartTime = timeConvert(data.startTime);
+        curMaxStu = data.maxStu;
     });
 
     function timeConvert(time) {
@@ -68,21 +79,21 @@ $(function () {
         var courseName = this.value;
         var infoObj = $("#courseNameInfo");
 
-        $.getJSON(ajaxUrl, "action=existCourseName&charset=utf-8&courseName=" +courseName, function (data) {
+        $.getJSON(ajaxUrl, "action=existCourseName&charset=utf-8&courseName=" + courseName, function (data) {
             console.log(data);
-            if ( data.existCourseName ) {
+            if ( data.existCourseName && $("#courseName").val() !== curCourseName ) {
                 $("#courseNameWarm").html("<img src=\"static/img/wrong.png\" height=\"18\" width=\"18\"/>");
-                addObj.attr("disabled", "disabled");
+                updateObj.attr("disabled", "disabled");
                 infoObj.text("课程" + $("#courseName").val() + "已存在！");
             }
             if ( $("#courseName").val() === "" ) {
                 $("#courseNameWarm").html("<img src=\"static/img/wrong.png\" height=\"18\" width=\"18\"/>");
-                addObj.attr("disabled", "disabled");
+                updateObj.attr("disabled", "disabled");
                 infoObj.text("课程名不能为空！");
             }
-            if ( !data.existCourseName && $("#courseName").val() !== "" ) {
+            if ( ( !data.existCourseName || $("#courseName").val() === curCourseName ) && $("#courseName").val() !== "" ) {
                 $("#courseNameWarm").html("<img src=\"static/img/right.png\" height=\"18\" width=\"18\"/>");
-                addObj.attr("disabled", null);
+                updateObj.attr("disabled", null);
                 infoObj.text("");
             }
         });
@@ -96,11 +107,11 @@ $(function () {
 
         if (regDate.test(date)) {
             $("#startDateWarm").html("<img src=\"static/img/right.png\" height=\"18\" width=\"18\"/>");
-            addObj.attr("disabled", null);
+            updateObj.attr("disabled", null);
             infoObj.text("");
         } else {
             $("#startDateWarm").html("<img src=\"static/img/wrong.png\" height=\"18\" width=\"18\"/>");
-            addObj.attr("disabled", "disabled");
+            updateObj.attr("disabled", "disabled");
             infoObj.text("日期格式错误!");
         }
     });
@@ -119,13 +130,17 @@ $(function () {
         }
         if (result) {
             $("#startTimeWarm").html("<img src=\"static/img/right.png\" height=\"18\" width=\"18\"/>");
-            addObj.attr("disabled", null);
+            updateObj.attr("disabled", null);
             infoObj.text("");
         } else {
             $("#startTimeWarm").html("<img src=\"static/img/wrong.png\" height=\"18\" width=\"18\"/>");
-            addObj.attr("disabled", "disabled");
+            updateObj.attr("disabled", "disabled");
             infoObj.text("时间格式错误!");
         }
     });
+
+    updateObj.click(function () {
+        $("#id").attr("disabled", null);
+    })
 
 });

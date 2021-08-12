@@ -54,7 +54,7 @@ public class CourseManageServiceImpl implements CourseManageService {
                     selectedCourse.setCourse(course.getCourseName());
                     selectedCourseDao.updateById(conn, selectedCourse);
                 }
-                if ( courseDao.getCourseByCourseName(conn, course.getCourseName()) == null ) {
+                if ( courseDao.getCourseByCourseName(conn, course.getCourseName()) == null || currentCourse.getCourseName().equals(course.getCourseName()) ) {
                     // 然后再修改课程信息
                     courseDao.updateById(conn, course);
                     // 最后提交更改
