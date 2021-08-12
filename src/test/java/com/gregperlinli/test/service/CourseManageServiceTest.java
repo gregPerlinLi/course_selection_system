@@ -36,9 +36,9 @@ public class CourseManageServiceTest {
     @Test
     public void updateCourse() {
         final Course course = new Course(3,
-                "大学物理",
-                Date.valueOf("2021-8-29"),
-                Time.valueOf("11:00:00"),
+                "大学英语",
+                Date.valueOf("2021-8-31"),
+                Time.valueOf("11:45:00"),
                 150);
         boolean isUpdated = courseManageService.updateCourse(course);
         System.out.println(isUpdated);

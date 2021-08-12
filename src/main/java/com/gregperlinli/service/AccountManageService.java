@@ -3,6 +3,8 @@ package com.gregperlinli.service;
 import com.gregperlinli.pojo.Admin;
 import com.gregperlinli.pojo.Student;
 
+import java.util.List;
+
 /**
  * 用于进行用户修改与管理操作
  *
@@ -59,6 +61,21 @@ public interface AccountManageService {
      * @return 返回是否存在该用户，<code>true</code>则为存在该用户，<code>false</code>则为不存在该用户
      */
     boolean adminDelete(int id);
+
+    /**
+     * 获取所有学生对象
+     *
+     * @return 返回装有所有学生对象的集合，如果为<code>null</code>则没有学生
+     */
+    List<Student> getAllStudent();
+
+    /**
+     * 根据id查询学生操作
+     *
+     * @param id 提供要查询的学生id
+     * @return 返回查询到的学生对象，如果为<code>null</code>则不存在该对象
+     */
+    Student getStuById(int id);
 
     /**
      * 检查是否存在该学生姓名

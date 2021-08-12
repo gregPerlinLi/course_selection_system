@@ -75,7 +75,7 @@ public class AccountManageServiceImpl implements AccountManageService {
                     selectedCourse.setStuNum(student.getStuNum());
                     selectedCourseDao.updateById(conn, selectedCourse);
                 }
-                if ( studentDao.getStuByUsername(conn, student.getUsername()) == null && studentDao.getStuByStuNum(conn, student.getStuNum()) == null ) {
+                if ( isLegalToUpdate(conn, currentStudent, student) ) {
                     // 然后再修改学生信息
                     studentDao.updateById(conn, student);
                     // 最后提交更改
@@ -106,9 +106,14 @@ public class AccountManageServiceImpl implements AccountManageService {
     public boolean adminUpdate(Admin admin) {
         try {
             conn = JDBCUtils.getConnectionWithPool();
-            if ( adminDao.getAdmById(conn, admin.getId()) != null ) {
-                adminDao.updateById(conn, admin);
-                return true;
+            Admin currentAdmin = adminDao.getAdmById(conn, admin.getId());
+            if ( currentAdmin != null ) {
+                if ( adminDao.getAdmByUsername(conn, admin.getUsername()) == null || currentAdmin.getUsername().equals(admin.getUsername()) ) {
+                    adminDao.updateById(conn, admin);
+                    return true;
+                } else {
+                    return false;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -167,6 +172,32 @@ public class AccountManageServiceImpl implements AccountManageService {
     }
 
     @Override
+    public List<Student> getAllStudent() {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return studentDao.getAll(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+        return null;
+    }
+
+    @Override
+    public Student getStuById(int id) {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return studentDao.getStuById(conn, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+        return null;
+    }
+
+    @Override
     public boolean existStudentUsername(String username) {
         try {
             conn = JDBCUtils.getConnectionWithPool();
@@ -194,5 +225,12 @@ public class AccountManageServiceImpl implements AccountManageService {
             JDBCUtils.closeResource(conn, null);
         }
         return false;
+    }
+
+    private boolean isLegalToUpdate(Connection conn, Student currentStudent, Student student) {
+        return ( ( studentDao.getStuByUsername(conn, student.getUsername()) == null && studentDao.getStuByStuNum(conn, student.getStuNum()) == null ) ||
+                (currentStudent.getUsername().equals(student.getUsername()) && (currentStudent.getStuNum().equals(student.getStuNum()))) ||
+                ( studentDao.getStuByUsername(conn, student.getUsername()) == null &&  (currentStudent.getStuNum().equals(student.getStuNum()))) ||
+                (currentStudent.getUsername().equals(student.getUsername()) && studentDao.getStuByStuNum(conn, student.getStuNum()) == null ) );
     }
 }

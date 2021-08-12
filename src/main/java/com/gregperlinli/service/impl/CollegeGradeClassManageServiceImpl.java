@@ -99,7 +99,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
                     classes.setCollege(college.getCollegeName());
                     classesDao.updateById(conn, classes);
                 }
-                if ( collegeDao.getCollegeByCollegeName(conn, college.getCollegeName()) == null ) {
+                if ( collegeDao.getCollegeByCollegeName(conn, college.getCollegeName()) == null || currentCollege.getCollegeName().equals(college.getCollegeName()) ) {
                     // 然后再修改学院信息
                     collegeDao.updateById(conn, college);
                     // 最后提交更改
@@ -145,7 +145,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
                     classes.setGrade(grade.getGradeName());
                     classesDao.updateById(conn, classes);
                 }
-                if ( gradeDao.getGradeByGradeName(conn, grade.getGradeName()) == null ) {
+                if ( gradeDao.getGradeByGradeName(conn, grade.getGradeName()) == null || currentGrade.getGradeName().equals(grade.getGradeName()) ) {
                     // 然后再修改年级信息
                     gradeDao.updateById(conn, grade);
                     // 最后提交更改
@@ -186,7 +186,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
                     student.setStuClass(classes.getClassesName());
                     studentDao.updateById(conn, student);
                 }
-                if ( classesDao.getClassByClassName(conn, classes.getClassesName()) == null ) {
+                if ( classesDao.getClassByClassName(conn, classes.getClassesName()) == null || currentClasses.getClassesName().equals(classes.getClassesName()) ) {
                     // 然后再修改班级信息
                     classesDao.updateById(conn, classes);
                     // 最后提交更改

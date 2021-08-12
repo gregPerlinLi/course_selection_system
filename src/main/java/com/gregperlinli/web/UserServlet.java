@@ -1,6 +1,7 @@
 package com.gregperlinli.web;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.gregperlinli.pojo.Classes;
 import com.gregperlinli.pojo.College;
 import com.gregperlinli.pojo.Grade;
@@ -30,6 +31,7 @@ public class UserServlet extends BaseServlet {
     protected final LoginService loginService = new LoginServiceImpl();
     protected final AccountManageService accountManageService = new AccountManageServiceImpl();
     protected final CollegeGradeClassManageService cgcms = new CollegeGradeClassManageServiceImpl();
+    protected final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
     /**
      * 处理学生登录功能<br/>
@@ -105,7 +107,6 @@ public class UserServlet extends BaseServlet {
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("existStuNum", existStuNum);
 
-        Gson gson = new Gson();
         String json = gson.toJson(resultMap);
 
         response.getWriter().write(json);
@@ -127,7 +128,6 @@ public class UserServlet extends BaseServlet {
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("existUsername", existUsername);
 
-        Gson gson = new Gson();
         String json = gson.toJson(resultMap);
 
         response.getWriter().write(json);
@@ -144,7 +144,7 @@ public class UserServlet extends BaseServlet {
     protected void ajaxSearchCollege(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         List<College> colleges = cgcms.searchAllCollege();
-        Gson gson = new Gson();
+
         String json = gson.toJson(colleges);
         response.setContentType("text/html;charset=UTF-8");
         response.getWriter().write(json);
@@ -161,7 +161,7 @@ public class UserServlet extends BaseServlet {
     protected void ajaxSearchGrade(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         List<Grade> grades = cgcms.searchAllGrade();
-        Gson gson = new Gson();
+
         String json = gson.toJson(grades);
         response.setContentType("text/html;charset=UTF-8");
         response.getWriter().write(json);
@@ -181,7 +181,7 @@ public class UserServlet extends BaseServlet {
         String grade = request.getParameter("grade");
 
         List<Classes> classes = cgcms.searchClassByCollegeAndGrade(college, grade);
-        Gson gson = new Gson();
+
         String json = gson.toJson(classes);
         response.setContentType("text/html;charset=UTF-8");
         response.getWriter().write(json);

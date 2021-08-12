@@ -1,0 +1,10 @@
+table, th, td{
+    border: 1px black solid;
+    text-align: center;
+}
+table {
+    width: 95%;
+}
+th {
+    background-color: darkgray;
+}

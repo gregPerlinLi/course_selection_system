@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加课程</title>
+    <base href="http://localhost:8080/course_selection_system/" />
+<!--    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">-->
+    <link rel="stylesheet" type="text/css" href="static/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/register.css" />
+    <script type="text/javascript" src="static/js/jQuery.js"></script>
+    <script type="text/javascript" src="static/js/add_course.js"></script>
+</head>
+<body>
+    <h1>添加课程</h1>
+    <hr/>
+    <form action="admin/courseServlet" method="post">
+        <input type="hidden" name="action" value="add">
+        <table align="center">
+            <tr>
+                <td>课程名称：</td>
+                <td><label>
+                    <input type="text" name="courseName" class="inputText" id="courseName" />
+                </label></td>
+                <td><span class="warning" id="courseNameWarm"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="courseNameInfo" class="info"></span></td>
+            </tr>
+            <tr>
+                <td>开始选课日期：</td>
+                <td><label>
+                    <input type="text" name="startDate" class="inputText" id="startDate" />
+                </label></td>
+                <td><span class="warning" id="startDateWarm"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="startDateInfo" class="info"></span></td>
+            </tr>
+            <tr>
+                <td>开始选课时间：</td>
+                <td><label>
+                    <input type="text" name="startTime" class="inputText" id="startTime"  />
+                </label></td>
+                <td><span class="warning" id="startTimeWarm"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="startTimeInfo" class="info"></span></td>
+            </tr>
+            <tr>
+                <td>限选：</td>
+                <td><label>
+                    <input type="number" name="maxStu" class="inputText" id="maxStu" min="1" value="10"/>
+                </label></td>
+                <td><span class="warning" id="maxStuWarm"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="maxStuInfo" class="info"></span></td>
+            </tr>
+            <tr>
+                <td><label><input type="submit" value="添加" id="add" disabled="disabled"></label></td>
+                <td><a href="pages/admin/course_management.html">返回</a></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
