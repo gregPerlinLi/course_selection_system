@@ -14,11 +14,13 @@
     <h1>修改课程</h1>
     <hr/>
     <form action="admin/courseServlet" method="post">
-        <input type="hidden" name="action" value="add">
+        <input type="hidden" name="action" value="update">
         <table align="center">
             <tr>
                 <td>id:</td>
-                <td><span id="id"></span></td>
+                <td><label>
+                    <input type="text" name="id" class="inputText" id="id" disabled="disabled" />
+                </label></td>
                 <td></td>
             </tr>
             <tr>
