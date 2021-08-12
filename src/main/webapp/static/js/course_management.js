@@ -12,32 +12,30 @@ $(function () {
                 "<td>" + course.startTime + "</td>" +
                 "<td>" + course.maxStu + "</td>" +
                 "<td>" + course.currentStu + "</td>" +
-                "<td><button class='update' data-id='" + course.id +"'>修改</button></td>" +
+                "<td><a class='update' data-id='" + course.id +"' href='pages/admin/update_course.html?id=" + course.id + "'>修改</a></td>" +
                 "<td><button class='delete' data-id='" + course.id +"'>删除</button></td>" +
                 "</tr>";
         });
         $("#courseList").append(outputTable);
     });
 
-    $(".update").ready(function () {
-        $(".update").on("click", function () {
+/*        $(".update").on("click", function () {
             // $(location).attr("href", "admin/courseServlet?action=getCourse&id=" + $(this).attr("data-id"));
             var id = $(this).attr("data-id");
             $(location).attr("href", "pages/admin/update_course.html?id=" + id);
-        });
-    });
+        });*/
 
-    $(".delete").ready(function() {
+    $(".delete").ready( function () {
         $(".delete").on("click", function () {
-            if ( confirm("确定删除数据？") ) {
+            if (confirm("确定删除数据？")) {
                 var id = $(this).attr("data-id");
                 $.getJSON(ajaxUrl, "action=delete&charset=utf-8&id=" + id, function (data) {
                     console.log(data);
-                    if ( data.isDeleted ) {
+                    if (data.isDeleted) {
                         alert("删除成功");
                         $("#tr_" + id).remove();
                     } else {
-                        alert("删除失败")
+                        alert("删除失败");
                     }
                 });
             }
