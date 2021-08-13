@@ -20,20 +20,19 @@ $(function () {
     });
 
 
-    $(".delete").ready( function () {
-        $(".delete").on("click", function () {
-            if (confirm("确定删除数据？")) {
-                var id = $(this).attr("data-id");
-                $.getJSON(ajaxUrl, "action=delete&charset=utf-8&id=" + id, function (data) {
-                    console.log(data);
-                    if (data.isDeleted) {
-                        alert("删除成功");
-                        $("#tr_" + id).remove();
-                    } else {
-                        alert("删除失败");
-                    }
-                });
-            }
-        });
+
+    $(document).on("click", ".delete", function () {
+        if (confirm("确定删除数据？")) {
+            var id = $(this).attr("data-id");
+            $.getJSON(ajaxUrl, "action=delete&charset=utf-8&id=" + id, function (data) {
+                console.log(data);
+                if (data.isDeleted) {
+                    alert("删除成功");
+                    $("#tr_" + id).remove();
+                } else {
+                    alert("删除失败");
+                }
+            });
+        }
     });
 });
