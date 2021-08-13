@@ -19,11 +19,6 @@ $(function () {
         $("#courseList").append(outputTable);
     });
 
-/*        $(".update").on("click", function () {
-            // $(location).attr("href", "admin/courseServlet?action=getCourse&id=" + $(this).attr("data-id"));
-            var id = $(this).attr("data-id");
-            $(location).attr("href", "pages/admin/update_course.html?id=" + id);
-        });*/
 
     $(".delete").ready( function () {
         $(".delete").on("click", function () {
