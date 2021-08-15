@@ -1,6 +1,7 @@
 body {
     font-family: "PingFang SC", Helvetica, Arial, sans-serif;
 }
+
 table {
     border: 1px black solid;
 
@@ -13,8 +14,23 @@ table {
     height: 30px;
     font-size: 20px;
 }
+
 #regist {
-    width: 100px;
+    width: 90px;
     height: 30px;
     font-size: 30px;
+}
+
+#code{
+    width: 100px;
+}
+
+#codeImg {
+    width: 90px;
+    height: 38px;
+}
+
+#login {
+    height: 40px;
+    width: 80px;
 }

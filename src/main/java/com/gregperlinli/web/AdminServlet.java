@@ -56,7 +56,7 @@ public class AdminServlet extends BaseServlet{
     }
 
     /**
-     * 处理管理员退出功能
+     * 处理管理员退出功能<br/>
      * 退出之后会重定向到<code>admin_login.html</code>
      *
      * @param request 退出请求，<code>session</code>中需要提供一个登录的管理员键值对<code>admin</code>

@@ -22,6 +22,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
+
 /**
  * 主要用于学生的登录退出和注册操作
  *
@@ -66,6 +68,15 @@ public class UserServlet extends BaseServlet {
         }
     }
 
+    /**
+     * 处理学生退出功能<br/>
+     * 退出后会重定向到<code>login.html</code>
+     *
+     * @param request 退出请求，<code>session</code>中需要提供一个登录的学生键值对<code>admin</code>
+     * @param response 退出响应
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void studentLogout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getSession().removeAttribute("student");
         response.sendRedirect(request.getContextPath() + "/pages/login/login.html");
@@ -92,11 +103,11 @@ public class UserServlet extends BaseServlet {
         // 2. Check whether the username is correct
         if (accountManageService.studentRegist(student)) {
             // available
-            request.getRequestDispatcher("/pages/user/regist_success.html").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/pages/login/login.html");
         } else {
             // not available
             System.out.println("The username [ " + student.getUsername() + " ] is already exist!");
-            request.getRequestDispatcher("/pages/login/register.html").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/pages/login/register.html");
         }
 
     }
@@ -212,4 +223,25 @@ public class UserServlet extends BaseServlet {
         response.setContentType("text/html;charset=UTF-8");
         response.getWriter().write(json);
     }
+
+    /**
+     * 通过Ajax请求获取验证码信息
+     *
+     * @param request 请求
+     * @param response 响应，将会返回一个值<code>token</code>，里面包含验证码值
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
+    protected void ajaxGetToken(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String token = (String) request.getSession().getAttribute(KAPTCHA_SESSION_KEY);
+        request.getSession().removeAttribute(KAPTCHA_SESSION_KEY);
+
+        Map<String, Object> resultMap = new HashMap<>();
+
+        resultMap.put("token", token);
+        String json = gson.toJson(resultMap);
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().write(json);
+    }
+
 }

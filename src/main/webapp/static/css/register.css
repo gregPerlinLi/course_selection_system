@@ -1,22 +1,40 @@
 body {
     font-family: "PingFang SC", Helvetica, Arial, sans-serif;
 }
+
 table {
     border: 1px black solid;
 
 }
+
 .info {
     font-size: 10px;
     vertical-align: top;
     color: red;
 }
+
 .inputText {
     width: 200px;
     height: 30px;
     font-size: 20px;
 }
+
 #regist, #add {
     width: 100px;
     height: 30px;
     font-size: 30px;
+}
+
+#regist {
+    height: 20px;
+    width: 80px;
+}
+
+#code{
+    width: 90px;
+}
+
+#codeImg {
+    width: 90px;
+    height: 38px;
 }
