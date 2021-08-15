@@ -187,4 +187,19 @@ public class UserServlet extends BaseServlet {
         response.getWriter().write(json);
     }
 
+    /**
+     * 通过Ajax请求获取登录的学生信息
+     *
+     * @param request 请求
+     * @param response 响应，将会返回一个以登录的学生对象<code>student</code>
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
+    protected void ajaxGetStudentLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Student loginStudent = (Student) request.getSession().getAttribute("student");
+
+        String json = gson.toJson(loginStudent);
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().write(json);
+    }
 }

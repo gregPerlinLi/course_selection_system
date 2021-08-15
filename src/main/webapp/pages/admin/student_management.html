@@ -7,11 +7,19 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="static/css/fonts.css" />
     <link rel="stylesheet" type="text/css" href="static/css/output_table.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/account.css">
     <script type="text/javascript" src="static/js/jQuery.js"></script>
     <script type="text/javascript" src="static/js/student_management.js"></script>
+    <script type="text/javascript" src="static/js/get_admin_login.js"></script>
 </head>
 <body>
     <h1>学生管理</h1>
+    <p align="right" id="accountInfo">
+        当前管理员：
+        <span id="account">null</span>
+        &nbsp;
+        <a href="adminServlet?action=adminLogout">退出</a>
+    </p>
     <hr/>
     <p align="right"><a href="pages/login/register.html">添加学生</a></p>
     <hr/>

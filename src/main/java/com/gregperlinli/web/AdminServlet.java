@@ -47,4 +47,19 @@ public class AdminServlet extends BaseServlet{
             request.getRequestDispatcher("/pages/login/admin_login.html").forward(request, response);
         }
     }
+    /**
+     * 通过Ajax请求获取登录的管理员信息
+     *
+     * @param request 请求
+     * @param response 响应，将会返回一个以登录的管理员对象<code>admin</code>
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
+    protected void ajaxGetAdminLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Admin loginAdmin = (Admin) request.getSession().getAttribute("admin");
+        String json = gson.toJson(loginAdmin);
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().write(json);
+    }
+
 }
