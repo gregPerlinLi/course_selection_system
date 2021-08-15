@@ -19,4 +19,12 @@ $(function () {
             $("#codeWarm").html("<img src=\"static/img/wrong.png\" height=\"18\" width=\"18\"/>");
         }
     })
+
+    $("#codeImg").click(function () {
+        this.src = "kaptcha.jpg?d=" + new Date();
+        $.getJSON(ajaxUrl, "action=ajaxGetToken&charset=utf-8", function (data) {
+            token = String(data.token).toLowerCase();
+            console.log(token);
+        });
+    });
 });
