@@ -41,7 +41,16 @@ public class StudentServlet extends BaseServlet {
      * @throws IOException 抛出错误
      */
     protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Student student = WebUtils.copyParamToBean(request.getParameterMap(), new Student());
 
+        if ( accountManageService.studentRegist(student) ) {
+            // 添加成功
+            response.sendRedirect(request.getContextPath() + "/pages/admin/student_management.html");
+        } else {
+            // 添加失败
+            System.out.println("The studentt [ " + student.getUsername() + " ] is already exist!");
+            response.sendRedirect(request.getContextPath() + "pages/admin/add_student.html");
+        }
     }
 
     /**
