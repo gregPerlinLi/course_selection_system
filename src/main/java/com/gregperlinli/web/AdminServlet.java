@@ -1,5 +1,8 @@
 package com.gregperlinli.web;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.gregperlinli.pojo.Admin;
 import com.gregperlinli.service.LoginService;
 import com.gregperlinli.service.impl.LoginServiceImpl;
 
@@ -10,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 管理员
+ * 主要用于管理员的登录退出和注册操作
  *
  * @author gregPerlinLi
  * @since 2021-08-06
@@ -19,6 +22,7 @@ import java.io.IOException;
 public class AdminServlet extends BaseServlet{
 
     protected final LoginService loginService = new LoginServiceImpl();
+    protected final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
     /**
      * 处理管理员登录功能<br/>
@@ -37,16 +41,34 @@ public class AdminServlet extends BaseServlet{
         System.out.println(username);
         System.out.println(password);
 
+        Admin loginAdmin = loginService.adminLogin(username, password);
         // 2.
-        if ( loginService.adminLogin(username, password) != null ) {
+        if ( loginAdmin != null ) {
             //
             System.out.println("Login success!");
+            // 保存登录之后的信息到session域中
+            request.getSession().setAttribute("admin", loginAdmin);
             request.getRequestDispatcher("pages/admin/admin_index.html").forward(request, response);
         } else {
             System.out.println("Login failed!");
             request.getRequestDispatcher("/pages/login/admin_login.html").forward(request, response);
         }
     }
+
+    /**
+     * 处理管理员退出功能
+     * 退出之后会重定向到<code>admin_login.html</code>
+     *
+     * @param request 退出请求，<code>session</code>中需要提供一个登录的管理员键值对<code>admin</code>
+     * @param response 退出响应
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
+    protected void adminLogout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().removeAttribute("admin");
+        response.sendRedirect(request.getContextPath() + "/pages/login/admin_login.html");
+    }
+
     /**
      * 通过Ajax请求获取登录的管理员信息
      *

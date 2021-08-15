@@ -23,6 +23,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * 主要用于学生的登录退出和注册操作
+ *
  * @author gregperlinli
  */
 @WebServlet(name = "UserServlet", value = "/userServlet")
@@ -42,7 +44,7 @@ public class UserServlet extends BaseServlet {
      * @throws ServletException 抛出错误
      * @throws IOException 抛出错误
      */
-    protected void studentLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+    protected void studentLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. Get request parameters
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -50,10 +52,13 @@ public class UserServlet extends BaseServlet {
         System.out.println(username);
         System.out.println(password);
 
+        Student loginStudent = loginService.studentLogin(username, password);
+
         // 2.
-        if ( loginService.studentLogin(username, password) != null ) {
+        if (loginStudent != null) {
             //
             System.out.println("Login success!");
+            request.getSession().setAttribute("student", loginStudent);
             request.getRequestDispatcher("/pages/user/index.html").forward(request, response);
         } else {
             System.out.println("Login failed!");
@@ -61,26 +66,31 @@ public class UserServlet extends BaseServlet {
         }
     }
 
-    /**
-     * 处理学生注册功能<br/>
-     * 若注册成功则会转发到<code>regist_success</code>页面，若失败则继续停留在原来的页面
-     *
-     * @param request 注册请求，需要提供要注册的学生学号<code>stuNum</code>，
-     *                学生姓名<code>username</code>，
-     *                学生所在学院<code>college</code>，
-     *                所在年级<code>grade</code>，
-     *                所在班级<code>classes</code>，
-     *                以及经过MD5加密后的密码<code>password</code>
-     * @param response 注册响应
-     * @throws ServletException 抛出错误
-     * @throws IOException 抛出错误
-     */
+    protected void studentLogout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getSession().removeAttribute("student");
+        response.sendRedirect(request.getContextPath() + "/pages/login/login.html");
+    }
+
+        /**
+         * 处理学生注册功能<br/>
+         * 若注册成功则会转发到<code>regist_success</code>页面，若失败则继续停留在原来的页面
+         *
+         * @param request 注册请求，需要提供要注册的学生学号<code>stuNum</code>，
+         *                学生姓名<code>username</code>，
+         *                学生所在学院<code>college</code>，
+         *                所在年级<code>grade</code>，
+         *                所在班级<code>classes</code>，
+         *                以及经过MD5加密后的密码<code>password</code>
+         * @param response 注册响应
+         * @throws ServletException 抛出错误
+         * @throws IOException 抛出错误
+         */
     protected void studentRegist(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. Get request parameters
         Student student = WebUtils.copyParamToBean(request.getParameterMap(), new Student());
 
         // 2. Check whether the username is correct
-        if ( accountManageService.studentRegist(student) ) {
+        if (accountManageService.studentRegist(student)) {
             // available
             request.getRequestDispatcher("/pages/user/regist_success.html").forward(request, response);
         } else {
@@ -172,8 +182,8 @@ public class UserServlet extends BaseServlet {
      *
      * @param request 请求，要在其中提供一个需要查询的班级所在的学院<code>college</code>和年级<code>grade</code>信息
      * @param response 响应，将会返回一个集合，里面包含了该学院/年级下的所有班级
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
      */
     protected void ajaxSearchClasses(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
