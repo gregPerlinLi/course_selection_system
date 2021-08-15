@@ -26,10 +26,39 @@ public class StudentServlet extends BaseServlet {
     protected final AccountManageService accountManageService = new AccountManageServiceImpl();
     protected final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
+    /**
+     * 处理添加学生功能<br/>
+     * 若添加成功会重定向到<code>student_management.html</code>，若失败则继续停留在该界面
+     *
+     * @param request 添加请求，需要通过POST请求提供学生学号<code>stuNum</code>，
+     *                学生学号<code>username</code>，
+     *                所在学院<code>college</code>，
+     *                所在年级<code>grade</code>，
+     *                所在班级<code>stuClass</code>，
+     *                MD5加密后的密码<code>password</code>
+     * @param response 添加响应
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
+    /**
+     * 处理修改学生信息功能
+     * 若修改成功会重定向到<code>student_management.html</code>，若失败则继续停留在该界面
+     *
+     * @param request 修改请求，需要通过POST请求提供要修改的学生<code>id</code>，
+     *                学生学号<code>stuNum</code>，
+     *                学生学号<code>username</code>，
+     *                所在学院<code>college</code>，
+     *                所在年级<code>grade</code>，
+     *                所在班级<code>stuClass</code>，
+     *                MD5加密后的密码<code>password</code>
+     * @param response 修改响应
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("updating");
         Student student = WebUtils.copyParamToBean(request.getParameterMap(), new Student());
@@ -44,6 +73,14 @@ public class StudentServlet extends BaseServlet {
         }
     }
 
+    /**
+     * 通过Ajax请求处理删除学生功能
+     *
+     * @param request 删除请求，要在其中输入一个需要删除的学生<coed>id</coed>
+     * @param response 删除响应，将会返回一个布尔值<code>isDeleted</code>，若为<code>True</code>，则成功删除，若为<code>false</code>，则删除失败
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 从request中获取要删除的id值
         int id = Integer.parseInt(request.getParameter("id"));
@@ -59,6 +96,14 @@ public class StudentServlet extends BaseServlet {
         response.getWriter().write(json);
     }
 
+    /**
+     * 通过Ajax请求获取某个<code>id</code>对应的课程信息
+     *
+     * @param request 请求，要在其中输入一个需要获取的学生<code>id</code>
+     * @param response 响应，将会返回一个包含所查找的学生信息的对象<code>course</code>
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void getStudent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Student student = accountManageService.getStuById(id);
@@ -69,6 +114,14 @@ public class StudentServlet extends BaseServlet {
         response.getWriter().write(json);
     }
 
+    /**
+     * 通过Ajax请求获得所有学生信息
+     *
+     * @param request 请求
+     * @param response 响应，将会返回一个包含所有学生信息的对象集合<code>allCourse</code>
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. 通过AccountManageService查询全部课程
         List<Student> allStudent = accountManageService.getAllStudent();
