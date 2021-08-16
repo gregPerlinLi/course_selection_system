@@ -152,6 +152,14 @@ public class CourseServlet extends BaseServlet {
 
     }
 
+    /**
+     * 通过Ajax请求获得所有可选的课程信息
+     *
+     * @param request 请求
+     * @param response 响应，将会返回一个包含所有可选课程信息的对象集合<code>enabledCourse</code>
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void getEnabledCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. 通过CourseSelectionService查询全部可选课程
         List<Course> enabledCourses = courseSelectionService.queryEnabledCourse();
@@ -162,14 +170,14 @@ public class CourseServlet extends BaseServlet {
         response.getWriter().write(json);
     }
 
-        /**
-         * 通过Ajax请求获得所有课程信息
-         *
-         * @param request 请求
-         * @param response 响应，将会返回一个包含所有课程信息的对象集合<code>allCourse</code>
-         * @throws ServletException 抛出错误
-         * @throws IOException 抛出错误
-         */
+    /**
+     * 通过Ajax请求获得所有课程信息
+     *
+     * @param request 请求
+     * @param response 响应，将会返回一个包含所有课程信息的对象集合<code>allCourse</code>
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. 通过CourseManageService查询全部课程
         List<Course> allCourse = courseManageService.getAllCourse();

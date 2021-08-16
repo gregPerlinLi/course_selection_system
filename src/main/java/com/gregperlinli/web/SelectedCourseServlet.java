@@ -24,6 +24,14 @@ public class SelectedCourseServlet extends BaseServlet {
     protected final CourseManageService courseManageService = new CourseManageServiceImpl();
     protected final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
+    /**
+     * 通过Ajax请求获得所有已选课程信息
+     *
+     * @param request 请求
+     * @param response 响应，将会返回一个包含所有已选课程信息的对象集合<code>allSelectedCourse</code>
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // 1. 通过CourseSelectionService查询所有已选课程信息

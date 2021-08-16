@@ -29,6 +29,14 @@ public class CourseSelectionServlet extends BaseServlet {
     protected final CourseSelectionService courseSelectionService = new CourseSelectionServiceImpl();
     protected final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
+    /**
+     * 通过Ajax请求获得所有可选的课程信息
+     *
+     * @param request 请求
+     * @param response 响应，将会返回一个包含所有可选的课程的对象集合<code>enabledCourses</code>
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. 通过CourseSelectionService查询全部可选课程
         List<Course> enabledCourses = courseSelectionService.queryEnabledCourse();
@@ -39,6 +47,14 @@ public class CourseSelectionServlet extends BaseServlet {
         response.getWriter().write(json);
     }
 
+    /**
+     * 通过Ajax请求获得登录学生已选课程信息
+     *
+     * @param request 请求，<code>session</code>中需要提供一个登录的学生键值对<code>student</code>
+     * @param response 响应，将会返回一个包含该学生名下的已选课程信息的对象集合<code>selectedCourse</code>
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void getSelectedCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. 通过CourseSelectionService查询该学生下所有已选课程
         List<SelectedCourse> selectedCourses = courseSelectionService.queryStudentSelectedCourse(((Student) request.getSession().getAttribute("student")).getUsername());
@@ -49,6 +65,14 @@ public class CourseSelectionServlet extends BaseServlet {
         response.getWriter().write(json);
     }
 
+    /**
+     * 通过Ajax请求获得所有课程信息
+     *
+     * @param request 请求
+     * @param response 响应，将会返回一个包含所有课程信息的对象集合<code>allCourse</code>
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void getAllCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. 通过CourseSelectionService查询全部可选课程
         List<Course> allCourse = courseManageService.getAllCourse();
@@ -59,6 +83,14 @@ public class CourseSelectionServlet extends BaseServlet {
         response.getWriter().write(json);
     }
 
+    /**
+     * 通过Ajax请求获得所有可选的课程信息
+     *
+     * @param request 请求
+     * @param response 响应，将会返回一个包含所有可选课程信息的对象集合<code>enabledCourse</code>
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void getEnabledCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. 通过CourseSelectionService查询全部可选课程
         List<Course> enabledCourses = courseSelectionService.queryEnabledCourse();
