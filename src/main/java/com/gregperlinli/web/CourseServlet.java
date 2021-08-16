@@ -4,7 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.gregperlinli.pojo.Course;
 import com.gregperlinli.service.CourseManageService;
+import com.gregperlinli.service.CourseSelectionService;
 import com.gregperlinli.service.impl.CourseManageServiceImpl;
+import com.gregperlinli.service.impl.CourseSelectionServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,6 +28,7 @@ import java.util.Map;
 @WebServlet(name = "CourseServlet", value = "/admin/courseServlet")
 public class CourseServlet extends BaseServlet {
     protected final CourseManageService courseManageService = new CourseManageServiceImpl();
+    protected final CourseSelectionService courseSelectionService = new CourseSelectionServiceImpl();
     protected final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
 
@@ -149,14 +152,24 @@ public class CourseServlet extends BaseServlet {
 
     }
 
-    /**
-     * 通过Ajax请求获得所有课程信息
-     *
-     * @param request 请求
-     * @param response 响应，将会返回一个包含所有课程信息的对象集合<code>allCourse</code>
-     * @throws ServletException 抛出错误
-     * @throws IOException 抛出错误
-     */
+    protected void getEnabledCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 1. 通过CourseSelectionService查询全部可选课程
+        List<Course> enabledCourses = courseSelectionService.queryEnableCourse();
+        // 2. 把全部课程数据转换为Json格式
+        String json = gson.toJson(enabledCourses);
+        // 3. 传回结果
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().write(json);
+    }
+
+        /**
+         * 通过Ajax请求获得所有课程信息
+         *
+         * @param request 请求
+         * @param response 响应，将会返回一个包含所有课程信息的对象集合<code>allCourse</code>
+         * @throws ServletException 抛出错误
+         * @throws IOException 抛出错误
+         */
     protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. 通过CourseManageService查询全部课程
         List<Course> allCourse = courseManageService.getAllCourse();
