@@ -1,6 +1,7 @@
 package com.gregperlinli.test.service;
 
 import com.gregperlinli.pojo.Course;
+import com.gregperlinli.pojo.SelectedCourse;
 import com.gregperlinli.service.CourseSelectionService;
 import com.gregperlinli.service.impl.CourseSelectionServiceImpl;
 import org.junit.jupiter.api.Test;
@@ -33,5 +34,14 @@ class CourseSelectionServiceTest {
     void queryEnableCourse() {
         List<Course> courses = courseSelectionService.queryEnableCourse();
         System.out.println(courses);
+    }
+
+    /**
+     * 测试<coe>queryStudentSelectedCourse()</coe>方法
+     */
+    @Test
+    void queryStudentSelectedCourse() {
+        List<SelectedCourse> selectedCourses = courseSelectionService.queryStudentSelectedCourse("李浩霖");
+        System.out.println(selectedCourses);
     }
 }
