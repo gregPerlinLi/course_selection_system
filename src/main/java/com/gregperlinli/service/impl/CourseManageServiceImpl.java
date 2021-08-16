@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
+ * <code>CourseManageService</code>的实现类
+ *
  * @author gregperlinli
  * @see CourseManageService
  * @since 2021-7-28
