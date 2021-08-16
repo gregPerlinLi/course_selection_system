@@ -13,8 +13,8 @@ $(function () {
              "<td>" + student.college + "</td>" +
              "<td>" + student.grade + "</td>" +
              "<td>" + student.stuClass + "</td>" +
-             "<td><a class='update' data-id='" + student.id +"' href='pages/admin/update_student.html?id=" + student.id + "'>修改</a></td>" +
-             "<td><button class='delete' data-id='" + student.id +"'>删除</button></td>" +
+             "<td><a class='update' data_id='" + student.id +"' href='pages/admin/update_student.html?id=" + student.id + "'>修改</a></td>" +
+             "<td><button class='delete' data_id='" + student.id +"'>删除</button></td>" +
              "</tr>";
       });
       $("#studentList").append(outputTable);
@@ -22,7 +22,7 @@ $(function () {
 
    $(document).on("click", ".delete", function () {
       if (confirm("确定删除数据？")) {
-         var id = $(this).attr("data-id");
+         var id = $(this).attr("data_id");
          $.getJSON(ajaxUrl, "action=delete&charset=utf-8&id=" + id, function (data) {
             console.log(data);
             if (data.isDeleted) {

@@ -12,7 +12,7 @@ $(function () {
                 "<td>" + enabledCourse.startTime + "</td>" +
                 "<td>" + enabledCourse.maxStu + "</td>" +
                 "<td>" + enabledCourse.currentStu + "</td>" +
-                "<td><button class='select' data-id='" + enabledCourse.id +"'>选课</button></td>" +
+                "<td><button class='select' data_id='" + enabledCourse.id +"'>选课</button></td>" +
                 "</tr>";
         });
         $("#courseList").append(outputTable);
@@ -20,7 +20,7 @@ $(function () {
 
     $(document).on("click", ".select", function () {
        if ( confirm("确定选择此课程？") ) {
-           var id = $(this).attr("data-id");
+           var id = $(this).attr("data_id");
            alert("已选择id为" + id + "的课程");
        } 
     });

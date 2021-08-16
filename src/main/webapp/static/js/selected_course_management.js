@@ -10,7 +10,7 @@ $(function () {
                 "<td>" + selectedCoureses.stuNum + "</td>" +
                 "<td>" + selectedCoureses.stuName + "</td>" +
                 "<td>" + selectedCoureses.course + "</td>" +
-                "<td><button class='cancel' data-id='" + selectedCoureses.id +"'>删除</button></td>" +
+                "<td><button class='cancel' data_id='" + selectedCoureses.id +"'>删除</button></td>" +
                 "</tr>";
         });
         $("#courseList").append(outputTable);
@@ -19,7 +19,7 @@ $(function () {
 
     $(document).on("click", ".cancel", function () {
         if ( confirm("确定删除此已选课程信息？") ){
-            var id = $(this).attr("data-id");
+            var id = $(this).attr("data_id");
             alert("已删除id为" + id + "的课程");
         }
     });

@@ -13,8 +13,8 @@ $(function () {
                 "<td>" + course.maxStu + "</td>" +
                 "<td>" + course.currentStu + "</td>" +
                 "<td style='background-color: red; color: white' class='enableStatus' id='st_" + course.id + "'>" + "未开选" + "</td>" +
-                "<td><a class='update' data-id='" + course.id +"' href='pages/admin/update_course.html?id=" + course.id + "'>修改</a></td>" +
-                "<td><button class='delete' data-id='" + course.id +"'>删除</button></td>" +
+                "<td><a class='update' data_id='" + course.id +"' href='pages/admin/update_course.html?id=" + course.id + "'>修改</a></td>" +
+                "<td><button class='delete' data_id='" + course.id +"'>删除</button></td>" +
                 "</tr>";
         });
         $("#courseList").append(outputTable);
@@ -31,7 +31,7 @@ $(function () {
 
     $(document).on("click", ".delete", function () {
         if (confirm("确定删除数据？")) {
-            var id = $(this).attr("data-id");
+            var id = $(this).attr("data_id");
             $.getJSON(ajaxUrl, "action=delete&charset=utf-8&id=" + id, function (data) {
                 console.log(data);
                 if (data.isDeleted) {
