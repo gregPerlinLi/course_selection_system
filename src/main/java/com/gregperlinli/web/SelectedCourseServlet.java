@@ -27,9 +27,9 @@ public class SelectedCourseServlet extends BaseServlet {
     protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // 1. 通过CourseSelectionService查询所有已选课程信息
-        List<SelectedCourse> selectedCourses = courseManageService.getAllSelectedCourse();
+        List<SelectedCourse> allSelectedCourses = courseManageService.getAllSelectedCourse();
         // 2. 把全部已选课程数据转换为Json格式
-        String json = gson.toJson(selectedCourses);
+        String json = gson.toJson(allSelectedCourses);
         // 3. 传回结果
         response.setContentType("text/html;charset=UTF-8");
         response.getWriter().write(json);

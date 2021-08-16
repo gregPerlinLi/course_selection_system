@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  * 对<code>courseSelectionService</code>进行单元测试
  *
@@ -32,7 +30,7 @@ class CourseSelectionServiceTest {
      */
     @Test
     void queryEnableCourse() {
-        List<Course> courses = courseSelectionService.queryEnableCourse();
+        List<Course> courses = courseSelectionService.queryEnabledCourse();
         System.out.println(courses);
     }
 

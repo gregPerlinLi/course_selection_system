@@ -154,7 +154,7 @@ public class CourseServlet extends BaseServlet {
 
     protected void getEnabledCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 1. 通过CourseSelectionService查询全部可选课程
-        List<Course> enabledCourses = courseSelectionService.queryEnableCourse();
+        List<Course> enabledCourses = courseSelectionService.queryEnabledCourse();
         // 2. 把全部课程数据转换为Json格式
         String json = gson.toJson(enabledCourses);
         // 3. 传回结果

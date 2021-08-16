@@ -40,7 +40,7 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
     }
 
     @Override
-    public List<Course> queryEnableCourse() {
+    public List<Course> queryEnabledCourse() {
         try {
             conn = JDBCUtils.getConnectionWithPool();
             List<Course> courses = courseDao.getAll(conn);

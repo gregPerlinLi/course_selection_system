@@ -34,7 +34,7 @@ public interface CourseSelectionService {
      *
      * @return 返回所有可以选课的课程对象集合。如果为<code>null</code>则为没有开始选课的课程
      */
-    List<Course> queryEnableCourse();
+    List<Course> queryEnabledCourse();
 
     /**
      * 根据学生姓名查询其所有已选课程信息
