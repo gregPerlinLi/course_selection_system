@@ -63,4 +63,17 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
         }
         return null;
     }
+
+    @Override
+    public List<SelectedCourse> queryStudentSelectedCourse(String stuName) {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return selectedCourseDao.getSelectedCourseByStuName(conn, stuName);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+        return null;
+    }
 }

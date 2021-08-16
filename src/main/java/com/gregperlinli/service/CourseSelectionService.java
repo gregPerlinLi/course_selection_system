@@ -36,4 +36,12 @@ public interface CourseSelectionService {
      */
     List<Course> queryEnableCourse();
 
+    /**
+     * 根据学生姓名查询其所有已选课程信息
+     *
+     * @param stuName 提供所要查询的学生姓名
+     * @return 返回该学生下的所有已选课程信息对象的集合。若果为<code>null</code>则为其没有任何已选课程
+     */
+    List<SelectedCourse> queryStudentSelectedCourse(String stuName);
+
 }
