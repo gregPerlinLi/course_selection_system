@@ -62,10 +62,18 @@ public class CourseManageServiceTest {
     }
 
     /**
-     * getAllCourse()方法
+     * 测试getAllCourse()方法
      */
     @Test
     void getAllCourse() {
         System.out.println(courseManageService.getAllCourse());
+    }
+
+    /**
+     * 测试getAllSelectedCourse()方法
+     */
+    @Test
+    void getAllSelectedCourse(){
+        System.out.println(courseManageService.getAllSelectedCourse());
     }
 }

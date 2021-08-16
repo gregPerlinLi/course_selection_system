@@ -13,10 +13,25 @@ $(function () {
              "<td>" + student.college + "</td>" +
              "<td>" + student.grade + "</td>" +
              "<td>" + student.stuClass + "</td>" +
-             "<td><a class='update' data-id='" + student.id +"' href='pages/admin/update_course.html?id=" + student.id + "'>修改</a></td>" +
+             "<td><a class='update' data-id='" + student.id +"' href='pages/admin/update_student.html?id=" + student.id + "'>修改</a></td>" +
              "<td><button class='delete' data-id='" + student.id +"'>删除</button></td>" +
              "</tr>";
       });
       $("#studentList").append(outputTable);
+   });
+
+   $(document).on("click", ".delete", function () {
+      if (confirm("确定删除数据？")) {
+         var id = $(this).attr("data-id");
+         $.getJSON(ajaxUrl, "action=delete&charset=utf-8&id=" + id, function (data) {
+            console.log(data);
+            if (data.isDeleted) {
+               alert("删除成功");
+               $("#tr_" + id).remove();
+            } else {
+               alert("删除失败");
+            }
+         });
+      }
    });
 });

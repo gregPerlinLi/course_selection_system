@@ -14,12 +14,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
+ * <code>CourseManageService</code>的实现类
+ *
  * @author gregperlinli
  * @see CourseManageService
  * @since 2021-7-28
  */
 public class CourseManageServiceImpl implements CourseManageService {
     final private CourseDao courseDao = new CourseDaoImpl();
+    final private SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
     private Connection conn = null;
 
     @Override
@@ -146,6 +149,19 @@ public class CourseManageServiceImpl implements CourseManageService {
         try {
             conn = JDBCUtils.getConnectionWithPool();
             return courseDao.getAll(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+        return null;
+    }
+
+    @Override
+    public List<SelectedCourse> getAllSelectedCourse() {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return selectedCourseDao.getAll(conn);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

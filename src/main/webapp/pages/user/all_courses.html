@@ -1,29 +1,28 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>课程管理</title>
-    <base href="http://localhost:8080/course_selection_system/" />
+    <title>所有课程</title>
+    <base href="http://localhost:8080/course_selection_system/">
     <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="static/css/fonts.css" />
     <link rel="stylesheet" type="text/css" href="static/css/output_table.css" />
     <link rel="stylesheet" type="text/css" href="static/css/account.css">
     <script type="text/javascript" src="static/js/jQuery.js"></script>
-    <script type="text/javascript" src="static/js/course_management.js"></script>
-    <script type="text/javascript" src="static/js/get_admin_login.js"></script>
+    <script type="text/javascript" src="static/js/all_courses.js"></script>
+    <script type="text/javascript" src="static/js/get_student_login.js"></script>
 </head>
 <body>
-    <h1>课程管理</h1>
+    <h1>选课</h1>
     <p align="right" id="accountInfo">
-        当前管理员：
+        当前学生：
         <span id="account">null</span>
         &nbsp;
-        <a href="adminServlet?action=adminLogout">退出</a>
+        <a href="">修改信息</a>
+        <a href="userServlet?action=studentLogout">退出</a>
     </p>
     <hr/>
-    <p align="right"><a href="pages/admin/add_course.html">添加课程</a></p>
-    <hr/>
-    <h3>当前课程:</h3><br/>
+    <h3>当前所有课程</h3>
     <table id="courseList" align="center">
         <tr>
             <th>id</th>
@@ -33,13 +32,13 @@
             <th>限选</th>
             <th>已选</th>
             <th>选课状态</th>
-            <th colspan="2">操作</th>
         </tr>
     </table>
     <hr/>
     <p align="right">
-        <a href="pages/admin/selected_course_management.html">已选课程信息管理</a>
-        <a href="pages/admin/admin_index.html">返回主页</a>
+        <a href="pages/user/course_selection.html">去选课</a>&nbsp;
+        <a href="pages/user/selected_course.html">查看已选课程</a>&nbsp;
+        <a href="pages/user/index.html">返回主页</a>
     </p>
 </body>
 </html>
