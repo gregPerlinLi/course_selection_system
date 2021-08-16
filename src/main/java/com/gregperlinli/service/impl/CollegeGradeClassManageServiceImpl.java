@@ -112,6 +112,11 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
                 }
             }
         } catch (Exception e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             e.printStackTrace();
         } finally {
             try {
@@ -158,6 +163,11 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
                 }
             }
         } catch (Exception e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             e.printStackTrace();
         } finally {
             try {
@@ -231,6 +241,11 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
                 return true;
             }
         } catch (Exception e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             e.printStackTrace();
         } finally {
             try {
@@ -263,6 +278,11 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
                 return true;
             }
         } catch (Exception e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             e.printStackTrace();
         } finally {
             try {
@@ -294,6 +314,11 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
                 return true;
             }
         } catch (Exception e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             e.printStackTrace();
         } finally {
             try {

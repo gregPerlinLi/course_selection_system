@@ -70,6 +70,11 @@ public class CourseManageServiceImpl implements CourseManageService {
                 }
             }
         } catch (Exception e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             e.printStackTrace();
         } finally {
             try {
@@ -102,6 +107,11 @@ public class CourseManageServiceImpl implements CourseManageService {
                 return true;
             }
         } catch (Exception e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
             e.printStackTrace();
         } finally {
             try {
