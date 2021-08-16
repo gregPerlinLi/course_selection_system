@@ -92,7 +92,7 @@ public class StudentServlet extends BaseServlet {
      */
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 从request中获取要删除的id值
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = WebUtils.parseInt(request.getParameter("id"), 0);
         // 删除数据，并获取是否成功删除
         boolean isDeleted = accountManageService.studentDelete(id);
         // 设置输出集
@@ -114,7 +114,7 @@ public class StudentServlet extends BaseServlet {
      * @throws IOException 抛出错误
      */
     protected void getStudent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = WebUtils.parseInt(request.getParameter("id"), 0);
         Student student = accountManageService.getStuById(id);
 
         String json = gson.toJson(student);
