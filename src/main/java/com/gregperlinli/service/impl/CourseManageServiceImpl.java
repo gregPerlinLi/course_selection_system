@@ -22,6 +22,7 @@ import java.util.List;
  */
 public class CourseManageServiceImpl implements CourseManageService {
     final private CourseDao courseDao = new CourseDaoImpl();
+    final private SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
     private Connection conn = null;
 
     @Override
@@ -148,6 +149,19 @@ public class CourseManageServiceImpl implements CourseManageService {
         try {
             conn = JDBCUtils.getConnectionWithPool();
             return courseDao.getAll(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResource(conn, null);
+        }
+        return null;
+    }
+
+    @Override
+    public List<SelectedCourse> getAllSelectedCourse() {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return selectedCourseDao.getAll(conn);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

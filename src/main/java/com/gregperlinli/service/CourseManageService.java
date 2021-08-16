@@ -1,6 +1,7 @@
 package com.gregperlinli.service;
 
 import com.gregperlinli.pojo.Course;
+import com.gregperlinli.pojo.SelectedCourse;
 
 import java.util.List;
 
@@ -58,4 +59,11 @@ public interface CourseManageService {
      * @return 返回所有课程对象的集合，如果为<code>null</code>则没有课程
      */
     List<Course> getAllCourse();
+
+    /**
+     * 查询所有已选课程信息事务
+     *
+     * @return 返回所有已选课程信息对象的集合，如果为<code>null</code>则没有已选课程信息
+     */
+    List<SelectedCourse> getAllSelectedCourse();
 }
