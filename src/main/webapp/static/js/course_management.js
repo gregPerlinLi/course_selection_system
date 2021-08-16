@@ -12,11 +12,19 @@ $(function () {
                 "<td>" + course.startTime + "</td>" +
                 "<td>" + course.maxStu + "</td>" +
                 "<td>" + course.currentStu + "</td>" +
+                "<td style='background-color: red; color: white' class='enableStatus' id='st_" + course.id + "'>" + "未开选" + "</td>" +
                 "<td><a class='update' data-id='" + course.id +"' href='pages/admin/update_course.html?id=" + course.id + "'>修改</a></td>" +
                 "<td><button class='delete' data-id='" + course.id +"'>删除</button></td>" +
                 "</tr>";
         });
         $("#courseList").append(outputTable);
+        $.getJSON(ajaxUrl, "action=getEnabledCourse&charset=utf-8", function (data) {
+            console.log(data);
+            $.each(data, function (index, enableCourse) {
+                $("#st_" + enableCourse.id).attr("style", "background-color: green; color: white")
+                    .text("已开选");
+            });
+        });
     });
 
 
