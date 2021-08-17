@@ -58,10 +58,8 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
             return enabledCourses;
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     @Override
@@ -71,9 +69,7 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
             return selectedCourseDao.getSelectedCourseByStuName(conn, stuName);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 }

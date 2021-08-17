@@ -35,8 +35,7 @@ public class CourseManageServiceImpl implements CourseManageService {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -70,21 +69,8 @@ public class CourseManageServiceImpl implements CourseManageService {
                 }
             }
         } catch (Exception e) {
-            try {
-                conn.rollback();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
             e.printStackTrace();
-        } finally {
-            try {
-                // 恢复自动提交
-                conn.setAutoCommit(true);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                JDBCUtils.closeResource(conn, null);
-            }
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -107,21 +93,8 @@ public class CourseManageServiceImpl implements CourseManageService {
                 return true;
             }
         } catch (Exception e) {
-            try {
-                conn.rollback();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
             e.printStackTrace();
-        } finally {
-            try {
-                // 恢复自动提交
-                conn.setAutoCommit(true);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                JDBCUtils.closeResource(conn, null);
-            }
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -133,10 +106,8 @@ public class CourseManageServiceImpl implements CourseManageService {
             return courseDao.getCourseById(conn, id);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     @Override
@@ -148,8 +119,7 @@ public class CourseManageServiceImpl implements CourseManageService {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -161,10 +131,8 @@ public class CourseManageServiceImpl implements CourseManageService {
             return courseDao.getAll(conn);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     @Override
@@ -174,9 +142,7 @@ public class CourseManageServiceImpl implements CourseManageService {
             return selectedCourseDao.getAll(conn);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 }

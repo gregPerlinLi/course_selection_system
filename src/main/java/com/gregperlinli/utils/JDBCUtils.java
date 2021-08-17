@@ -64,10 +64,11 @@ public class JDBCUtils {
      * <h1><b><span style='color:yellow;background:背景颜色;font-size:文字大小;'>Attention! the following connection method is using with database connection pools</span></b></h1>
      * <br/>
      *
-     * <h2><span style='color:red;'>Using database connection pool<br/>
+     * <h2><span style='color:red;'>Using database connection pool with ThreadLocal to ensure thread safety<br/>
      * The database connection pool just one can be provided</span></h2>
      */
     private static ConnectionPool connectionPool;
+    private static final ThreadLocal<Connection> CONN_THREAD = new ThreadLocal<>();
     static {
         try {
             // ResourceBundle jdbc = ResourceBundle.getBundle("jdbc");
@@ -87,9 +88,16 @@ public class JDBCUtils {
      */
     public static Connection getConnectionWithPool() throws Exception {
         // return CPDS.getConnection();
-
-        return connectionPool.getConnection();
-
+        Connection conn = CONN_THREAD.get();
+        if ( conn == null ) {
+            // get connection from database connection pool
+            conn = connectionPool.getConnection();
+            // save to ThreadLocal object, for later jdbc operations
+            CONN_THREAD.set(conn);
+            // set connection to manual management transaction
+            conn.setAutoCommit(false);
+        }
+        return conn;
     }
 
 
@@ -121,5 +129,51 @@ public class JDBCUtils {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * <h2><span style='color:red;'>Commit the transaction and close the connection</span></h2>
+     */
+    public static void commitAndClose() {
+        Connection conn = CONN_THREAD.get();
+        if ( conn != null ) {
+            try {
+                conn.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    conn.setAutoCommit(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                connectionPool.returnConnection(conn);
+            }
+        }
+        // Be sure to implement the remove operation, otherwise, an error will occur (Because the bottom layer of Tomcat server is used for thread pool technology)
+        CONN_THREAD.remove();
+    }
+
+    /**
+     * <h2><span style='color:red;'>RollBack the transaction and close the connection</span></h2>
+     */
+    public static void rollBackAndClose() {
+        Connection conn = CONN_THREAD.get();
+        if ( conn != null ) {
+            try {
+                conn.rollback();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    conn.setAutoCommit(true);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                connectionPool.returnConnection(conn);
+            }
+        }
+        // Be sure to implement the remove operation, otherwise, an error will occur (Because the bottom layer of Tomcat server is used for thread pool technology)
+        CONN_THREAD.remove();
     }
 }

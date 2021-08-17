@@ -29,8 +29,7 @@ public class LoginServiceImpl implements LoginService {
             student = studentDao.getStuByUsername(conn, username);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
         if ( student != null && student.getPassword().equals(password)) {
             return student;
@@ -48,8 +47,7 @@ public class LoginServiceImpl implements LoginService {
             admin = adminDao.getAdmByUsername(conn, username);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
         if ( admin != null && admin.getPassword().equals(password)) {
             return admin;
