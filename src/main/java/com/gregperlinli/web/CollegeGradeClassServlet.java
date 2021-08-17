@@ -38,6 +38,14 @@ public class CollegeGradeClassServlet extends BaseServlet {
     protected final static String GRADE = "grade";
     protected final static String CLASSES = "class";
 
+    /**
+     * 通过Ajax请求获得所有学院/年级/班级信息
+     *
+     * @param request 请求，要在其中输入一个需要获取的对象类型<code>type</code>（填入<code>college</code>，<code>grade</code>或者是<code>class</code>）
+     * @param response 响应，将会返回一个包含所选的对象的集合<code>colleges</code>/<code>grades</code>/<code>classesList</code>
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String type = request.getParameter("type");
         String json = "";
@@ -59,6 +67,14 @@ public class CollegeGradeClassServlet extends BaseServlet {
         response.getWriter().write(json);
     }
 
+    /**
+     * 处理添加学院/年级/班级功能
+     *
+     * @param request 添加请求，要在其中输入一个学院/年级名字，或者是用POST请求提供班级名称<code>className</code>，所在学院<code>college</code>，所在年级<code>grade</code>；以及需要获取的对象类型<code>type</code>（填入<code>college</code>，<code>grade</code>或者是<code>class</code>）
+     * @param response 添加响应，将会返回一个布尔值<code>isDeleted</code>，若为<code>true</code>，则成功添加，若为<code>false</code>，则添加失败，而当添加的是班级对象的话则不会返回
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String type = request.getParameter("type");
         boolean isAdded = false;
@@ -85,6 +101,14 @@ public class CollegeGradeClassServlet extends BaseServlet {
         response.getWriter().write(json);
     }
 
+    /**
+     * 处理修改学院/年级/班级功能
+     *
+     * @param request 修改请求，要在其中输入一个要修改的对象<code>id</code>和学院/年级名字，或者是用POST请求提供班级名称<code>className</code>，所在学院<code>college</code>，所在年级<code>grade</code>；以及需要获取的对象类型<code>type</code>（填入<code>college</code>，<code>grade</code>或者是<code>class</code>）
+     * @param response 修改响应，将会返回一个布尔值<code>isDeleted</code>，若为<code>true</code>，则成功修改，若为<code>false</code>，则修改失败，而当添加的是班级对象的话则不会返回
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String type = request.getParameter("type");
         boolean isUpdated = false;
@@ -111,6 +135,14 @@ public class CollegeGradeClassServlet extends BaseServlet {
         response.getWriter().write(json);
     }
 
+    /**
+     * 处理删除学院/年级/班级功能
+     *
+     * @param request 删除请求，要在其中输入一个需要删除的学院/年级/班级<code>id</code>；以及需要获取的对象类型<code>type</code>（填入<code>college</code>，<code>grade</code>或者是<code>class</code>）
+     * @param response 删除响应，将会返回一个布尔值<code>isDeleted</code>，若为<code>true</code>，则成功删除，若为<code>false</code>，则删除失败
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String type = request.getParameter("type");
         boolean isDeleted = false;
@@ -132,6 +164,14 @@ public class CollegeGradeClassServlet extends BaseServlet {
         response.getWriter().write(json);
     }
 
+    /**
+     * 通过Ajax请求检查是否存在该班级名
+     *
+     * @param request 请求，要在其中提供一个需要检查的班级名参数<code>username</code>
+     * @param response 响应，将会返回一个布尔值<code>existUsername</code>，若为<code>True</code>，则已存在该班级名，若为<code>false</code>，则不存在该班级名
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void ajaxExistClassName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String className = request.getParameter("className");
 
@@ -146,6 +186,14 @@ public class CollegeGradeClassServlet extends BaseServlet {
         response.getWriter().write(json);
     }
 
+    /**
+     * 通过Ajax请求获取某个<code>id</code>对应的课程信息
+     *
+     * @param request 请求，要在其中输入一个需要获取的班级<code>id</code>
+     * @param response 响应，将会返回一个包含所查找的班级的对象<code>course</code>
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void getClass(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = WebUtils.parseInt(request.getParameter("id"), 0);
 
