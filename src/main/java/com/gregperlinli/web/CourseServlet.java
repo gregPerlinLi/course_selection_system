@@ -213,6 +213,7 @@ public class CourseServlet extends BaseServlet {
 
         String json = gson.toJson(resultMap);
 
+        response.setContentType("text/html;charset=UTF-8");
         response.getWriter().write(json);
     }
 }
