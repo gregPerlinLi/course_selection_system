@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改班级</title>
+    <base href="http://localhost:8080/course_selection_system/" />
+    <link rel="stylesheet" type="text/css" href="static/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/register.css" />
+    <script type="text/javascript" src="static/js/jQuery.js"></script>
+    <script type="text/javascript" src="static/js/get_query_string.js"></script>
+    <script type="text/javascript" src="static/js/update_class.js"></script>
+</head>
+<body>
+<h1>修改班级</h1>
+<hr/>
+    <form action="admin/collegeGradeClassServlet" method="post">
+        <input type="hidden" name="action" value="update">
+        <input type="hidden" name="type" value="class">
+        <table align="center">
+            <tr>
+                <td>id:</td>
+                <td><label>
+                    <input type="text" name="id" class="inputText" id="id" disabled="disabled" />
+                </label></td>
+                <td></td>
+            </tr>
+            <tr>
+            <tr>
+                <td>班级名：</td>
+                <td><label>
+                    <input type="text" name="classesName" class="inputText" id="classesName" />
+                </label></td>
+                <td><span class="warning" id="classesNameWarm"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="classesNameInfo" class="info"></span></td>
+            </tr>
+            <tr>
+                <td>所在学院</td>
+                <td><label>
+                    <select name="college" class="inputText" id="college">
+                        <option disabled selected>----请选择----</option>
+                    </select>
+                </label></td>
+                <td><span class="warning" id="collegeWarm"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="collegeInfo" class="info"></span></td>
+            </tr>
+            <tr>
+                <td>所在年级</td>
+                <td><label>
+                    <select name="grade" class="inputText" id="grade">
+                        <option disabled selected>----请选择----</option>
+                    </select>
+                </label></td>
+                <td><span class="warning" id="gradeWarm"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><span id="gradeInfo" class="info"></span></td>
+            </tr>
+            <tr>
+                <td><label><input type="submit" value="修改" id="update" disabled="disabled"></label></td>
+                <td><a href="pages/admin/classes_management.html">返回</a></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
