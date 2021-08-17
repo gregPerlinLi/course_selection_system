@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>年级管理</title>
+    <base href="http://localhost:8080/course_selection_system/">
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="static/css/fonts.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/output_table.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/account.css">
+    <script type="text/javascript" src="static/js/jQuery.js"></script>
+    <script type="text/javascript" src="static/js/grade_management.js"></script>
+    <script type="text/javascript" src="static/js/get_admin_login.js"></script>
+</head>
+<body>
+    <h1>年级管理</h1>
+    <p align="right" id="accountInfo">
+        当前管理员：
+        <span id="account">null</span>
+        &nbsp;
+        <a href="adminServlet?action=adminLogout">退出</a>
+    </p>
+    <hr/>
+    <p align="right"><a href="pages/admin/college_management.html" id="addCollege">添加年级</a></p>
+    <hr/>
+    <h3>所有年级信息:</h3><br/>
+    <table id="gradeList" align="center">
+        <tr>
+            <th>id</th>
+            <th>年级名字</th>
+            <th colspan="2">操作</th>
+        </tr>
+    </table>
+    <hr/>
+    <p align="right">
+        <a href="pages/admin/college_management.html">学院管理</a>
+        <a href="pages/admin/classes_management.html">班级管理</a>
+        <a href="pages/admin/admin_index.html">返回主页</a>
+    </p>
+</body>
+</html>
