@@ -259,6 +259,31 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
     }
 
     @Override
+    public Classes getClassById(int id) {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return classesDao.getClassById(conn, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public boolean existClassName(String className) {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            if ( classesDao.getClassByClassName(conn, className) != null ) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
+    @Override
     public List<College> searchAllCollege() {
         try {
             conn = JDBCUtils.getConnectionWithPool();
@@ -274,6 +299,17 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
         try {
             conn = JDBCUtils.getConnectionWithPool();
             return gradeDao.getAll(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<Classes> searchAllClass() {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return classesDao.getAll(conn);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
