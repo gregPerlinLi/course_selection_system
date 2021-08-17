@@ -56,6 +56,14 @@ public class SelectedCourseServlet extends BaseServlet {
 
     }
 
+    /**
+     * 通过Ajax请求对已选课程信息进行删除操作
+     *
+     * @param request 请求，需要提供要删除的已选课程信息<code>id</code>
+     * @param response 响应，将会返回一个布尔值<code>isCanceled</code>，若为<code>true</code>则删除成功，若为<code>false/code>则删除失败
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 从request中获取要删除的已选课程信息的id
         int id = WebUtils.parseInt(request.getParameter("id"), 0);

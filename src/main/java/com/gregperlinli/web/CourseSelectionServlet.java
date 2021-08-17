@@ -110,7 +110,14 @@ public class CourseSelectionServlet extends BaseServlet {
         response.getWriter().write(json);
     }
 
-
+    /**
+     * 通过Ajax请求进行选课操作
+     *
+     * @param request 请求，需要提供要选择的课程<code>id</code>，<code>session</code>中需要提供一个登录的学生键值对<code>student</code>
+     * @param response 响应，将会返回一个整数值<code>selectStatus</code>，若为<code>0</code>则选课失败，若为<code>1</code>则选课成功，若为<code>2</code>则该学生已选过此课程
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void selectCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 从request中获取要选择的课程的id
         int id = WebUtils.parseInt(request.getParameter("id"), 0);
@@ -128,6 +135,14 @@ public class CourseSelectionServlet extends BaseServlet {
         response.getWriter().write(json);
     }
 
+    /**
+     * 通过Ajax请求进行退选操作
+     *
+     * @param request 请求，需要提供要退选的已选课程信息<code>id</code>
+     * @param response 响应，将会返回一个布尔值<code>isCanceled</code>，若为<code>true</code>则退选成功，若为<code>false/code>则退选失败
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void cancelCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 从request中获取要删除的已选课程信息的id
         int id = WebUtils.parseInt(request.getParameter("id"), 0);
