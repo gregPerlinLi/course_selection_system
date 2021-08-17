@@ -47,6 +47,12 @@ public class SelectedCourseDaoImpl extends BaseDAO<SelectedCourse> implements Se
     }
 
     @Override
+    public SelectedCourse getSelectedCourseById(Connection conn, int id) {
+        String sql = "select id, stu_num stuNum, stu_name stuName, course from selected_course where id = ?";
+        return getQuery(conn, sql, id);
+    }
+
+    @Override
     public List<SelectedCourse> getSelectedCourseByStuNum(Connection conn, String stuNum) {
         String sql = "select id, stu_num stuNum, stu_name stuName, course from selected_course where stu_num = ?";
         return getMultiQuery(conn, sql, stuNum);

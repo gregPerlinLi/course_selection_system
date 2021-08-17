@@ -60,6 +60,15 @@ public interface SelectedCourseDao {
     void updateById(Connection conn, SelectedCourse selectedCourse) throws Exception;
 
     /**
+     * 根据id来获取已选课程对象
+     *
+     * @param conn 提供数据库连接池所给的连接
+     * @param id 提供所要获取已选课程的id
+     * @return 查询到的已选课程对象，若无结果则返回<code>null</code>
+     */
+    SelectedCourse getSelectedCourseById(Connection conn, int id);
+
+    /**
      * 根据学生学号来获取已选课程对象
      *
      * @param conn 提供数据库连接池所给的连接
