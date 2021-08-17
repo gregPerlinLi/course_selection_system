@@ -15,6 +15,12 @@ public class SelectedCourse {
     public SelectedCourse() {
     }
 
+    public SelectedCourse(String stuNum, String stuName, String course) {
+        this.stuNum = stuNum;
+        this.stuName = stuName;
+        this.course = course;
+    }
+
     public SelectedCourse(int id, String stuNum, String stuName, String course) {
         this.id = id;
         this.stuNum = stuNum;
