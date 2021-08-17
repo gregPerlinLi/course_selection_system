@@ -20,7 +20,15 @@ $(function () {
     $(document).on("click", ".cancel", function () {
         if ( confirm("确定删除此已选课程信息？") ){
             var id = $(this).attr("data_id");
-            alert("已删除id为" + id + "的课程");
+            $.getJSON(ajaxUrl, "action=delete&charset=utf-8&id=" + id, function (data) {
+                console.log(data);
+                if ( data.isCanceled ) {
+                    alert("已删除id为" + id + "的课程！");
+                } else {
+                    alert("已删除id为" + id + "的课程失败，请重新尝试！");
+                }
+                window.location.reload()
+            });
         }
     });
 });
