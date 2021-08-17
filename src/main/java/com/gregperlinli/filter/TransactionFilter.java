@@ -10,6 +10,7 @@ import java.io.IOException;
  * 用于进行事务管理，保证其线程安全
  *
  * @author gregPerlinLi
+ * @see javax.servlet.Filter
  * @since 2021-08-17
  */
 @WebFilter(filterName = "TransactionFilter", value = "/*")

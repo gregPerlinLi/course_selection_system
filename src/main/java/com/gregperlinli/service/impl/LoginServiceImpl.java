@@ -12,6 +12,8 @@ import com.gregperlinli.utils.JDBCUtils;
 import java.sql.Connection;
 
 /**
+ * <code>LoginService</code>的实现类
+ *
  * @author gregperlinli
  * @see LoginService
  * @since 2021-7-26

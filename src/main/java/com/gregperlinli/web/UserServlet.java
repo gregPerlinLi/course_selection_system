@@ -28,6 +28,13 @@ import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
  * 主要用于学生的登录退出和注册操作
  *
  * @author gregperlinli
+ * @see javax.servlet.ServletConfig
+ * @see javax.servlet.Servlet
+ * @see javax.servlet.http.HttpServlet
+ * @see javax.servlet.GenericServlet
+ * @see java.io.Serializable
+ * @see com.gregperlinli.web.BaseServlet
+ * @since 2021-8-17
  */
 @WebServlet(name = "UserServlet", value = "/userServlet")
 public class UserServlet extends BaseServlet {

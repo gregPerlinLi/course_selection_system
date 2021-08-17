@@ -16,11 +16,12 @@ import com.gregperlinli.service.CollegeGradeClassManageService;
 import com.gregperlinli.utils.JDBCUtils;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * <code>CollegeGradeClassManageService</code>的实现类
+ *
  * @author gregperlinli
  * @see CollegeGradeClassManageService
  * @since 2021-7-29

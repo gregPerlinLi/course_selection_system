@@ -13,10 +13,11 @@ import com.gregperlinli.service.AccountManageService;
 import com.gregperlinli.utils.JDBCUtils;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
+ * <code>AccountManageService</code>的实现类
+ *
  * @author gregperlinli
  * @see AccountManageService
  * @since 2021-7-28

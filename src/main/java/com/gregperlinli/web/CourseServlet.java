@@ -24,6 +24,12 @@ import java.util.Map;
  * 用于课程的管理（管理员权限）
  *
  * @author gregPerlinLi
+ * @see javax.servlet.ServletConfig
+ * @see javax.servlet.Servlet
+ * @see javax.servlet.http.HttpServlet
+ * @see javax.servlet.GenericServlet
+ * @see java.io.Serializable
+ * @see com.gregperlinli.web.BaseServlet
  * @since 2021-08-11
  */
 @WebServlet(name = "CourseServlet", value = "/admin/courseServlet")

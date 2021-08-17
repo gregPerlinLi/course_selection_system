@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.util.List;
 
 /**
+ * <code>CourseDao</code>的实现类
+ *
  * @author gregperlinli
  * @see com.gregperlinli.dao.BaseDAO
  * @see com.gregperlinli.dao.CourseDao

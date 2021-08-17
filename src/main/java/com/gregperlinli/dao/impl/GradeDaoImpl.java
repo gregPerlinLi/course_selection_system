@@ -8,9 +8,11 @@ import java.sql.Connection;
 import java.util.List;
 
 /**
+ * <code>GradeDao</code>的实现类
+ *
  * @author gregperlinli
  * @see com.gregperlinli.dao.BaseDAO
- * @see com.gregperlinli.dao.SelectedCourseDao
+ * @see com.gregperlinli.dao.GradeDao
  * @since 2021-7-21
  */
 public class GradeDaoImpl extends BaseDAO<Grade> implements GradeDao {

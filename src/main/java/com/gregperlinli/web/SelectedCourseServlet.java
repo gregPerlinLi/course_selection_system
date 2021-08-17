@@ -17,6 +17,12 @@ import java.util.List;
  * 用于已选课程信息的管理（管理员权限）
  *
  * @author gregPerlinLi
+ * @see javax.servlet.ServletConfig
+ * @see javax.servlet.Servlet
+ * @see javax.servlet.http.HttpServlet
+ * @see javax.servlet.GenericServlet
+ * @see java.io.Serializable
+ * @see com.gregperlinli.web.BaseServlet
  * @since 2021-08-16
  */
 @WebServlet(name = "SelectedCourseServlet", value = "/admin/selectedCourseServlet")

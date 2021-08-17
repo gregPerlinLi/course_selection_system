@@ -10,7 +10,6 @@ import com.gregperlinli.service.CourseManageService;
 import com.gregperlinli.utils.JDBCUtils;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 /**

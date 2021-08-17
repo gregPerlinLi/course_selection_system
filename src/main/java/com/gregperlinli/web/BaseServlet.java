@@ -10,6 +10,12 @@ import java.lang.reflect.Method;
  * 通过<code>action</code>调用各种Servlet业务方法
  *
  * @author gregperlinli
+ * @see java.io.Serializable
+ * @see javax.servlet.GenericServlet
+ * @see javax.servlet.Servlet
+ * @see javax.servlet.http.HttpServlet
+ * @see javax.servlet.ServletConfig
+ * @since 2021-3-12
  */
 @WebServlet(name = "BaseServlet", value = "/BaseServlet")
 public abstract class BaseServlet extends HttpServlet {
