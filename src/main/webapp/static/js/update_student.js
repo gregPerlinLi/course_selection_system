@@ -122,7 +122,7 @@ $(function () {
         });
     });
 
-    $("#password").change(function () {
+    $("#password").blur(function () {
         var password = $("#password").val();
         var infoObj = $("#passwordInfo");
         var encryptedPasswordObj = $("#encryptedPassword");
@@ -140,7 +140,7 @@ $(function () {
         }
     });
 
-    $("#confirmPassword").change(function () {
+    $("#confirmPassword").blur(function () {
         var password = $("#password").val();
         var confirmPassword = $("#confirmPassword").val();
         var infoObj = $("#confirmPasswordInfo");
