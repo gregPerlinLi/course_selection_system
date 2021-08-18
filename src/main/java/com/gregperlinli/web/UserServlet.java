@@ -144,7 +144,7 @@ public class UserServlet extends BaseServlet {
         } else {
             // 修改失败
             System.out.println("The student [ " + student.getUsername() + " ] is already exist!");
-            response.sendRedirect(request.getContextPath() + "/pages/user/update_inform.html?id=" + student.getId());
+            response.sendRedirect(request.getContextPath() + "/pages/user/update_inform.html");
         }
     }
 
