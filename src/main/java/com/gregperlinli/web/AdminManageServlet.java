@@ -4,9 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.gregperlinli.pojo.Admin;
 import com.gregperlinli.service.AccountManageService;
-import com.gregperlinli.service.LoginService;
 import com.gregperlinli.service.impl.AccountManageServiceImpl;
-import com.gregperlinli.service.impl.LoginServiceImpl;
 import com.gregperlinli.utils.WebUtils;
 
 import javax.servlet.ServletException;
@@ -27,12 +25,29 @@ import java.util.Map;
 @WebServlet(name = "AdminManageServlet", value = "/admin/adminManageServlet")
 public class AdminManageServlet extends BaseServlet {
     protected final AccountManageService accountManageService = new AccountManageServiceImpl();
-    protected final LoginService loginService = new LoginServiceImpl();
     protected final Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
-
+    /**
+     * 处理添加管理员功能<br/>
+     * 若添加成功会重定向到<code>admin_management.html</code>，若失败则继续停留在该界面
+     *
+     * @param request 添加请求，需要通过POST请求提供用户名<code>username</code>，
+     *                MD5加密后的密码<code>password</code>
+     * @param response 添加响应
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void add(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Admin admin = WebUtils.copyParamToBean(request.getParameterMap(), new Admin());
 
+        if ( accountManageService.adminRegist(admin) ) {
+            // 添加成功
+            response.sendRedirect(request.getContextPath() + "/pages/admin/admin_management.html");
+        } else {
+            // 添加失败
+            System.out.println("The admin [ " + admin.getUsername() + " ] is already exist!");
+            response.sendRedirect(request.getContextPath() + "pages/admin/add_admin.html");
+        }
     }
 
     /**
@@ -59,8 +74,27 @@ public class AdminManageServlet extends BaseServlet {
         }
     }
 
+    /**
+     * 通过Ajax请求处理删除管理员功能
+     *
+     * @param request 删除请求，要在其中输入一个需要删除的管理员<coed>id</coed>
+     * @param response 删除响应，将会返回一个布尔值<code>isDeleted</code>，若为<code>True</code>，则成功删除，若为<code>false</code>，则删除失败
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        // 从request中获取要删除的id值
+        int id = WebUtils.parseInt(request.getParameter("id"), 0);
+        // 删除数据，并获取是否成功删除
+        boolean isDeleted = accountManageService.adminDelete(id);
+        // 设置输出集
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("isDeleted", isDeleted);
+        // 转换为Json格式
+        String json = gson.toJson(resultMap);
+        // 传回删除结果
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().write(json);
     }
 
     /**

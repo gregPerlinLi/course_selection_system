@@ -37,7 +37,7 @@ public class StudentServlet extends BaseServlet {
      * 若添加成功会重定向到<code>student_management.html</code>，若失败则继续停留在该界面
      *
      * @param request 添加请求，需要通过POST请求提供学生学号<code>stuNum</code>，
-     *                学生学号<code>username</code>，
+     *                学生姓名<code>username</code>，
      *                所在学院<code>college</code>，
      *                所在年级<code>grade</code>，
      *                所在班级<code>stuClass</code>，
@@ -54,7 +54,7 @@ public class StudentServlet extends BaseServlet {
             response.sendRedirect(request.getContextPath() + "/pages/admin/student_management.html");
         } else {
             // 添加失败
-            System.out.println("The studentt [ " + student.getUsername() + " ] is already exist!");
+            System.out.println("The student [ " + student.getUsername() + " ] is already exist!");
             response.sendRedirect(request.getContextPath() + "pages/admin/add_student.html");
         }
     }
