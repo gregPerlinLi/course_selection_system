@@ -78,6 +78,21 @@ public interface AccountManageService {
     Student getStuById(int id);
 
     /**
+     * 获取所有管理员对象
+     *
+     * @return 返回装有所有管理员对象的集合，如果为<code>null</code>则没有管理员
+     */
+    List<Admin> getAllAdmin();
+
+    /**
+     * 根据id查询管理员操作
+     *
+     * @param id 提供要查询的管理员id
+     * @return 返回查询到的管理员对象，如果为<code>null</code>则不存在该对象
+     */
+    Admin getAdminById(int id);
+
+    /**
      * 检查是否存在该学生姓名
      *
      * @param username 提供需要检查的姓名

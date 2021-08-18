@@ -175,6 +175,28 @@ public class AccountManageServiceImpl implements AccountManageService {
     }
 
     @Override
+    public List<Admin> getAllAdmin() {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return adminDao.getAll(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Admin getAdminById(int id) {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return adminDao.getAdmById(conn, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public boolean existStudentUsername(String username) {
         try {
             conn = JDBCUtils.getConnectionWithPool();
