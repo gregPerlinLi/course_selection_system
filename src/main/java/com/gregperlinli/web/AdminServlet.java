@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 主要用于管理员的登录退出和注册操作
+ * 主要用于管理员的登录退出操作
  *
  * @author gregPerlinLi
  * @see javax.servlet.ServletConfig
