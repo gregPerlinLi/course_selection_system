@@ -112,7 +112,7 @@ public class StudentServlet extends BaseServlet {
     }
 
     /**
-     * 通过Ajax请求获取某个<code>id</code>对应的课程信息
+     * 通过Ajax请求获取某个<code>id</code>对应的学生信息
      *
      * @param request 请求，要在其中输入一个需要获取的学生<code>id</code>
      * @param response 响应，将会返回一个包含所查找的学生信息的对象<code>course</code>
