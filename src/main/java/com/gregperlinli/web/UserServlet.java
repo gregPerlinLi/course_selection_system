@@ -120,12 +120,12 @@ public class UserServlet extends BaseServlet {
     }
 
     /**
-     * 处理修改学生信息功能
+     * 处理修改学生自己的信息功能
      * 若修改成功会重定向到<code>index.html</code>，若失败则继续停留在该界面
      *
      * @param request 修改请求，需要通过POST请求提供要修改的学生<code>id</code>，
      *                学生学号<code>stuNum</code>，
-     *                学生学号<code>username</code>，
+     *                学生姓名<code>username</code>，
      *                所在学院<code>college</code>，
      *                所在年级<code>grade</code>，
      *                所在班级<code>stuClass</code>，
@@ -148,14 +148,14 @@ public class UserServlet extends BaseServlet {
         }
     }
 
-        /**
-         * 通过Ajax请求检查是否存在该学生学号
-         *
-         * @param request 请求，要在其中输入一个需要检查的学生学号参数<code>stuNum</code>
-         * @param response 响应，将会返回一个布尔值<code>existStuNum</code>，若为<code>True</code>，则已存在该学号，若为<code>false</code>，则不存在该学号
-         * @throws ServletException 抛出错误
-         * @throws IOException 抛出错误
-         */
+    /**
+     * 通过Ajax请求检查是否存在该学生学号
+     *
+     * @param request 请求，要在其中输入一个需要检查的学生学号参数<code>stuNum</code>
+     * @param response 响应，将会返回一个布尔值<code>existStuNum</code>，若为<code>True</code>，则已存在该学号，若为<code>false</code>，则不存在该学号
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
     protected void ajaxExistStuNum(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String stuNum = request.getParameter("stuNum");
 

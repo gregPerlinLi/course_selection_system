@@ -65,7 +65,7 @@ public class StudentServlet extends BaseServlet {
      *
      * @param request 修改请求，需要通过POST请求提供要修改的学生<code>id</code>，
      *                学生学号<code>stuNum</code>，
-     *                学生学号<code>username</code>，
+     *                学生姓名<code>username</code>，
      *                所在学院<code>college</code>，
      *                所在年级<code>grade</code>，
      *                所在班级<code>stuClass</code>，
