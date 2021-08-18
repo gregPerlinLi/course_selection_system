@@ -202,6 +202,20 @@ public class AccountManageServiceImpl implements AccountManageService {
         return false;
     }
 
+    @Override
+    public boolean existAdminUsername(String username) {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            if ( adminDao.getAdmByUsername(conn, username) != null ) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
     private boolean isLegalToUpdate(Connection conn, Student currentStudent, Student student) {
         return ( ( studentDao.getStuByUsername(conn, student.getUsername()) == null && studentDao.getStuByStuNum(conn, student.getStuNum()) == null ) ||
                 (currentStudent.getUsername().equals(student.getUsername()) && (currentStudent.getStuNum().equals(student.getStuNum()))) ||

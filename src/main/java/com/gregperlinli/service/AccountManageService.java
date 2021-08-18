@@ -92,4 +92,12 @@ public interface AccountManageService {
      * @return 返回是否存在该用户，<code>true</code>则为存在该用户，<code>false</code>则为不存在该用户
      */
     boolean existStudentStuNum(String stuNum);
+
+    /**
+     * 检查是否存在该管理员用户名
+     *
+     * @param username 提供需要检查的用户名
+     * @return 返回是否存在该用户，<code>true</code>则为存在该用户，<code>false</code>则为不存在该用户
+     */
+    boolean existAdminUsername(String username);
 }
