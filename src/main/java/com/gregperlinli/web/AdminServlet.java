@@ -13,9 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 主要用于管理员的登录退出和注册操作
+ * 主要用于管理员的登录退出操作
  *
  * @author gregPerlinLi
+ * @see javax.servlet.ServletConfig
+ * @see javax.servlet.Servlet
+ * @see javax.servlet.http.HttpServlet
+ * @see javax.servlet.GenericServlet
+ * @see java.io.Serializable
+ * @see com.gregperlinli.web.BaseServlet
  * @since 2021-08-06
  */
 @WebServlet(name = "AdminServlet", value = "/adminServlet")

@@ -6,7 +6,9 @@ import com.gregperlinli.dao.impl.CourseDaoImpl;
 import com.gregperlinli.dao.impl.SelectedCourseDaoImpl;
 import com.gregperlinli.pojo.Course;
 import com.gregperlinli.pojo.SelectedCourse;
+import com.gregperlinli.pojo.Student;
 import com.gregperlinli.service.CourseSelectionService;
+import com.gregperlinli.utils.FastSearchListUtil;
 import com.gregperlinli.utils.JDBCUtils;
 
 import java.sql.Connection;
@@ -27,15 +29,51 @@ import java.util.List;
 public class CourseSelectionServiceImpl implements CourseSelectionService {
     private final CourseDao courseDao = new CourseDaoImpl();
     private final SelectedCourseDao selectedCourseDao = new SelectedCourseDaoImpl();
+    private static final Integer SELECT_FAILED = 0;
+    private static final Integer SELECT_SUCCESS = 1;
+    private static final Integer DUPLICATED_SELECT = 2;
     private Connection conn = null;
+    private FastSearchListUtil fslu = null;
 
     @Override
-    public SelectedCourse selectCourse(int id) {
-        return null;
+    public Integer selectCourse(int courseId, Student student) {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            Course course = courseDao.getCourseById(conn, courseId);
+            if ( course.getCurrentStu() < course.getMaxStu() ) {
+                List<SelectedCourse> studentSelectedCourses = selectedCourseDao.getSelectedCourseByStuName(conn, student.getUsername());
+                fslu = new FastSearchListUtil(studentSelectedCourses, "course");
+                List<Object> currentCourseSelected = fslu.searchTasks(course.getCourseName());
+                if ( currentCourseSelected.size() > 0 ) {
+                    return DUPLICATED_SELECT;
+                }
+                courseDao.updateCurrentStu( conn, courseId, course.getCurrentStu() + 1 );
+                SelectedCourse selectedCourse = new SelectedCourse(student.getStuNum(), student.getUsername(), course.getCourseName());
+                selectedCourseDao.insert(conn, selectedCourse );
+                return SELECT_SUCCESS;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return SELECT_FAILED;
     }
 
     @Override
-    public boolean cancelSelection(int id) {
+    public boolean cancelSelection(int selectedCourseId) {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            SelectedCourse selectedCourse = selectedCourseDao.getSelectedCourseById(conn, selectedCourseId);
+            Course currentCourse = courseDao.getCourseByCourseName(conn, selectedCourse.getCourse());
+            if ( currentCourse.getCurrentStu() > 0 ) {
+                selectedCourseDao.deleteById(conn, selectedCourseId);
+                courseDao.updateCurrentStu(conn, currentCourse.getId(), currentCourse.getCurrentStu() - 1);
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
         return false;
     }
 
@@ -58,10 +96,8 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
             return enabledCourses;
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     @Override
@@ -71,9 +107,7 @@ public class CourseSelectionServiceImpl implements CourseSelectionService {
             return selectedCourseDao.getSelectedCourseByStuName(conn, stuName);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 }

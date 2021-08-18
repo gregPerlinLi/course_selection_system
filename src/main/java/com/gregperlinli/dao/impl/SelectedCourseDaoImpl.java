@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.util.List;
 
 /**
+ * <code>SelectedCourseDao</code>的实现类
+ *
  * @author gregperlinli
  * @see com.gregperlinli.dao.BaseDAO
  * @see com.gregperlinli.dao.SelectedCourseDao
@@ -42,6 +44,12 @@ public class SelectedCourseDaoImpl extends BaseDAO<SelectedCourse> implements Se
     public void updateById(Connection conn, SelectedCourse selectedCourse) throws Exception {
         String sql = "update selected_course set stu_num = ?, stu_name = ?, course = ? where id = ?";
         update(conn, sql, selectedCourse.getStuNum(), selectedCourse.getStuName(), selectedCourse.getCourse(), selectedCourse.getId());
+    }
+
+    @Override
+    public SelectedCourse getSelectedCourseById(Connection conn, int id) {
+        String sql = "select id, stu_num stuNum, stu_name stuName, course from selected_course where id = ?";
+        return getQuery(conn, sql, id);
     }
 
     @Override

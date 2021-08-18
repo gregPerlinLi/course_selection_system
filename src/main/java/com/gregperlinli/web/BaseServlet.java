@@ -10,6 +10,12 @@ import java.lang.reflect.Method;
  * 通过<code>action</code>调用各种Servlet业务方法
  *
  * @author gregperlinli
+ * @see java.io.Serializable
+ * @see javax.servlet.GenericServlet
+ * @see javax.servlet.Servlet
+ * @see javax.servlet.http.HttpServlet
+ * @see javax.servlet.ServletConfig
+ * @since 2021-3-12
  */
 @WebServlet(name = "BaseServlet", value = "/BaseServlet")
 public abstract class BaseServlet extends HttpServlet {
@@ -19,6 +25,8 @@ public abstract class BaseServlet extends HttpServlet {
      *
      * @param request 请求，需要提供要调用的业务方法名<code>action</code>
      * @param response 响应
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,6 +40,7 @@ public abstract class BaseServlet extends HttpServlet {
             method.invoke(this, request, response);
         } catch ( Exception e ) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -40,6 +49,8 @@ public abstract class BaseServlet extends HttpServlet {
      *
      * @param request 请求，需要提供要调用的业务方法名<code>action</code>（建议用隐藏型输入标签来在表单中存放）
      * @param response 响应
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,6 +64,7 @@ public abstract class BaseServlet extends HttpServlet {
             method.invoke(this, request, response);
         } catch ( Exception e ) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }

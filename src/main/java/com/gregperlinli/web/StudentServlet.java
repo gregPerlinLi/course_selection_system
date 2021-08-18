@@ -19,6 +19,12 @@ import java.util.Map;
  * 用于学生管理（管理员权限）
  *
  * @author gregPerlinLi
+ * @see javax.servlet.ServletConfig
+ * @see javax.servlet.Servlet
+ * @see javax.servlet.http.HttpServlet
+ * @see javax.servlet.GenericServlet
+ * @see java.io.Serializable
+ * @see com.gregperlinli.web.BaseServlet
  * @since 2021-08-12
  */
 @WebServlet(name = "StudentServlet", value = "/admin/studentServlet")
@@ -31,7 +37,7 @@ public class StudentServlet extends BaseServlet {
      * 若添加成功会重定向到<code>student_management.html</code>，若失败则继续停留在该界面
      *
      * @param request 添加请求，需要通过POST请求提供学生学号<code>stuNum</code>，
-     *                学生学号<code>username</code>，
+     *                学生姓名<code>username</code>，
      *                所在学院<code>college</code>，
      *                所在年级<code>grade</code>，
      *                所在班级<code>stuClass</code>，
@@ -48,7 +54,7 @@ public class StudentServlet extends BaseServlet {
             response.sendRedirect(request.getContextPath() + "/pages/admin/student_management.html");
         } else {
             // 添加失败
-            System.out.println("The studentt [ " + student.getUsername() + " ] is already exist!");
+            System.out.println("The student [ " + student.getUsername() + " ] is already exist!");
             response.sendRedirect(request.getContextPath() + "pages/admin/add_student.html");
         }
     }
@@ -59,7 +65,7 @@ public class StudentServlet extends BaseServlet {
      *
      * @param request 修改请求，需要通过POST请求提供要修改的学生<code>id</code>，
      *                学生学号<code>stuNum</code>，
-     *                学生学号<code>username</code>，
+     *                学生姓名<code>username</code>，
      *                所在学院<code>college</code>，
      *                所在年级<code>grade</code>，
      *                所在班级<code>stuClass</code>，
@@ -92,7 +98,7 @@ public class StudentServlet extends BaseServlet {
      */
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 从request中获取要删除的id值
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = WebUtils.parseInt(request.getParameter("id"), 0);
         // 删除数据，并获取是否成功删除
         boolean isDeleted = accountManageService.studentDelete(id);
         // 设置输出集
@@ -106,7 +112,7 @@ public class StudentServlet extends BaseServlet {
     }
 
     /**
-     * 通过Ajax请求获取某个<code>id</code>对应的课程信息
+     * 通过Ajax请求获取某个<code>id</code>对应的学生信息
      *
      * @param request 请求，要在其中输入一个需要获取的学生<code>id</code>
      * @param response 响应，将会返回一个包含所查找的学生信息的对象<code>course</code>
@@ -114,7 +120,7 @@ public class StudentServlet extends BaseServlet {
      * @throws IOException 抛出错误
      */
     protected void getStudent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = WebUtils.parseInt(request.getParameter("id"), 0);
         Student student = accountManageService.getStuById(id);
 
         String json = gson.toJson(student);

@@ -73,12 +73,12 @@ public abstract class BaseDAO<T> {
 
         } catch ( Exception e ) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         } finally {
             // close the resource
             JDBCUtils.closeResource(null, ps);
         }
 
-        return 0;
     }
 
 
@@ -135,6 +135,7 @@ public abstract class BaseDAO<T> {
             }
         } catch ( Exception e ) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         } finally {
             JDBCUtils.closeResource(null, ps, rs);
         }
@@ -203,10 +204,10 @@ public abstract class BaseDAO<T> {
             return list;
         } catch ( Exception e ) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         } finally {
             JDBCUtils.closeResource(null, ps, rs);
         }
-        return null;
     }
 
     /**
@@ -245,6 +246,7 @@ public abstract class BaseDAO<T> {
 
         } catch ( Exception e ) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         } finally {
             JDBCUtils.closeResource(null, ps, rs);
         }

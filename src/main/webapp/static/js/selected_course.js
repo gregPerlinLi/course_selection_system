@@ -9,8 +9,8 @@ $(function () {
                 "<td>" + selectedCoureses.id + "</td>" +
                 "<td>" + selectedCoureses.stuNum + "</td>" +
                 "<td>" + selectedCoureses.stuName + "</td>" +
-                "<td>" + selectedCoureses.course + "</td>" +
-                "<td><button class='cancel' data-id='" + selectedCoureses.id +"'>退选</button></td>" +
+                "<td id='courseId_" + selectedCoureses.id + "'>" + selectedCoureses.course + "</td>" +
+                "<td><button class='cancel' data_id='" + selectedCoureses.id +"'>退选</button></td>" +
                 "</tr>";
         });
         $("#courseList").append(outputTable);
@@ -18,9 +18,17 @@ $(function () {
     });
 
     $(document).on("click", ".cancel", function () {
-       if ( confirm("确定退选此课程吗？") ){
-           var id = $(this).attr("data-id");
-           alert("退选id为" + id + "的课程");
-       }
+        var id = $(this).attr("data_id");
+        if ( confirm("确定退选课程" + $("#courseId_" + id).html() + "？") ){
+            $.getJSON(ajaxUrl, "action=cancelCourse&charset=utf-8&id=" + id, function (data) {
+                console.log(data);
+                if ( data.isCanceled ) {
+                    alert("成功退选" + $("#courseId_" + id).html() + "课程！");
+                } else {
+                    alert("退选" + $("#courseId_" + id).html() + "课程失败，请重新尝试！");
+                }
+                window.location.reload()
+            });
+        }
     });
 });

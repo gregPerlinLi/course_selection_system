@@ -90,6 +90,22 @@ public interface CollegeGradeClassManageService {
     boolean classDelete(int id);
 
     /**
+     * 根据id查询班级操作
+     *
+     * @param id 提供要查询的班级id
+     * @return 返回查询到的班级对象，如果为<code>null</code>则不存在该对象
+     */
+    Classes getClassById(int id);
+
+    /**
+     * 检查是否存在该班级名事务
+     *
+     * @param className 提供需要检查的班级名称
+     * @return 返回是否存在该课程，<code>true</code>则为存在该班级，<code>false</code>则为不存在该班级
+     */
+    boolean existClassName(String className);
+
+    /**
      * 查找所有学院操作
      *
      * @return 返回带有所有学院对象的集合
@@ -102,6 +118,13 @@ public interface CollegeGradeClassManageService {
      * @return 返回带有所有年级对象的集合
      */
     List<Grade> searchAllGrade();
+
+    /**
+     * 查找所有班级操作
+     *
+     * @return 返回带有所有班级对象的集合
+     */
+    List<Classes> searchAllClass();
 
     /**
      * 根据学院和年级查找班级操作

@@ -1,0 +1,14 @@
+#errorCode {
+    font-family: Futura, "PingFang SC", Helvetica, Arial, sans-serif;
+    font-size: 100px;
+    color: red;
+}
+#errorInform {
+    font-family: Futura, "PingFang SC", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 60px;
+    color: red;
+}
+h1, h2 {
+    font-family: Futura, "PingFang SC", Helvetica, Arial, sans-serif;
+}

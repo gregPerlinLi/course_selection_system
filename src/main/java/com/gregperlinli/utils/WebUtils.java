@@ -28,4 +28,19 @@ public class WebUtils {
         }
         return bean;
     }
+
+    /**
+     * 将<code>String</code>类型的整数变量转换为<code>int</code>类型的变量
+     *
+     * @param strInt 需要转换的<code>String</code>类型整数变量
+     * @param defaultValue 如果转换失败时返回的默认数值
+     * @return 转换后的<code>int</code>类型的变量
+     */
+    public static int parseInt(String strInt, int defaultValue) {
+        try {
+            return Integer.parseInt(strInt);
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
 }

@@ -2,6 +2,7 @@ package com.gregperlinli.service;
 
 import com.gregperlinli.pojo.Course;
 import com.gregperlinli.pojo.SelectedCourse;
+import com.gregperlinli.pojo.Student;
 
 import java.util.List;
 
@@ -16,18 +17,19 @@ public interface CourseSelectionService {
     /**
      * 选课事务
      *
-     * @param id 提供所选课程的id
-     * @return 返回一个已选课程信息，若为<code>null</code>则选课失败
+     * @param courseId 提供所选课程的id
+     * @param student 提供要进行选课操作的学生对象
+     * @return 返回一个选课结果数字，若为<code>0</code>则选课失败，若为<code>1</code>则选课成功，若为<code>2</code>则该学生已选过此课程
      */
-    SelectedCourse selectCourse(int id);
+    Integer selectCourse(int courseId, Student student);
 
     /**
      * 放弃所选课程事务
      *
-     * @param id 提供一个需要放弃的已选课程信息id
+     * @param selectedCourseId 提供一个需要放弃的已选课程信息id
      * @return 凡事是否成功放弃，<code>true</code>为成功放弃，<code>false</code>则为放弃失败
      */
-    boolean cancelSelection(int id);
+    boolean cancelSelection(int selectedCourseId);
 
     /**
      * 查询所有已开始选课的课程

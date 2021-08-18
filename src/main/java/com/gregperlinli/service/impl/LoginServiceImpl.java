@@ -12,6 +12,8 @@ import com.gregperlinli.utils.JDBCUtils;
 import java.sql.Connection;
 
 /**
+ * <code>LoginService</code>的实现类
+ *
  * @author gregperlinli
  * @see LoginService
  * @since 2021-7-26
@@ -29,8 +31,7 @@ public class LoginServiceImpl implements LoginService {
             student = studentDao.getStuByUsername(conn, username);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
         if ( student != null && student.getPassword().equals(password)) {
             return student;
@@ -48,8 +49,7 @@ public class LoginServiceImpl implements LoginService {
             admin = adminDao.getAdmByUsername(conn, username);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
         if ( admin != null && admin.getPassword().equals(password)) {
             return admin;

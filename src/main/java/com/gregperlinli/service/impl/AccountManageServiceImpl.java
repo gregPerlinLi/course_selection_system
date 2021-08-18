@@ -13,10 +13,11 @@ import com.gregperlinli.service.AccountManageService;
 import com.gregperlinli.utils.JDBCUtils;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
+ * <code>AccountManageService</code>的实现类
+ *
  * @author gregperlinli
  * @see AccountManageService
  * @since 2021-7-28
@@ -36,8 +37,7 @@ public class AccountManageServiceImpl implements AccountManageService {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -52,8 +52,7 @@ public class AccountManageServiceImpl implements AccountManageService {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -64,7 +63,7 @@ public class AccountManageServiceImpl implements AccountManageService {
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
-            conn.setAutoCommit(false);
+            // conn.setAutoCommit(false);
             Student currentStudent = studentDao.getStuById(conn, student.getId());
             if ( currentStudent != null ) {
                 // 先修改该学生下所有已选课程的信息
@@ -89,15 +88,7 @@ public class AccountManageServiceImpl implements AccountManageService {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                // 恢复自动提交
-                conn.setAutoCommit(true);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                JDBCUtils.closeResource(conn, null);
-            }
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -117,8 +108,7 @@ public class AccountManageServiceImpl implements AccountManageService {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -129,7 +119,7 @@ public class AccountManageServiceImpl implements AccountManageService {
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
-            conn.setAutoCommit(false);
+            // conn.setAutoCommit(false);
             Student currentStudent = studentDao.getStuById(conn, id);
             if ( currentStudent != null ) {
                 // 先删除该学生下所有已选课程的信息
@@ -142,15 +132,7 @@ public class AccountManageServiceImpl implements AccountManageService {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                // 恢复自动提交
-                conn.setAutoCommit(true);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                JDBCUtils.closeResource(conn, null);
-            }
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -165,8 +147,7 @@ public class AccountManageServiceImpl implements AccountManageService {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -178,10 +159,8 @@ public class AccountManageServiceImpl implements AccountManageService {
             return studentDao.getAll(conn);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     @Override
@@ -191,10 +170,30 @@ public class AccountManageServiceImpl implements AccountManageService {
             return studentDao.getStuById(conn, id);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
-        return null;
+    }
+
+    @Override
+    public List<Admin> getAllAdmin() {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return adminDao.getAll(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Admin getAdminById(int id) {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return adminDao.getAdmById(conn, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -206,8 +205,7 @@ public class AccountManageServiceImpl implements AccountManageService {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -221,8 +219,21 @@ public class AccountManageServiceImpl implements AccountManageService {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean existAdminUsername(String username) {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            if ( adminDao.getAdmByUsername(conn, username) != null ) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return false;
     }

@@ -16,11 +16,12 @@ import com.gregperlinli.service.CollegeGradeClassManageService;
 import com.gregperlinli.utils.JDBCUtils;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * <code>CollegeGradeClassManageService</code>的实现类
+ *
  * @author gregperlinli
  * @see CollegeGradeClassManageService
  * @since 2021-7-29
@@ -42,8 +43,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -58,8 +58,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -74,8 +73,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -85,7 +83,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
-            conn.setAutoCommit(false);
+            // conn.setAutoCommit(false);
             College currentCollege = collegeDao.getCollegeById(conn, college.getId());
             if ( currentCollege != null ) {
                 //先修改该学院下的所有学生信息和所有的班级信息
@@ -113,15 +111,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                // 恢复自动提交
-                conn.setAutoCommit(true);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                JDBCUtils.closeResource(conn, null);
-            }
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -131,7 +121,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
-            conn.setAutoCommit(false);
+            // conn.setAutoCommit(false);
             Grade currentGrade = gradeDao.getGradeById(conn, grade.getId());
             if ( currentGrade != null ) {
                 //先修改该年级下的所有学生信息和所有的班级信息
@@ -159,15 +149,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                // 恢复自动提交
-                conn.setAutoCommit(true);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                JDBCUtils.closeResource(conn, null);
-            }
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -177,7 +159,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
-            conn.setAutoCommit(false);
+            // conn.setAutoCommit(false);
             Classes currentClasses = classesDao.getClassById(conn, classes.getId());
             if ( currentClasses != null ) {
                 //先修改该班级下的所有学生信息
@@ -200,15 +182,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                // 恢复自动提交
-                conn.setAutoCommit(true);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                JDBCUtils.closeResource(conn, null);
-            }
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -218,7 +192,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
-            conn.setAutoCommit(false);
+            // conn.setAutoCommit(false);
             College currentCollege = collegeDao.getCollegeById(conn, id);
             if ( currentCollege != null ) {
                 // 先删除该学院下的所有学生信息和所有的班级信息
@@ -232,15 +206,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                // 恢复自动提交
-                conn.setAutoCommit(true);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                JDBCUtils.closeResource(conn, null);
-            }
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -250,7 +216,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
-            conn.setAutoCommit(false);
+            // conn.setAutoCommit(false);
             Grade currentGrade = gradeDao.getGradeById(conn, id);
             if ( currentGrade != null ) {
                 // 先删除该年级下的所有学生信息和所有的班级信息
@@ -264,15 +230,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                // 恢复自动提交
-                conn.setAutoCommit(true);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                JDBCUtils.closeResource(conn, null);
-            }
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -282,7 +240,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
         try {
             conn = JDBCUtils.getConnectionWithPool();
             // 关闭自动提交
-            conn.setAutoCommit(false);
+            // conn.setAutoCommit(false);
             Classes currentClass = classesDao.getClassById(conn, id);
             if ( currentClass != null ) {
                 // 先删除该班级下的所有学生信息
@@ -295,15 +253,32 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            try {
-                // 恢复自动提交
-                conn.setAutoCommit(true);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
+
+    @Override
+    public Classes getClassById(int id) {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return classesDao.getClassById(conn, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public boolean existClassName(String className) {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            if ( classesDao.getClassByClassName(conn, className) != null ) {
+                return true;
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return false;
     }
@@ -315,10 +290,8 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
             return collegeDao.getAll(conn);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     @Override
@@ -328,10 +301,19 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
             return gradeDao.getAll(conn);
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
-        return null;
+    }
+
+    @Override
+    public List<Classes> searchAllClass() {
+        try {
+            conn = JDBCUtils.getConnectionWithPool();
+            return classesDao.getAll(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -348,9 +330,7 @@ public class CollegeGradeClassManageServiceImpl implements CollegeGradeClassMana
             return classesByCollegeAndGrade;
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
-            JDBCUtils.closeResource(conn, null);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 }

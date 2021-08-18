@@ -7,6 +7,7 @@ import com.gregperlinli.service.CourseManageService;
 import com.gregperlinli.service.CourseSelectionService;
 import com.gregperlinli.service.impl.CourseManageServiceImpl;
 import com.gregperlinli.service.impl.CourseSelectionServiceImpl;
+import com.gregperlinli.utils.WebUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +24,12 @@ import java.util.Map;
  * 用于课程的管理（管理员权限）
  *
  * @author gregPerlinLi
+ * @see javax.servlet.ServletConfig
+ * @see javax.servlet.Servlet
+ * @see javax.servlet.http.HttpServlet
+ * @see javax.servlet.GenericServlet
+ * @see java.io.Serializable
+ * @see com.gregperlinli.web.BaseServlet
  * @since 2021-08-11
  */
 @WebServlet(name = "CourseServlet", value = "/admin/courseServlet")
@@ -80,7 +87,7 @@ public class CourseServlet extends BaseServlet {
      */
     protected void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 从request中获取要删除的id值
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = WebUtils.parseInt(request.getParameter("id"), 0);
         // 删除数据，并获取是否成功删除
         boolean isDeleted = courseManageService.deleteCourse(id);
         // 设置输出集
@@ -108,7 +115,7 @@ public class CourseServlet extends BaseServlet {
      */
     protected void update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = WebUtils.parseInt(request.getParameter("id"), 0);
         String courseName = request.getParameter("courseName");
         Date startDate = Date.valueOf(request.getParameter("startDate"));
         String startTimeStr = request.getParameter("startTime");
@@ -142,7 +149,7 @@ public class CourseServlet extends BaseServlet {
      * @throws IOException 抛出错误
      */
     protected void getCourse(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = WebUtils.parseInt(request.getParameter("id"), 0);
         Course course = courseManageService.getCourseById(id);
 
         String json = gson.toJson(course);
@@ -206,6 +213,7 @@ public class CourseServlet extends BaseServlet {
 
         String json = gson.toJson(resultMap);
 
+        response.setContentType("text/html;charset=UTF-8");
         response.getWriter().write(json);
     }
 }

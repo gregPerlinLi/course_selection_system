@@ -28,6 +28,13 @@ import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
  * 主要用于学生的登录退出和注册操作
  *
  * @author gregperlinli
+ * @see javax.servlet.ServletConfig
+ * @see javax.servlet.Servlet
+ * @see javax.servlet.http.HttpServlet
+ * @see javax.servlet.GenericServlet
+ * @see java.io.Serializable
+ * @see com.gregperlinli.web.BaseServlet
+ * @since 2021-8-17
  */
 @WebServlet(name = "UserServlet", value = "/userServlet")
 public class UserServlet extends BaseServlet {
@@ -110,6 +117,35 @@ public class UserServlet extends BaseServlet {
             response.sendRedirect(request.getContextPath() + "/pages/login/register.html");
         }
 
+    }
+
+    /**
+     * 处理修改学生自己的信息功能
+     * 若修改成功会重定向到<code>index.html</code>，若失败则继续停留在该界面
+     *
+     * @param request 修改请求，需要通过POST请求提供要修改的学生<code>id</code>，
+     *                学生学号<code>stuNum</code>，
+     *                学生姓名<code>username</code>，
+     *                所在学院<code>college</code>，
+     *                所在年级<code>grade</code>，
+     *                所在班级<code>stuClass</code>，
+     *                MD5加密后的密码<code>password</code>
+     * @param response 修改响应
+     * @throws ServletException 抛出错误
+     * @throws IOException 抛出错误
+     */
+    protected void studentUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Student student = WebUtils.copyParamToBean(request.getParameterMap(), new Student());
+
+        if ( accountManageService.studentUpdate(student) ) {
+            // 修改成功
+            request.getSession().setAttribute("student", student);
+            response.sendRedirect(request.getContextPath() + "/pages/user/index.html");
+        } else {
+            // 修改失败
+            System.out.println("The student [ " + student.getUsername() + " ] is already exist!");
+            response.sendRedirect(request.getContextPath() + "/pages/user/update_inform.html");
+        }
     }
 
     /**
